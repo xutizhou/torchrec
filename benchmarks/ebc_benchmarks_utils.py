@@ -40,7 +40,7 @@ def get_random_dataset(
             # guess a pooling factor here
             ids_per_features.append(pooling_factors.get(feature_name, 64))
             hash_sizes.append(table.num_embeddings)
-
+    import pdb; pdb.set_trace()
     return RandomRecDataset(
         keys=keys,
         batch_size=batch_size,
@@ -63,7 +63,6 @@ def train_one_epoch(
     for data in dataset:
         sparse_features = data.sparse_features.to(device)
         print(f'#########sparse features are{sparse_features}')
-        print(f'#########sparse features are{sparse_features["ebc_1_feat_1"].shape}')
         pooled_embeddings = model(sparse_features)
         optimizer.zero_grad()
 
