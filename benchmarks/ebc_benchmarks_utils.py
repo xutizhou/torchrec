@@ -38,7 +38,7 @@ def get_random_dataset(
         for feature_name in table.feature_names:
             keys.append(feature_name)
             # guess a pooling factor here
-            ids_per_features.append(pooling_factors.get(feature_name, 64))
+            ids_per_features.append(pooling_factors.get(feature_name, 32))
             hash_sizes.append(table.num_embeddings)
     import pdb; pdb.set_trace()
     return RandomRecDataset(
