@@ -63,6 +63,7 @@ def train_one_epoch(
     for data in dataset:
         sparse_features = data.sparse_features.to(device)
         print(f'#########sparse features are{sparse_features}')
+        print(f'#########sparse features are{sparse_features.shape}')
         pooled_embeddings = model(sparse_features)
         optimizer.zero_grad()
 
