@@ -995,7 +995,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
 
         # 定义数据集参数
-        num_steps = 100
+        num_steps = 10000
 
         import time
 
