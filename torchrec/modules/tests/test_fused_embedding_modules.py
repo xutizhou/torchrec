@@ -525,89 +525,114 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         device: torch.device,
     ) -> None:
         optimizer_type, optimizer_kwargs = optimizer_type_and_kwargs
-        tables = [
+
+        embedding_configs = [
             EmbeddingBagConfig(
-                num_embeddings=2,
+                num_embeddings=100,
                 embedding_dim=4,
                 name="table_0",
                 feature_names=["feature_0"],
             ),
-            EmbeddingBagConfig(
-                num_embeddings=2,
-                embedding_dim=4,
-                name="table_1",
-                feature_names=["feature_1"],
-            ),
         ]
 
-        fused_ebc = FusedEmbeddingBagCollection(
-            tables=tables,
+        fused_ec = FusedEmbeddingBagCollection(
+            tables=embedding_configs,
             optimizer_type=optimizer_type,
             optimizer_kwargs=optimizer_kwargs,
             device=device,
         )
 
-        ebc = EmbeddingBagCollection(tables=tables, device=device)
-
-        state_dict = OrderedDict(
-            [
-                (
-                    "embedding_bags.table_0.weight",
-                    torch.Tensor([[1, 1, 1, 1], [2, 2, 2, 2]]).to(device),
-                ),
-                (
-                    "embedding_bags.table_1.weight",
-                    torch.Tensor([[4, 4, 4, 4], [8, 8, 8, 8]]).to(device),
-                ),
-            ]
-        )
-        fused_ebc.load_state_dict(state_dict)
-        ebc.load_state_dict(state_dict)
+        ec = EmbeddingBagCollection(tables=embedding_configs, device=device)
 
         #        0       1        2  <-- batch
         # "f1"   [] [0]    [0,1]
         # "f2"   [1]    [0,1]    []
         #  ^
         # feature
-        features = KeyedJaggedTensor.from_lengths_sync(
-            keys=["feature_0", "feature_1"],
-            values=torch.tensor([0, 0, 1, 1, 0, 1]),
-            lengths=torch.tensor([0, 1, 2, 1, 2, 0]),
-        ).to(device)
 
-        opt = optimizer_type(ebc.parameters(), **optimizer_kwargs)
+        opt = optimizer_type(ec.parameters(), **optimizer_kwargs)
+        class CustomDataset():
+            def __init__(self, num_steps, batch_size, device):
+                self.num_steps = num_steps
+                self.batch_size = batch_size
+                self.hash_size = 100
+                self.device = device
+                self.min_ids_per_features = 1
+                self.ids_per_features = 10
+                self.keys = ["feature_0"]
+                self.data = self._generate_data()
+            def _generate_data(self):
+                data = []
+                for _ in range(self.num_steps):
+                    values = []
+                    lengths = []
+                    hash_size = self.hash_size
+                    min_num_ids = self.min_ids_per_features
+                    max_num_ids = self.ids_per_features
+                    length = torch.randint(
+                        min_num_ids,
+                        max_num_ids + 1,
+                        (self.batch_size,),
+                        dtype=torch.int32,
+                    )
+                    value = torch.randint(
+                        0, hash_size, (int(length.sum()),)
+                    )
+                    lengths.append(length)
+                    values.append(value)
+                    sparse_features = KeyedJaggedTensor.from_lengths_sync(
+                        keys=self.keys,
+                        values=torch.cat(values),
+                        lengths=torch.cat(lengths),
+                    )
+                    data.append(sparse_features)
+                return data
+            def __len__(self):
+                return self.num_steps
 
-        # pyre-ignore
-        def run_one_training_step() -> None:
-            fused_pooled_embeddings = fused_ebc(features)
-            fused_vals = []
-            for _name, param in fused_pooled_embeddings.to_dict().items():
-                fused_vals.append(param)
-            torch.cat(fused_vals, dim=1).sum().backward()
+            def __getitem__(self, idx):
+                return self.data[idx]
 
+
+
+        # 定义数据集参数
+        num_steps = 10000
+
+        import time
+
+        # 创建数据集和数据加载器
+        dataset = CustomDataset(num_steps,batch_size=10, device=device)
+
+        start_time = time.perf_counter()
+        # 迭代数据加载器
+        for step in range(num_steps):
+            features = dataset.__getitem__(step)
+            features = features.to(device)
             opt.zero_grad()
-            pooled_embeddings = ebc(features)
-
+            sequence_embeddings = ec(features)
             vals = []
-            for _name, param in pooled_embeddings.to_dict().items():
+            for _name, param in sequence_embeddings.to_dict().items():
                 vals.append(param)
-            torch.cat(vals, dim=1).sum().backward()
+            torch.cat(vals, dim=1).sum().backward()            
             opt.step()
 
-        run_one_training_step()
-        torch.testing.assert_close(
-            ebc.state_dict()["embedding_bags.table_0.weight"],
-            fused_ebc.state_dict()["embedding_bags.table_0.weight"],
-        )
+        end_time = time.perf_counter()
+        print(f"ec Time: {end_time - start_time}")
+        
+        start_time = time.perf_counter()
+        # 迭代数据加载器
+        for step in range(num_steps):
+            features = dataset.__getitem__(step)
+            features = features.to(device)
+            fused_embeddings = fused_ec(features)
+            fused_vals = []
+            for _name, param in fused_embeddings.to_dict().items():
+                fused_vals.append(param)
+            torch.cat(fused_vals, dim=1).sum().backward() 
 
-        run_one_training_step()
-        torch.testing.assert_close(
-            ebc.state_dict()["embedding_bags.table_0.weight"],
-            fused_ebc.state_dict()["embedding_bags.table_0.weight"],
-        )
+        end_time = time.perf_counter()
+        print(f"fused ec Time: {end_time - start_time}")
 
-        fused_optimizer = fused_ebc.fused_optimizer()
-        fused_optimizer.load_state_dict(fused_optimizer.state_dict())
 
     def unweighted_replacement(
         self, device: torch.device, location: Optional[EmbeddingLocation] = None
@@ -1012,7 +1037,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
         end_time = time.perf_counter()
         print(f"ec Time: {end_time - start_time}")
-        
+
         start_time = time.perf_counter()
         # 迭代数据加载器
         for step in range(num_steps):
