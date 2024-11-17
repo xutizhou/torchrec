@@ -1005,7 +1005,6 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         # 迭代数据加载器
         for step in range(num_steps):
             features = dataset.__getitem__(step)
-            print(f"Step {step}: {features}")
             features = features.to(device)
             fused_embeddings = fused_ec(features)
             fused_vals = []
