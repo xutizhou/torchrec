@@ -945,7 +945,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         # feature
 
         opt = optimizer_type(ec.parameters(), **optimizer_kwargs)
-        class CustomDataset(Dataset):
+        class CustomDataset():
             def __init__(self, num_steps, batch_size, device):
                 self.num_steps = num_steps
                 self.batch_size = batch_size
@@ -999,10 +999,10 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
         # 创建数据集和数据加载器
         dataset = CustomDataset(num_steps,batch_size=10, device=device)
-        dataloader = DataLoader(dataset, batch_size=1, shuffle=False)
 
         # 迭代数据加载器
-        for step, features in enumerate(dataloader):
+        for step in range(num_steps):
+            features = dataset.__getitem__(step)
             print(f"Step {step}: {features}")
             features = features.to(device)
             fused_embeddings = fused_ec(features)
