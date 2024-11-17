@@ -525,6 +525,9 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         device: torch.device,
     ) -> None:
         optimizer_type, optimizer_kwargs = optimizer_type_and_kwargs
+        print(f"device: {device}")
+        print(f"optimizer_type: {optimizer_type}")
+        print(f"optimizer_kwargs: {optimizer_kwargs}")
         hash_size = 10000
         embedding_dim = 128
         batch_size = 10
