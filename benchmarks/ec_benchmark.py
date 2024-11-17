@@ -44,6 +44,6 @@ output = fused_embedding_collection(keyed_jagged_tensor)
 for key, value in output.items():
     print(f"{key}: {value}")
 fused_vals = []
-for _name, param in output.items():
+for _name, param in output.to_dict().items():
     fused_vals.append(param)
 torch.cat(fused_vals, dim=1).sum().backward()                         
