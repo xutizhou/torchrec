@@ -1006,7 +1006,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
         # 创建数据集和数据加载器
         dataset = CustomDataset(num_steps,batch_size=10, device=device)
-        dataloader = DataLoader(dataset, batch_size=10, shuffle=False)
+        dataloader = DataLoader(dataset, batch_size=1, shuffle=False)
 
         # 迭代数据加载器
         for step, features in enumerate(dataloader):
