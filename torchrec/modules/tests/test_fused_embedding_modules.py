@@ -998,8 +998,18 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
             def __getitem__(self, idx):
                 return self.data[idx]
 
-        # pyre-ignore
-        def run_one_training_step(features) -> None:
+
+
+        # 定义数据集参数
+        num_steps = 10
+
+        # 创建数据集和数据加载器
+        dataset = CustomDataset(num_steps,batch_size=10, device=device)
+        dataloader = DataLoader(dataset, batch_size=10, shuffle=False)
+
+        # 迭代数据加载器
+        for step, features in enumerate(dataloader):
+            print(f"Step {step}: {features}")
             fused_embeddings = fused_ec(features)
             fused_vals = []
             for _name, jt in fused_embeddings.items():
@@ -1014,28 +1024,11 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
             torch.cat(vals).sum().backward()
             opt.step()
 
-        # 定义数据集参数
-        num_steps = 10
-
-        # 创建数据集和数据加载器
-        dataset = CustomDataset(num_steps, device)
-        dataloader = DataLoader(dataset, batch_size=10, shuffle=False)
-
-        # 迭代数据加载器
-        for step, batch in enumerate(dataloader):
-            print(f"Step {step}: {batch}")
-            run_one_training_step(batch)
-
         torch.testing.assert_close(
             ec.state_dict()["embeddings.table_0.weight"],
             fused_ec.state_dict()["embeddings.table_0.weight"],
         )
 
-        run_one_training_step()
-        torch.testing.assert_close(
-            ec.state_dict()["embeddings.table_0.weight"],
-            fused_ec.state_dict()["embeddings.table_0.weight"],
-        )
 
         fused_optimizer = fused_ec.fused_optimizer()
         fused_optimizer.load_state_dict(fused_optimizer.state_dict())
