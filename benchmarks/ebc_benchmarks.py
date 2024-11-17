@@ -87,7 +87,7 @@ def main(argv: List[str]) -> None:
                 fused_ebc_time_std,
                 speedup,
             ) = get_ebc_comparison(embedding_bag_configs, device)
-
+            print(f"device = {device}")
             print(f"when DLRM EMB is reduced by {reduction_degree} times:")
             print(f"ebc_time = {ebc_time_avg} +/- {ebc_time_std} sec")
             print(f"fused_ebc_time = {fused_ebc_time_avg} +/- {fused_ebc_time_std} sec")
