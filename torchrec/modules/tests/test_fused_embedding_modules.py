@@ -967,7 +967,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 self.key = "feature_0"
                 self.data = self._generate_data()
             def _generate_data(self):
-
+                data = []
                 for _ in range(self.num_steps):
                     values = []
                     lengths = []
@@ -981,7 +981,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                         dtype=torch.int32,
                     )
                     value = torch.randint(
-                        0, hash_size, (cast(int, length.sum()),)
+                        0, hash_size, (int(length.sum()),)
                     )
                     lengths.append(length)
                     values.append(value)
@@ -991,7 +991,8 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                         values=torch.cat(values),
                         lengths=torch.cat(lengths),
                     )
-
+                    data.append(sparse_features)
+                return data
             def __len__(self):
                 return self.num_steps
 
@@ -1010,6 +1011,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         # 迭代数据加载器
         for step, features in enumerate(dataloader):
             print(f"Step {step}: {features}")
+            features = features.to(device)
             fused_embeddings = fused_ec(features)
             fused_vals = []
             for _name, jt in fused_embeddings.items():
