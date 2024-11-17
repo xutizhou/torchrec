@@ -962,10 +962,10 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 self.batch_size = batch_size
                 self.hash_size = 100
                 self.device = device
-                self.data = self._generate_data()
                 self.min_ids_per_features = 1
                 self.ids_per_features = 10
                 self.key = "feature_0"
+                self.data = self._generate_data()
             def _generate_data(self):
 
                 for _ in range(self.num_steps):
