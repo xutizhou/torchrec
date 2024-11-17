@@ -41,9 +41,9 @@ keyed_jagged_tensor = KeyedJaggedTensor.from_offsets_sync(
 
 # 前向传播
 output = fused_embedding_collection(keyed_jagged_tensor)
+
 for key, value in output.items():
     print(f"{key}: {value}")
-fused_vals = []
-for _name, param in output.to_dict().items():
-    fused_vals.append(param)
+fused_vals = [jt.to_dense() for jt in output.values()]
+
 torch.cat(fused_vals, dim=1).sum().backward()                         
