@@ -974,11 +974,6 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                     )
                     lengths.append(length)
                     values.append(value)
-                    print(f"length: {length}")
-                    print(f"value: {value}")
-                    print(f"values: {values}")
-                    print(f"lengths: {lengths}")
-                    print(f"keys: {self.keys}")
                     sparse_features = KeyedJaggedTensor.from_lengths_sync(
                         keys=self.keys,
                         values=torch.cat(values),
@@ -1012,6 +1007,14 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 fused_vals.extend(jt.to_dense())
             torch.cat(fused_vals).sum().backward()
 
+        end_time = time.perf_counter()
+        print(f"fused ec Time: {end_time - start_time}")
+
+        start_time = time.perf_counter()
+        # 迭代数据加载器
+        for step in range(num_steps):
+            features = dataset.__getitem__(step)
+            features = features.to(device)
             opt.zero_grad()
             sequence_embeddings = ec(features)
             vals = []
@@ -1019,9 +1022,9 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 vals.extend(jt.to_dense())
             torch.cat(vals).sum().backward()
             opt.step()
-        end_time = time.perf_counter()
-        print(f"Time: {end_time - start_time}")
 
+        end_time = time.perf_counter()
+        print(f"ec Time: {end_time - start_time}")
 
         fused_optimizer = fused_ec.fused_optimizer()
         fused_optimizer.load_state_dict(fused_optimizer.state_dict())
