@@ -527,6 +527,9 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         optimizer_type, optimizer_kwargs = optimizer_type_and_kwargs
         hash_size = 10000
         embedding_dim = 128
+        batch_size = 10
+        # 定义数据集参数
+        num_steps = 10000
         embedding_configs = [
             EmbeddingBagConfig(
                 num_embeddings=hash_size,
@@ -596,13 +599,12 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
 
 
 
-        # 定义数据集参数
-        num_steps = 10000
+
 
         import time
 
         # 创建数据集和数据加载器
-        dataset = CustomDataset(num_steps,hash_size,batch_size=10, device=device)
+        dataset = CustomDataset(num_steps,hash_size,batch_size=batch_size, device=device)
 
         start_time = time.perf_counter()
         # 迭代数据加载器
@@ -946,10 +948,15 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         print(f"device: {device}")
         print(f"optimizer_type: {optimizer_type}")
         print(f"optimizer_kwargs: {optimizer_kwargs}")
+        hash_size = 10000
+        embedding_dim = 128
+        batch_size = 10
+        # 定义数据集参数
+        num_steps = 10000
         embedding_configs = [
             EmbeddingConfig(
-                num_embeddings=100,
-                embedding_dim=4,
+                num_embeddings=hash_size,
+                embedding_dim=embedding_dim,
                 name="table_0",
                 feature_names=["feature_0"],
             ),
@@ -972,10 +979,10 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
         opt = optimizer_type(ec.parameters(), **optimizer_kwargs)
         class CustomDataset():
-            def __init__(self, num_steps, batch_size, device):
+            def __init__(self, num_steps, hash_size, batch_size, device):
                 self.num_steps = num_steps
                 self.batch_size = batch_size
-                self.hash_size = 100
+                self.hash_size = hash_size
                 self.device = device
                 self.min_ids_per_features = 1
                 self.ids_per_features = 10
@@ -1015,13 +1022,11 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
 
 
-        # 定义数据集参数
-        num_steps = 10000
 
         import time
 
         # 创建数据集和数据加载器
-        dataset = CustomDataset(num_steps,batch_size=10, device=device)
+        dataset = CustomDataset(num_steps, hash_size, batch_size=batch_size, device=device)
 
         start_time = time.perf_counter()
         # 迭代数据加载器
