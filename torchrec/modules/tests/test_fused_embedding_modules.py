@@ -953,7 +953,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 self.device = device
                 self.min_ids_per_features = 1
                 self.ids_per_features = 10
-                self.key = "feature_0"
+                self.keys = ["feature_0"]
                 self.data = self._generate_data()
             def _generate_data(self):
                 data = []
@@ -978,9 +978,9 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                     print(f"value: {value}")
                     print(f"values: {values}")
                     print(f"lengths: {lengths}")
-                    print(f"key: {self.key}")
+                    print(f"keys: {self.keys}")
                     sparse_features = KeyedJaggedTensor.from_lengths_sync(
-                        keys=self.key,
+                        keys=self.keys,
                         values=torch.cat(values),
                         lengths=torch.cat(lengths),
                     )
