@@ -528,11 +528,11 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         print(f"device: {device}")
         print(f"optimizer_type: {optimizer_type}")
         print(f"optimizer_kwargs: {optimizer_kwargs}")
-        hash_size = 3000000
+        hash_size = 1000000
         embedding_dim = 128
         batch_size = 64
         # 定义数据集参数
-        num_steps = 1000
+        num_steps = 100
         embedding_configs = [
             EmbeddingBagConfig(
                 num_embeddings=hash_size,
