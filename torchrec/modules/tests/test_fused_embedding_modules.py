@@ -922,7 +922,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         print(f"optimizer_kwargs: {optimizer_kwargs}")
         embedding_configs = [
             EmbeddingConfig(
-                num_embeddings=2,
+                num_embeddings=100,
                 embedding_dim=4,
                 name="table_0",
                 feature_names=["feature_0"],
