@@ -938,17 +938,6 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
         ec = EmbeddingCollection(tables=embedding_configs, device=device)
 
-        state_dict = OrderedDict(
-            [
-                (
-                    "embeddings.table_0.weight",
-                    torch.Tensor([[1, 1, 1, 1], [2, 2, 2, 2]]).to(device),
-                ),
-            ]
-        )
-        fused_ec.load_state_dict(state_dict)
-        ec.load_state_dict(state_dict)
-
         #        0       1        2  <-- batch
         # "f1"   [] [0]    [0,1]
         # "f2"   [1]    [0,1]    []
