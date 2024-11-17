@@ -996,19 +996,6 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
         # 创建数据集和数据加载器
         dataset = CustomDataset(num_steps,batch_size=10, device=device)
-        start_time = time.perf_counter()
-        # 迭代数据加载器
-        for step in range(num_steps):
-            features = dataset.__getitem__(step)
-            features = features.to(device)
-            fused_embeddings = fused_ec(features)
-            fused_vals = []
-            for _name, jt in fused_embeddings.items():
-                fused_vals.extend(jt.to_dense())
-            torch.cat(fused_vals).sum().backward()
-
-        end_time = time.perf_counter()
-        print(f"fused ec Time: {end_time - start_time}")
 
         start_time = time.perf_counter()
         # 迭代数据加载器
@@ -1025,9 +1012,22 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
         end_time = time.perf_counter()
         print(f"ec Time: {end_time - start_time}")
+        
+        start_time = time.perf_counter()
+        # 迭代数据加载器
+        for step in range(num_steps):
+            features = dataset.__getitem__(step)
+            features = features.to(device)
+            fused_embeddings = fused_ec(features)
+            fused_vals = []
+            for _name, jt in fused_embeddings.items():
+                fused_vals.extend(jt.to_dense())
+            torch.cat(fused_vals).sum().backward()
 
-        fused_optimizer = fused_ec.fused_optimizer()
-        fused_optimizer.load_state_dict(fused_optimizer.state_dict())
+        end_time = time.perf_counter()
+        print(f"fused ec Time: {end_time - start_time}")
+
+
 
     @unittest.skipIf(
         torch.cuda.device_count() < 1,
