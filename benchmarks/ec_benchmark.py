@@ -4,26 +4,6 @@ from torchrec.modules.fused_embedding_modules import FusedEmbeddingCollection
 import torchrec
 import torch
 from torchrec.sparse.jagged_tensor import KeyedJaggedTensor
-def train_one_epoch_fused_optimizer(
-    model: torch.nn.Module,
-    dataset: IterableDataset[Batch],
-    device: torch.device,
-) -> float:
-
-    start_time = time.perf_counter()
-
-    for data in dataset:
-        sparse_features = data.sparse_features.to(device)
-        fused_pooled_embeddings = model(sparse_features)
-
-        fused_vals = []
-        for _name, param in fused_pooled_embeddings.to_dict().items():
-            fused_vals.append(param)
-        torch.cat(fused_vals, dim=1).sum().backward()
-
-    end_time = time.perf_counter()
-
-    return end_time - start_time
 # 定义 embedding 配置
 embedding_configs = [
     torchrec.EmbeddingConfig(
