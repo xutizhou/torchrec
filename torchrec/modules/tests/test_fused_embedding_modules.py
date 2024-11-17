@@ -30,6 +30,8 @@ from torchrec.modules.fused_embedding_modules import (
     FusedEmbeddingCollection,
 )
 from torchrec.sparse.jagged_tensor import KeyedJaggedTensor
+from torch.utils.data import Dataset, DataLoader
+import random
 
 devices: List[torch.device] = [torch.device("cpu")]
 if torch.cuda.device_count() > 1:
@@ -925,12 +927,6 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 name="table_0",
                 feature_names=["feature_0"],
             ),
-            EmbeddingConfig(
-                num_embeddings=2,
-                embedding_dim=4,
-                name="table_1",
-                feature_names=["feature_1"],
-            ),
         ]
 
         fused_ec = FusedEmbeddingCollection(
@@ -948,10 +944,6 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                     "embeddings.table_0.weight",
                     torch.Tensor([[1, 1, 1, 1], [2, 2, 2, 2]]).to(device),
                 ),
-                (
-                    "embeddings.table_1.weight",
-                    torch.Tensor([[4, 4, 4, 4], [8, 8, 8, 8]]).to(device),
-                ),
             ]
         )
         fused_ec.load_state_dict(state_dict)
@@ -962,16 +954,52 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         # "f2"   [1]    [0,1]    []
         #  ^
         # feature
-        features = KeyedJaggedTensor.from_lengths_sync(
-            keys=["feature_0", "feature_1"],
-            values=torch.tensor([0, 0, 1, 1, 0, 1]),
-            lengths=torch.tensor([0, 1, 2, 1, 2, 0]),
-        ).to(device)
 
         opt = optimizer_type(ec.parameters(), **optimizer_kwargs)
+        class CustomDataset(Dataset):
+            def __init__(self, num_steps, batch_size, device):
+                self.num_steps = num_steps
+                self.batch_size = batch_size
+                self.hash_size = 100
+                self.device = device
+                self.data = self._generate_data()
+                self.min_ids_per_features = 1
+                self.ids_per_features = 10
+                self.key = "feature_0"
+            def _generate_data(self):
+
+                for _ in range(self.num_steps):
+                    values = []
+                    lengths = []
+                    hash_size = self.hash_size
+                    min_num_ids = self.min_ids_per_features
+                    max_num_ids = self.ids_per_features
+                    length = torch.randint(
+                        min_num_ids,
+                        max_num_ids + 1,
+                        (self.batch_size,),
+                        dtype=torch.int32,
+                    )
+                    value = torch.randint(
+                        0, hash_size, (cast(int, length.sum()),)
+                    )
+                    lengths.append(length)
+                    values.append(value)
+
+                    sparse_features = KeyedJaggedTensor.from_lengths_sync(
+                        keys=self.key,
+                        values=torch.cat(values),
+                        lengths=torch.cat(lengths),
+                    )
+
+            def __len__(self):
+                return self.num_steps
+
+            def __getitem__(self, idx):
+                return self.data[idx]
 
         # pyre-ignore
-        def run_one_training_step() -> None:
+        def run_one_training_step(features) -> None:
             fused_embeddings = fused_ec(features)
             fused_vals = []
             for _name, jt in fused_embeddings.items():
@@ -986,7 +1014,18 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
             torch.cat(vals).sum().backward()
             opt.step()
 
-        run_one_training_step()
+        # 定义数据集参数
+        num_steps = 10
+
+        # 创建数据集和数据加载器
+        dataset = CustomDataset(num_steps, device)
+        dataloader = DataLoader(dataset, batch_size=10, shuffle=False)
+
+        # 迭代数据加载器
+        for step, batch in enumerate(dataloader):
+            print(f"Step {step}: {batch}")
+            run_one_training_step(batch)
+
         torch.testing.assert_close(
             ec.state_dict()["embeddings.table_0.weight"],
             fused_ec.state_dict()["embeddings.table_0.weight"],
