@@ -525,11 +525,12 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         device: torch.device,
     ) -> None:
         optimizer_type, optimizer_kwargs = optimizer_type_and_kwargs
-
+        hash_size = 10000
+        embedding_dim = 128
         embedding_configs = [
             EmbeddingBagConfig(
-                num_embeddings=100,
-                embedding_dim=4,
+                num_embeddings=hash_size,
+                embedding_dim=embedding_dim,
                 name="table_0",
                 feature_names=["feature_0"],
             ),
@@ -552,13 +553,13 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
 
         opt = optimizer_type(ec.parameters(), **optimizer_kwargs)
         class CustomDataset():
-            def __init__(self, num_steps, batch_size, device):
+            def __init__(self, num_steps, hash_size, batch_size, device):
                 self.num_steps = num_steps
                 self.batch_size = batch_size
-                self.hash_size = 100
+                self.hash_size = hash_size
                 self.device = device
                 self.min_ids_per_features = 1
-                self.ids_per_features = 10
+                self.ids_per_features = 100
                 self.keys = ["feature_0"]
                 self.data = self._generate_data()
             def _generate_data(self):
@@ -601,7 +602,7 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         import time
 
         # 创建数据集和数据加载器
-        dataset = CustomDataset(num_steps,batch_size=10, device=device)
+        dataset = CustomDataset(num_steps,hash_size,batch_size=10, device=device)
 
         start_time = time.perf_counter()
         # 迭代数据加载器
