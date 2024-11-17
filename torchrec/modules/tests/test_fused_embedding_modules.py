@@ -997,9 +997,11 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         # 定义数据集参数
         num_steps = 10
 
+        import time
+
         # 创建数据集和数据加载器
         dataset = CustomDataset(num_steps,batch_size=10, device=device)
-
+        start_time = time.perf_counter()
         # 迭代数据加载器
         for step in range(num_steps):
             features = dataset.__getitem__(step)
@@ -1018,7 +1020,8 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 vals.extend(jt.to_dense())
             torch.cat(vals).sum().backward()
             opt.step()
-
+        end_time = time.perf_counter()
+        print(f"Time: {end_time - start_time}")
         torch.testing.assert_close(
             ec.state_dict()["embeddings.table_0.weight"],
             fused_ec.state_dict()["embeddings.table_0.weight"],
