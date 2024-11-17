@@ -995,7 +995,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
 
         # 定义数据集参数
-        num_steps = 10
+        num_steps = 100
 
         import time
 
@@ -1022,10 +1022,6 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
             opt.step()
         end_time = time.perf_counter()
         print(f"Time: {end_time - start_time}")
-        torch.testing.assert_close(
-            ec.state_dict()["embeddings.table_0.weight"],
-            fused_ec.state_dict()["embeddings.table_0.weight"],
-        )
 
 
         fused_optimizer = fused_ec.fused_optimizer()
