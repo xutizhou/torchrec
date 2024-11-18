@@ -21,7 +21,7 @@ from torchrec.modules.fused_embedding_modules import FusedEmbeddingBagCollection
 
 # Reference: https://github.com/facebookresearch/dlrm/blob/main/torchrec_dlrm/README.MD
 DLRM_NUM_EMBEDDINGS_PER_FEATURE = [
-    5000000,
+    50000000,
 ]
 
 
