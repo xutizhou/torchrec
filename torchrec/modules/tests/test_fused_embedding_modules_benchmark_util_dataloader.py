@@ -614,13 +614,15 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
             num_dense_features=1024,
             embedding_bag_configs=embedding_configs,
         )
+        cnt=0
+        for data in dataset:
+            cnt+=data.sparse_features.values.shape[0]
+        print(f"dataset size: {cnt}")
         start_time = time.perf_counter()
         # 迭代数据加载器
         for epoch in range(num_epochs):
-            cnt = 0
             for data in dataset:
                 features = data.sparse_features
-                cnt+=features.values().shape[0]
                 features = features.to(device)
                 opt.zero_grad()
                 sequence_embeddings = ec(features)
@@ -629,7 +631,7 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
                     vals.append(param)
                 torch.cat(vals, dim=1).sum().backward()            
                 opt.step()
-            print(f"dataset size:{cnt}")
+
         end_time = time.perf_counter()
         ec_time = end_time - start_time
         print(f"ec Time: {ec_time}")

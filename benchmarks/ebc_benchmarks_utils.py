@@ -108,6 +108,10 @@ def train(
 ) -> Tuple[float, float]:
 
     training_time = []
+    cnt=0
+    for data in dataset:
+        cnt+=data.sparse_features.values.shape[0]
+    print(f"dataset size: {cnt}")    
     for _ in range(epochs):
         if optimizer:
             training_time.append(train_one_epoch(model, optimizer, dataset, device))
@@ -116,4 +120,4 @@ def train(
                 train_one_epoch_fused_optimizer(model, dataset, device)
             )
 
-    return np.mean(training_time), np.std(training_time)
+    return np.sum(training_time), np.mean(training_time), np.std(training_time)
