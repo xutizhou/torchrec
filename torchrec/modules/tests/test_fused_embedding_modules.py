@@ -75,6 +75,48 @@ class TestSequentialModel(torch.nn.Module):
         return self.over_arch(sparse_features)
 
 
+class CustomDataset():
+    def __init__(self, num_steps, hash_size, batch_size, device):
+        self.num_steps = num_steps
+        self.batch_size = batch_size
+        self.hash_size = hash_size
+        self.device = device
+        self.min_ids_per_features = 0
+        self.ids_per_features = 64
+        self.keys = ["feature_0"]
+        self.data = self._generate_data()
+    def _generate_data(self):
+        data = []
+        for _ in range(self.num_steps):
+            values = []
+            lengths = []
+            hash_size = self.hash_size
+            min_num_ids = self.min_ids_per_features
+            max_num_ids = self.ids_per_features
+            length = torch.randint(
+                min_num_ids,
+                max_num_ids + 1,
+                (self.batch_size,),
+                dtype=torch.int32,
+            )
+            value = torch.randint(
+                0, hash_size, (int(length.sum()),)
+            )
+            lengths.append(length)
+            values.append(value)
+            sparse_features = KeyedJaggedTensor.from_lengths_sync(
+                keys=self.keys,
+                values=torch.cat(values),
+                lengths=torch.cat(lengths),
+            )
+            data.append(sparse_features)
+        return data
+    def __len__(self):
+        return self.num_steps
+
+    def __getitem__(self, idx):
+        return self.data[idx]
+    
 class FusedEmbeddingBagCollectionTest(unittest.TestCase):
     @settings(deadline=None)
     # pyre-ignore
@@ -559,50 +601,6 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         # feature
 
         opt = optimizer_type(ec.parameters(), **optimizer_kwargs)
-        class CustomDataset():
-            def __init__(self, num_steps, hash_size, batch_size, device):
-                self.num_steps = num_steps
-                self.batch_size = batch_size
-                self.hash_size = hash_size
-                self.device = device
-                self.min_ids_per_features = 0
-                self.ids_per_features = 64
-                self.keys = ["feature_0"]
-                self.data = self._generate_data()
-            def _generate_data(self):
-                data = []
-                for _ in range(self.num_steps):
-                    values = []
-                    lengths = []
-                    hash_size = self.hash_size
-                    min_num_ids = self.min_ids_per_features
-                    max_num_ids = self.ids_per_features
-                    length = torch.randint(
-                        min_num_ids,
-                        max_num_ids + 1,
-                        (self.batch_size,),
-                        dtype=torch.int32,
-                    )
-                    value = torch.randint(
-                        0, hash_size, (int(length.sum()),)
-                    )
-                    lengths.append(length)
-                    values.append(value)
-                    sparse_features = KeyedJaggedTensor.from_lengths_sync(
-                        keys=self.keys,
-                        values=torch.cat(values),
-                        lengths=torch.cat(lengths),
-                    )
-                    data.append(sparse_features)
-                return data
-            def __len__(self):
-                return self.num_steps
-
-            def __getitem__(self, idx):
-                return self.data[idx]
-
-
-
 
 
         import time
@@ -630,14 +628,15 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         
         start_time = time.perf_counter()
         # 迭代数据加载器
-        for step in range(num_steps):
-            features = dataset.__getitem__(step)
-            features = features.to(device)
-            fused_embeddings = fused_ec(features)
-            fused_vals = []
-            for _name, param in fused_embeddings.to_dict().items():
-                fused_vals.append(param)
-            torch.cat(fused_vals, dim=1).sum().backward() 
+        for epoch in range(num_epochs):
+            for step in range(num_steps):
+                features = dataset.__getitem__(step)
+                features = features.to(device)
+                fused_embeddings = fused_ec(features)
+                fused_vals = []
+                for _name, param in fused_embeddings.to_dict().items():
+                    fused_vals.append(param)
+                torch.cat(fused_vals, dim=1).sum().backward() 
 
         end_time = time.perf_counter()
         fused_ec_time = end_time - start_time
@@ -985,50 +984,6 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         # feature
 
         opt = optimizer_type(ec.parameters(), **optimizer_kwargs)
-        class CustomDataset():
-            def __init__(self, num_steps, hash_size, batch_size, device):
-                self.num_steps = num_steps
-                self.batch_size = batch_size
-                self.hash_size = hash_size
-                self.device = device
-                self.min_ids_per_features = 1
-                self.ids_per_features = 10
-                self.keys = ["feature_0"]
-                self.data = self._generate_data()
-            def _generate_data(self):
-                data = []
-                for _ in range(self.num_steps):
-                    values = []
-                    lengths = []
-                    hash_size = self.hash_size
-                    min_num_ids = self.min_ids_per_features
-                    max_num_ids = self.ids_per_features
-                    length = torch.randint(
-                        min_num_ids,
-                        max_num_ids + 1,
-                        (self.batch_size,),
-                        dtype=torch.int32,
-                    )
-                    value = torch.randint(
-                        0, hash_size, (int(length.sum()),)
-                    )
-                    lengths.append(length)
-                    values.append(value)
-                    sparse_features = KeyedJaggedTensor.from_lengths_sync(
-                        keys=self.keys,
-                        values=torch.cat(values),
-                        lengths=torch.cat(lengths),
-                    )
-                    data.append(sparse_features)
-                return data
-            def __len__(self):
-                return self.num_steps
-
-            def __getitem__(self, idx):
-                return self.data[idx]
-
-
-
 
         import time
 
