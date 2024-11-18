@@ -947,6 +947,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
             ]
         ),
         device=st.sampled_from([torch.device("cuda")]),
+        setting=st.lists(st.integers(min_value=1, max_value=50000000), min_size=3, max_size=3)  # 为 setting 提供生成策略
     )
     @example(setting=[5000000, 128, 64])
     @example(setting=[5000000, 256, 64])
