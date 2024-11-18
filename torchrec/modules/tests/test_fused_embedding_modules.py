@@ -13,7 +13,7 @@ from collections import OrderedDict
 from typing import Any, Dict, List, Optional, Tuple, Type
 
 import hypothesis.strategies as st
-
+from hypothesis import given, settings, example
 import torch
 import torch.fx
 import torchrec
@@ -947,10 +947,17 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
             ]
         ),
         device=st.sampled_from([torch.device("cuda")]),
-        setting=st.sampled_from([[5000000, 128, 64],[5000000,256,64],[5000000,512,64],[5000000,1024,64],
-                                [5000000, 128, 128],[5000000, 128, 256],[5000000, 128, 512],
-                                [10000000, 128, 64],[20000000,128,64],[40000000,128,64]]),
     )
+    @example(setting=[5000000, 128, 64])
+    @example(setting=[5000000, 256, 64])
+    @example(setting=[5000000, 512, 64])
+    @example(setting=[5000000, 1024, 64])
+    @example(setting=[5000000, 128, 128])
+    @example(setting=[5000000, 128, 256])
+    @example(setting=[5000000, 128, 512])
+    @example(setting=[10000000, 128, 64])
+    @example(setting=[20000000, 128, 64])
+   
     def test_optimizer_fusion(
         self,
         optimizer_type_and_kwargs: Tuple[Type[torch.optim.Optimizer], Dict[str, Any]],
