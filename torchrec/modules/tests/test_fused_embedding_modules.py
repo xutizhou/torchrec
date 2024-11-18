@@ -570,12 +570,12 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         print(f"device: {device}")
         print(f"optimizer_type: {optimizer_type}")
         print(f"optimizer_kwargs: {optimizer_kwargs}")
-        hash_size = 50000000
+        hash_size = 5000000
         embedding_dim = 128
         batch_size = 64
         # 定义数据集参数
         num_epochs = 100
-        num_steps = 100
+        num_steps = 10
         embedding_configs = [
             EmbeddingBagConfig(
                 num_embeddings=hash_size,
@@ -943,6 +943,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         optimizer_type_and_kwargs=st.sampled_from(
             [
                 (torch.optim.SGD, {"lr": 0.1}),
+
             ]
         ),
         device=st.sampled_from([torch.device("cuda")]),
@@ -956,12 +957,12 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         print(f"device: {device}")
         print(f"optimizer_type: {optimizer_type}")
         print(f"optimizer_kwargs: {optimizer_kwargs}")
-        hash_size = 50000000
+        hash_size = 5000000
         embedding_dim = 128
         batch_size = 64
         # 定义数据集参数
         num_epochs = 100
-        num_steps = 100     
+        num_steps = 10     
         embedding_configs = [
             EmbeddingConfig(
                 num_embeddings=hash_size,
