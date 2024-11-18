@@ -84,17 +84,16 @@ def train_one_epoch_fused_optimizer(
 ) -> float:
 
     start_time = time.perf_counter()
-    cnt = 0
+
     for data in dataset:
         sparse_features = data.sparse_features.to(device)
-        cnt+=sparse_features.values().shape[0]
         fused_pooled_embeddings = model(sparse_features)
 
         fused_vals = []
         for _name, param in fused_pooled_embeddings.to_dict().items():
             fused_vals.append(param)
         torch.cat(fused_vals, dim=1).sum().backward()
-    print(f"#######dataset size: {cnt}")
+
     end_time = time.perf_counter()
 
     return end_time - start_time
