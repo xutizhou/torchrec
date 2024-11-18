@@ -1006,7 +1006,8 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 opt.step()
 
         end_time = time.perf_counter()
-        print(f"ec Time: {end_time - start_time}")
+        ec_time = end_time - start_time
+        print(f"ec Time: {ec_time}")
 
         start_time = time.perf_counter()
         # 迭代数据加载器
@@ -1021,8 +1022,9 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 torch.cat(fused_vals).sum().backward()
 
         end_time = time.perf_counter()
-        print(f"fused ec Time: {end_time - start_time}")
-
+        fused_ec_time = end_time - start_time
+        print(f"fused ec Time: {fused_ec_time}")
+        print(f"speedup:{ec_time/fused_ec_time}")
 
 
     @unittest.skipIf(
