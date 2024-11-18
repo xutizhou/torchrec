@@ -532,7 +532,8 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         embedding_dim = 128
         batch_size = 64
         # 定义数据集参数
-        num_steps = 1000
+        num_epochs = 100
+        num_steps = 10
         embedding_configs = [
             EmbeddingBagConfig(
                 num_embeddings=hash_size,
@@ -564,8 +565,8 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
                 self.batch_size = batch_size
                 self.hash_size = hash_size
                 self.device = device
-                self.min_ids_per_features = 1
-                self.ids_per_features = 100
+                self.min_ids_per_features = 0
+                self.ids_per_features = 64
                 self.keys = ["feature_0"]
                 self.data = self._generate_data()
             def _generate_data(self):
@@ -611,16 +612,17 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
 
         start_time = time.perf_counter()
         # 迭代数据加载器
-        for step in range(num_steps):
-            features = dataset.__getitem__(step)
-            features = features.to(device)
-            opt.zero_grad()
-            sequence_embeddings = ec(features)
-            vals = []
-            for _name, param in sequence_embeddings.to_dict().items():
-                vals.append(param)
-            torch.cat(vals, dim=1).sum().backward()            
-            opt.step()
+        for epoch in range(num_epochs):
+            for step in range(num_steps):
+                features = dataset.__getitem__(step)
+                features = features.to(device)
+                opt.zero_grad()
+                sequence_embeddings = ec(features)
+                vals = []
+                for _name, param in sequence_embeddings.to_dict().items():
+                    vals.append(param)
+                torch.cat(vals, dim=1).sum().backward()            
+                opt.step()
 
         end_time = time.perf_counter()
         ec_time = end_time - start_time
