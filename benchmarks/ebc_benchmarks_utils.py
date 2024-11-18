@@ -110,7 +110,7 @@ def train(
     training_time = []
     cnt=0
     for data in dataset:
-        cnt+=data.sparse_features.values.shape[0]
+        cnt+=data.sparse_features.values().shape[0]
     print(f"dataset size: {cnt}")    
     for _ in range(epochs):
         if optimizer:

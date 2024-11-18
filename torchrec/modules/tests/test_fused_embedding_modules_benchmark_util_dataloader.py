@@ -616,7 +616,7 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         )
         cnt=0
         for data in dataset:
-            cnt+=data.sparse_features.values.shape[0]
+            cnt+=data.sparse_features.values().shape[0]
         print(f"dataset size: {cnt}")
         start_time = time.perf_counter()
         # 迭代数据加载器
