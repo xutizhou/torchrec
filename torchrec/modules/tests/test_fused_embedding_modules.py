@@ -962,7 +962,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         print(f"optimizer_type: {optimizer_type}")
         print(f"optimizer_kwargs: {optimizer_kwargs}")
         hash_size = setting[0]
-        embedding_dim = set
+        embedding_dim = setting[1]
         batch_size = setting[2]
         # 定义数据集参数
         num_epochs = 100
