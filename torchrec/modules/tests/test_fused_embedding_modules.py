@@ -994,6 +994,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         cnt = 0
         for step in range(num_steps):
             features = dataset.__getitem__(step)
+            import pdb; pdb.set_trace()
             cnt += features.values.shape[0]
         print(f"dataset size={cnt}")
         start_time = time.perf_counter()
