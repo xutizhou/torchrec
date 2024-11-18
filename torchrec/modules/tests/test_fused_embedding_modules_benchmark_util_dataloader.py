@@ -32,6 +32,7 @@ from torchrec.modules.fused_embedding_modules import (
 from torchrec.sparse.jagged_tensor import KeyedJaggedTensor
 from torch.utils.data import Dataset, DataLoader
 import random
+import ebc_benchmarks_utils
 
 devices: List[torch.device] = [torch.device("cpu")]
 if torch.cuda.device_count() > 1:
@@ -607,12 +608,17 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
 
         # 创建数据集和数据加载器
         dataset = CustomDataset(num_steps,hash_size,batch_size=batch_size, device=device)
-
+        dataset = ebc_benchmarks_utils.get_random_dataset(
+            batch_size=64,
+            num_batches=10,
+            num_dense_features=1024,
+            embedding_bag_configs=embedding_configs,
+        )
         start_time = time.perf_counter()
         # 迭代数据加载器
         for epoch in range(num_epochs):
-            for step in range(num_steps):
-                features = dataset.__getitem__(step)
+            for data in dataset:
+                features = data.sparse_features
                 features = features.to(device)
                 opt.zero_grad()
                 sequence_embeddings = ec(features)
@@ -629,8 +635,8 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         start_time = time.perf_counter()
         # 迭代数据加载器
         for epoch in range(num_epochs):
-            for step in range(num_steps):
-                features = dataset.__getitem__(step)
+            for data in dataset:
+                features = data.sparse_features
                 features = features.to(device)
                 fused_embeddings = fused_ec(features)
                 fused_vals = []
