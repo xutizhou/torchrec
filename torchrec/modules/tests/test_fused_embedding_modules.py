@@ -947,19 +947,23 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
             ]
         ),
         device=st.sampled_from([torch.device("cuda")]),
+        setting=st.sample_from([[5000000, 128, 64],[5000000,256,64],[5000000,512,64],[5000000,1024,64],
+                                [5000000, 128, 128],[5000000, 128, 256],[5000000, 128, 512],
+                                [10000000, 128, 64],[20000000,128,64],[40000000,128,64]]),
     )
     def test_optimizer_fusion(
         self,
         optimizer_type_and_kwargs: Tuple[Type[torch.optim.Optimizer], Dict[str, Any]],
         device: torch.device,
+        setting: List[int],
     ) -> None:
         optimizer_type, optimizer_kwargs = optimizer_type_and_kwargs
         print(f"device: {device}")
         print(f"optimizer_type: {optimizer_type}")
         print(f"optimizer_kwargs: {optimizer_kwargs}")
-        hash_size = 5000000
-        embedding_dim = 128
-        batch_size = 64
+        hash_size = setting[0]
+        embedding_dim = set
+        batch_size = setting[2]
         # 定义数据集参数
         num_epochs = 100
         num_steps = 10     
@@ -998,7 +1002,6 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         for step in range(num_steps):
             features = dataset.__getitem__(step)
             cnt += features.values().shape[0]
-            print(f"features.values().shape={features.values().shape}")
         print(f"dataset size={cnt}")
         start_time = time.perf_counter()
         # 迭代数据加载器
