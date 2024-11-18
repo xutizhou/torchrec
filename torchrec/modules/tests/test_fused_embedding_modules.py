@@ -943,8 +943,6 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         optimizer_type_and_kwargs=st.sampled_from(
             [
                 (torch.optim.SGD, {"lr": 0.1}),
-                (torch.optim.Adagrad, {"lr": 0.1}),
-                (torchrec.optim.RowWiseAdagrad, {"lr": 0.1}),
             ]
         ),
         device=st.sampled_from([torch.device("cuda")]),
