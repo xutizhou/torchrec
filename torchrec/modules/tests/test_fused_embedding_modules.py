@@ -954,11 +954,12 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         print(f"device: {device}")
         print(f"optimizer_type: {optimizer_type}")
         print(f"optimizer_kwargs: {optimizer_kwargs}")
-        hash_size = 10000
+        hash_size = 5000000
         embedding_dim = 128
-        batch_size = 10
+        batch_size = 64
         # 定义数据集参数
-        num_steps = 10000
+        num_epochs = 100
+        num_steps = 10     
         embedding_configs = [
             EmbeddingConfig(
                 num_embeddings=hash_size,
@@ -992,30 +993,32 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
         start_time = time.perf_counter()
         # 迭代数据加载器
-        for step in range(num_steps):
-            features = dataset.__getitem__(step)
-            features = features.to(device)
-            opt.zero_grad()
-            sequence_embeddings = ec(features)
-            vals = []
-            for _name, jt in sequence_embeddings.items():
-                vals.extend(jt.to_dense())
-            torch.cat(vals).sum().backward()
-            opt.step()
+        for epoch in range(num_epochs):
+            for step in range(num_steps):
+                features = dataset.__getitem__(step)
+                features = features.to(device)
+                opt.zero_grad()
+                sequence_embeddings = ec(features)
+                vals = []
+                for _name, jt in sequence_embeddings.items():
+                    vals.extend(jt.to_dense())
+                torch.cat(vals).sum().backward()
+                opt.step()
 
         end_time = time.perf_counter()
         print(f"ec Time: {end_time - start_time}")
 
         start_time = time.perf_counter()
         # 迭代数据加载器
-        for step in range(num_steps):
-            features = dataset.__getitem__(step)
-            features = features.to(device)
-            fused_embeddings = fused_ec(features)
-            fused_vals = []
-            for _name, jt in fused_embeddings.items():
-                fused_vals.extend(jt.to_dense())
-            torch.cat(fused_vals).sum().backward()
+        for epoch in range(num_epochs):
+            for step in range(num_steps):
+                features = dataset.__getitem__(step)
+                features = features.to(device)
+                fused_embeddings = fused_ec(features)
+                fused_vals = []
+                for _name, jt in fused_embeddings.items():
+                    fused_vals.extend(jt.to_dense())
+                torch.cat(fused_vals).sum().backward()
 
         end_time = time.perf_counter()
         print(f"fused ec Time: {end_time - start_time}")
