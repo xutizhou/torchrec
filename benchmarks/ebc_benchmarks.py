@@ -21,7 +21,7 @@ from torchrec.modules.fused_embedding_modules import FusedEmbeddingBagCollection
 
 # Reference: https://github.com/facebookresearch/dlrm/blob/main/torchrec_dlrm/README.MD
 DLRM_NUM_EMBEDDINGS_PER_FEATURE = [
-    45833188,
+    1000000,
 ]
 
 
@@ -43,7 +43,7 @@ def main(argv: List[str]) -> None:
     if args.mode == "ebc_comparison_dlrm":
         print("Running EBC vs. FusedEBC on DLRM EMB")
 
-        for reduction_degree in [128, 64, 32]:
+        for reduction_degree in [1]:
             embedding_bag_configs: List[EmbeddingBagConfig] = [
                 EmbeddingBagConfig(
                     name=f"ebc_{idx}",
