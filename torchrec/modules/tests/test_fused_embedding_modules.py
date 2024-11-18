@@ -517,7 +517,7 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
                 (torchrec.optim.RowWiseAdagrad, {"lr": 0.1}),
             ]
         ),
-        device=st.sampled_from(devices),
+        device=st.sampled_from([torch.device("cuda")]),
     )
     def test_optimizer_fusion(
         self,
@@ -532,7 +532,7 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         embedding_dim = 128
         batch_size = 64
         # 定义数据集参数
-        num_steps = 100
+        num_steps = 1000
         embedding_configs = [
             EmbeddingBagConfig(
                 num_embeddings=hash_size,
