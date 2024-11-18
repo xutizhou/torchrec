@@ -961,7 +961,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         batch_size = 64
         # 定义数据集参数
         num_epochs = 100
-        num_steps = 10     
+        num_steps = 100     
         embedding_configs = [
             EmbeddingConfig(
                 num_embeddings=hash_size,
