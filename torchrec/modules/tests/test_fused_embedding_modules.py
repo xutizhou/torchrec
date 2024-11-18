@@ -990,7 +990,12 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
         # 创建数据集和数据加载器
         dataset = CustomDataset(num_steps, hash_size, batch_size=batch_size, device=device)
-
+        #get dataset size
+        cnt = 0
+        for step in range(num_steps):
+            features = dataset.__getitem__(step)
+            cnt += features.values.shape[0]
+        print(f"dataset size={cnt}")
         start_time = time.perf_counter()
         # 迭代数据加载器
         for epoch in range(num_epochs):
