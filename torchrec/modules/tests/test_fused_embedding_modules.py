@@ -964,6 +964,9 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         hash_size = setting[0]
         embedding_dim = setting[1]
         batch_size = setting[2]
+        print(f"hash_size: {hash_size}")
+        print(f"embedding_dim: {embedding_dim}")
+        print(f"batch_size: {batch_size}")
         # 定义数据集参数
         num_epochs = 100
         num_steps = 10     
