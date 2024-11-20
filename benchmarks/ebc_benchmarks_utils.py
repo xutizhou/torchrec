@@ -86,13 +86,18 @@ def train_one_epoch_fused_optimizer(
     start_time = time.perf_counter()
 
     for data in dataset:
+        torch.cuda.nvtx.range_push("FEBC Dataloader Pass")
         sparse_features = data.sparse_features.to(device)
+        torch.cuda.nvtx.range_pop()
+        torch.cuda.nvtx.range_push("FEBC Forward Pass")
         fused_pooled_embeddings = model(sparse_features)
-
+        torch.cuda.nvtx.range_pop()
         fused_vals = []
         for _name, param in fused_pooled_embeddings.to_dict().items():
             fused_vals.append(param)
+        torch.cuda.nvtx.range_push("FEBC Backward+Optimizer Pass")
         torch.cat(fused_vals, dim=1).sum().backward()
+        torch.cuda.nvtx.range_pop()
 
     end_time = time.perf_counter()
 
