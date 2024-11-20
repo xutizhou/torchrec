@@ -125,4 +125,4 @@ def train(
                 train_one_epoch_fused_optimizer(model, dataset, device)
             )
 
-    return np.sum(training_time), np.mean(training_time), np.std(training_time)
+    return np.mean(training_time), np.std(training_time)
