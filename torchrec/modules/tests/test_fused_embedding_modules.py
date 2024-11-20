@@ -93,12 +93,7 @@ class CustomDataset():
             hash_size = self.hash_size
             min_num_ids = self.min_ids_per_features
             max_num_ids = self.ids_per_features
-            length = torch.randint(
-                min_num_ids,
-                max_num_ids + 1,
-                (self.batch_size,),
-                dtype=torch.int32,
-            )
+            length = torch.full((self.batch_size,), self.ids_per_features)
             value = torch.randint(
                 0, hash_size, (int(length.sum()),)
             )
@@ -956,90 +951,99 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         settings = [[5000000, 128, 64],[5000000,256,64],[5000000,512,64],[5000000,1024,64],
                                 [5000000, 128, 128],[5000000, 128, 256],[5000000, 128, 512],
                                 [10000000, 128, 64],[20000000,128,64],[40000000,128,64]]
-        for setting in settings:
-            optimizer_type, optimizer_kwargs = optimizer_type_and_kwargs
-            print(f"device: {device}")
-            print(f"optimizer_type: {optimizer_type}")
-            print(f"optimizer_kwargs: {optimizer_kwargs}")
-            hash_size = setting[0]
-            embedding_dim = setting[1]
-            batch_size = setting[2]
-            print(f"hash_size: {hash_size}")
-            print(f"embedding_dim: {embedding_dim}")
-            print(f"batch_size: {batch_size}")
-            # 定义数据集参数
-            num_epochs = 100
-            num_steps = 10     
-            embedding_configs = [
-                EmbeddingConfig(
-                    num_embeddings=hash_size,
-                    embedding_dim=embedding_dim,
-                    name="table_0",
-                    feature_names=["feature_0"],
-                ),
-            ]
+        optimizer_type, optimizer_kwargs = optimizer_type_and_kwargs
+        print(f"device: {device}")
+        print(f"optimizer_type: {optimizer_type}")
+        print(f"optimizer_kwargs: {optimizer_kwargs}")
+        hash_size = 500000
+        embedding_dim = 128
+        batch_size = 64
+        print(f"hash_size: {hash_size}")
+        print(f"embedding_dim: {embedding_dim}")
+        print(f"batch_size: {batch_size}")
+        # 定义数据集参数
+        num_epochs = 100
+        num_steps = 10     
+        embedding_configs = [
+            EmbeddingConfig(
+                num_embeddings=hash_size,
+                embedding_dim=embedding_dim,
+                name="table_0",
+                feature_names=["feature_0"],
+            ),
+        ]
 
-            fused_ec = FusedEmbeddingCollection(
-                tables=embedding_configs,
-                optimizer_type=optimizer_type,
-                optimizer_kwargs=optimizer_kwargs,
-                device=device,
-            )
+        fused_ec = FusedEmbeddingCollection(
+            tables=embedding_configs,
+            optimizer_type=optimizer_type,
+            optimizer_kwargs=optimizer_kwargs,
+            device=device,
+        )
 
-            ec = EmbeddingCollection(tables=embedding_configs, device=device)
+        ec = EmbeddingCollection(tables=embedding_configs, device=device)
 
-            #        0       1        2  <-- batch
-            # "f1"   [] [0]    [0,1]
-            # "f2"   [1]    [0,1]    []
-            #  ^
-            # feature
+        #        0       1        2  <-- batch
+        # "f1"   [] [0]    [0,1]
+        # "f2"   [1]    [0,1]    []
+        #  ^
+        # feature
 
-            opt = optimizer_type(ec.parameters(), **optimizer_kwargs)
+        opt = optimizer_type(ec.parameters(), **optimizer_kwargs)
 
-            import time
+        import time
 
-            # 创建数据集和数据加载器
-            dataset = CustomDataset(num_steps, hash_size, batch_size=batch_size, device=device)
-            #get dataset size
-            cnt = 0
+        # 创建数据集和数据加载器
+        dataset = CustomDataset(num_steps, hash_size, batch_size=batch_size, device=device)
+        #get dataset size
+        cnt = 0
+        for step in range(num_steps):
+            features = dataset.__getitem__(step)
+            cnt += features.values().shape[0]
+        print(f"dataset size={cnt}")
+        start_time = time.perf_counter()
+        # 迭代数据加载器
+        for epoch in range(num_epochs):
             for step in range(num_steps):
                 features = dataset.__getitem__(step)
-                cnt += features.values().shape[0]
-            print(f"dataset size={cnt}")
-            start_time = time.perf_counter()
-            # 迭代数据加载器
-            for epoch in range(num_epochs):
-                for step in range(num_steps):
-                    features = dataset.__getitem__(step)
-                    features = features.to(device)
-                    opt.zero_grad()
-                    sequence_embeddings = ec(features)
-                    vals = []
-                    for _name, jt in sequence_embeddings.items():
-                        vals.extend(jt.to_dense())
-                    torch.cat(vals).sum().backward()
-                    opt.step()
+                features = features.to(device)
+                opt.zero_grad()
+                torch.cuda.nvtx.range_push("EC Forward Pass")
+                sequence_embeddings = ec(features)
+                torch.cuda.nvtx.range_pop() 
+                vals = []
+                for _name, jt in sequence_embeddings.items():
+                    vals.extend(jt.to_dense())
+                torch.cuda.nvtx.range_push("EC Backward Pass")
+                torch.cat(vals).sum().backward()
+                torch.cuda.nvtx.range_pop() 
+                torch.cuda.nvtx.range_push("EC Update Gradient Pass")
+                opt.step()
+                torch.cuda.nvtx.range_pop() 
 
-            end_time = time.perf_counter()
-            ec_time = end_time - start_time
-            print(f"ec Time: {ec_time}")
+        end_time = time.perf_counter()
+        ec_time = end_time - start_time
+        print(f"ec Time: {ec_time}")
 
-            start_time = time.perf_counter()
-            # 迭代数据加载器
-            for epoch in range(num_epochs):
-                for step in range(num_steps):
-                    features = dataset.__getitem__(step)
-                    features = features.to(device)
-                    fused_embeddings = fused_ec(features)
-                    fused_vals = []
-                    for _name, jt in fused_embeddings.items():
-                        fused_vals.extend(jt.to_dense())
-                    torch.cat(fused_vals).sum().backward()
+        start_time = time.perf_counter()
+        # 迭代数据加载器
+        for epoch in range(num_epochs):
+            for step in range(num_steps):
+                features = dataset.__getitem__(step)
+                features = features.to(device)
+                torch.cuda.nvtx.range_push("FEC Forward Pass")
+                fused_embeddings = fused_ec(features)
+                torch.cuda.nvtx.range_pop() 
+                fused_vals = []
+                for _name, jt in fused_embeddings.items():
+                    fused_vals.extend(jt.to_dense())
+                torch.cuda.nvtx.range_push("FEC Backward + Gradient Pass")
+                torch.cat(fused_vals).sum().backward()
+                torch.cuda.nvtx.range_pop() 
 
-            end_time = time.perf_counter()
-            fused_ec_time = end_time - start_time
-            print(f"fused ec Time: {fused_ec_time}")
-            print(f"speedup:{ec_time/fused_ec_time}")
+        end_time = time.perf_counter()
+        fused_ec_time = end_time - start_time
+        print(f"fused ec Time: {fused_ec_time}")
+        print(f"speedup:{ec_time/fused_ec_time}")
 
 
     @unittest.skipIf(
