@@ -1030,6 +1030,8 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
             for step in range(num_steps):
                 features = dataset.__getitem__(step)
                 features = features.to(device)
+                print(f"features:{features.values()}")
+                print(f"features:{features.values().shape}")
                 torch.cuda.nvtx.range_push("FEC Forward Pass")
                 fused_embeddings = fused_ec(features)
                 torch.cuda.nvtx.range_pop() 
