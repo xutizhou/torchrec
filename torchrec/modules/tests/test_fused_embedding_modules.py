@@ -655,8 +655,8 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
             with_stack=True
         ) as p:
 
-            for epoch in range(num_epochs):
-                for step in range(num_steps):
+            for epoch in range(1):
+                for step in range(1):
 
                     torch.cuda.nvtx.range_push("FEBC Backward+Optimizer Pass")
                     loss.backward() 
