@@ -33,6 +33,7 @@ from torchrec.sparse.jagged_tensor import KeyedJaggedTensor
 from torch.utils.data import Dataset, DataLoader
 import random
 from torch.profiler import profile, record_function, ProfilerActivity
+from torch.profiler import tensorboard_trace_handler
 
 devices: List[torch.device] = [torch.device("cpu")]
 if torch.cuda.device_count() > 1:
@@ -629,40 +630,33 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         print(f"ec Time: {ec_time}")
         
         start_time = time.perf_counter()
-        torch.cuda.nvtx.range_push("FEBC Dataloader Pass")
-        features = dataset.__getitem__(1)
-        features = features.to(device)
-        torch.cuda.nvtx.range_pop()
-        torch.cuda.nvtx.range_push("FEBC Forward Pass")
-        fused_embeddings = fused_ec(features)
-        torch.cuda.nvtx.range_pop()
-        fused_vals = []
-        for _name, param in fused_embeddings.to_dict().items():
-            fused_vals.append(param)
-        loss = torch.cat(fused_vals, dim=1).sum()
         # 迭代数据加载器
-        with torch.profiler.profile(
-            activities=[
-                torch.profiler.ProfilerActivity.CPU,
-                torch.profiler.ProfilerActivity.CUDA],
-            schedule=torch.profiler.schedule(
-                wait=1,
-                warmup=1,
-                active=2),
-            on_trace_ready=torch.profiler.tensorboard_trace_handler('./result', worker_name='worker0'),
-            record_shapes=True,
-            profile_memory=True,  # This will take 1 to 2 minutes. Setting it to False could greatly speedup.
-            with_stack=True
-        ) as p:
 
-            for epoch in range(1):
-                for step in range(1):
-
-                    torch.cuda.nvtx.range_push("FEBC Backward+Optimizer Pass")
+        for epoch in range(num_epochs):
+            for step in range(num_steps):
+                torch.cuda.nvtx.range_push("FEBC Dataloader Pass")
+                features = dataset.__getitem__(step)
+                features = features.to(device)
+                torch.cuda.nvtx.range_pop()
+                torch.cuda.nvtx.range_push("FEBC Forward Pass")
+                fused_embeddings = fused_ec(features)
+                torch.cuda.nvtx.range_pop()
+                fused_vals = []
+                for _name, param in fused_embeddings.to_dict().items():
+                    fused_vals.append(param)
+                loss = torch.cat(fused_vals, dim=1).sum()
+                torch.cuda.nvtx.range_push("FEBC Backward+Optimizer Pass")
+                if epoch == 1 and step ==10:
+                    with profile(
+                        activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],
+                        on_trace_ready=tensorboard_trace_handler("./log"),
+                        record_shapes=True,
+                        profile_memory=True
+                    ) as prof:                    
+                        loss.backward() 
+                else:
                     loss.backward() 
-                    torch.cuda.nvtx.range_pop()
-                    p.step()
-                
+                torch.cuda.nvtx.range_pop()
 
         end_time = time.perf_counter()
         fused_ec_time = end_time - start_time
