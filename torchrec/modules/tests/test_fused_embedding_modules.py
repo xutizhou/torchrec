@@ -643,25 +643,24 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
             profile_memory=True,  # This will take 1 to 2 minutes. Setting it to False could greatly speedup.
             with_stack=True
         ) as p:
-            for i in range(100):
-                print("test")
-                p.step()
-        for epoch in range(num_epochs):
-            for step in range(num_steps):
-                torch.cuda.nvtx.range_push("FEBC Dataloader Pass")
-                features = dataset.__getitem__(step)
-                features = features.to(device)
-                torch.cuda.nvtx.range_pop()
-                torch.cuda.nvtx.range_push("FEBC Forward Pass")
-                fused_embeddings = fused_ec(features)
-                torch.cuda.nvtx.range_pop()
-                fused_vals = []
-                for _name, param in fused_embeddings.to_dict().items():
-                    fused_vals.append(param)
-                loss = torch.cat(fused_vals, dim=1).sum()
-                torch.cuda.nvtx.range_push("FEBC Backward+Optimizer Pass")
-                loss.backward() 
-                torch.cuda.nvtx.range_pop()
+
+            for epoch in range(num_epochs):
+                for step in range(num_steps):
+                    torch.cuda.nvtx.range_push("FEBC Dataloader Pass")
+                    features = dataset.__getitem__(step)
+                    features = features.to(device)
+                    torch.cuda.nvtx.range_pop()
+                    torch.cuda.nvtx.range_push("FEBC Forward Pass")
+                    fused_embeddings = fused_ec(features)
+                    torch.cuda.nvtx.range_pop()
+                    # fused_vals = []
+                    # for _name, param in fused_embeddings.to_dict().items():
+                    #     fused_vals.append(param)
+                    # loss = torch.cat(fused_vals, dim=1).sum()
+                    # torch.cuda.nvtx.range_push("FEBC Backward+Optimizer Pass")
+                    # loss.backward() 
+                    # torch.cuda.nvtx.range_pop()
+                    p.step()
                 
 
         end_time = time.perf_counter()
