@@ -629,6 +629,17 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         print(f"ec Time: {ec_time}")
         
         start_time = time.perf_counter()
+        torch.cuda.nvtx.range_push("FEBC Dataloader Pass")
+        features = dataset.__getitem__(1)
+        features = features.to(device)
+        torch.cuda.nvtx.range_pop()
+        torch.cuda.nvtx.range_push("FEBC Forward Pass")
+        fused_embeddings = fused_ec(features)
+        torch.cuda.nvtx.range_pop()
+        fused_vals = []
+        for _name, param in fused_embeddings.to_dict().items():
+            fused_vals.append(param)
+        loss = torch.cat(fused_vals, dim=1).sum()
         # 迭代数据加载器
         with torch.profiler.profile(
             activities=[
@@ -646,20 +657,10 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
 
             for epoch in range(num_epochs):
                 for step in range(num_steps):
-                    torch.cuda.nvtx.range_push("FEBC Dataloader Pass")
-                    features = dataset.__getitem__(step)
-                    features = features.to(device)
+
+                    torch.cuda.nvtx.range_push("FEBC Backward+Optimizer Pass")
+                    loss.backward() 
                     torch.cuda.nvtx.range_pop()
-                    torch.cuda.nvtx.range_push("FEBC Forward Pass")
-                    fused_embeddings = fused_ec(features)
-                    torch.cuda.nvtx.range_pop()
-                    # fused_vals = []
-                    # for _name, param in fused_embeddings.to_dict().items():
-                    #     fused_vals.append(param)
-                    # loss = torch.cat(fused_vals, dim=1).sum()
-                    # torch.cuda.nvtx.range_push("FEBC Backward+Optimizer Pass")
-                    # loss.backward() 
-                    # torch.cuda.nvtx.range_pop()
                     p.step()
                 
 
