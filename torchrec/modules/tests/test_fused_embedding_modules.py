@@ -965,7 +965,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         print(f"optimizer_kwargs: {optimizer_kwargs}")
         hash_size = 5000000
         embedding_dim = 128
-        batch_size = 64
+        batch_size = 4000
         print(f"hash_size: {hash_size}")
         print(f"embedding_dim: {embedding_dim}")
         print(f"batch_size: {batch_size}")
@@ -1034,35 +1034,22 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
         start_time = time.perf_counter()
         # 迭代数据加载器
-        with torch.profiler.profile(
-            activities=[
-                torch.profiler.ProfilerActivity.CPU,
-                torch.profiler.ProfilerActivity.CUDA],
-            schedule=torch.profiler.schedule(
-                wait=1,
-                warmup=1,
-                active=2),
-            on_trace_ready=torch.profiler.tensorboard_trace_handler('./result', worker_name='worker0'),
-            record_shapes=True,
-            profile_memory=True,  # This will take 1 to 2 minutes. Setting it to False could greatly speedup.
-            with_stack=True
-        ) as p:
-            for epoch in range(num_epochs):
-                for step in range(num_steps):
-                    torch.cuda.nvtx.range_push("FEC Dataloader Pass")
-                    features = dataset.__getitem__(step)
-                    features = features.to(device)
-                    torch.cuda.nvtx.range_pop() 
-                    torch.cuda.nvtx.range_push("FEC Forward Pass")
-                    fused_embeddings = fused_ec(features)
-                    torch.cuda.nvtx.range_pop() 
-                    fused_vals = []
-                    for _name, jt in fused_embeddings.items():
-                        fused_vals.extend(jt.to_dense())
-                    torch.cuda.nvtx.range_push("FEC Backward + Gradient Pass")
-                    torch.cat(fused_vals).sum().backward()
-                    torch.cuda.nvtx.range_pop() 
-                    p.step()
+        for epoch in range(num_epochs):
+            for step in range(num_steps):
+                torch.cuda.nvtx.range_push("FEC Dataloader Pass")
+                features = dataset.__getitem__(step)
+                features = features.to(device)
+                torch.cuda.nvtx.range_pop() 
+                torch.cuda.nvtx.range_push("FEC Forward Pass")
+                fused_embeddings = fused_ec(features)
+                torch.cuda.nvtx.range_pop() 
+                fused_vals = []
+                for _name, jt in fused_embeddings.items():
+                    fused_vals.extend(jt.to_dense())
+                torch.cuda.nvtx.range_push("FEC Backward + Gradient Pass")
+                torch.cat(fused_vals).sum().backward()
+                torch.cuda.nvtx.range_pop() 
+
         end_time = time.perf_counter()
         fused_ec_time = end_time - start_time
         print(f"fused ec Time: {fused_ec_time}")
