@@ -1036,7 +1036,6 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         # 迭代数据加载器
         for epoch in range(num_epochs):
             for step in range(num_steps):
-                print(f"epoch is {epoch}")
                 torch.cuda.nvtx.range_push("FEC Dataloader Pass")
                 features = dataset.__getitem__(step)
                 features = features.to(device)
