@@ -1008,34 +1008,35 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
             features = dataset.__getitem__(step)
             cnt += features.values().shape[0]
         print(f"dataset size={cnt}")
+        # start_time = time.perf_counter()
+        # # 迭代数据加载器
+        # for epoch in range(num_epochs):
+        #     for step in range(num_steps):
+        #         features = dataset.__getitem__(step)
+        #         features = features.to(device)
+        #         opt.zero_grad()
+        #         torch.cuda.nvtx.range_push("EC Forward Pass")
+        #         sequence_embeddings = ec(features)
+        #         torch.cuda.nvtx.range_pop() 
+        #         vals = []
+        #         for _name, jt in sequence_embeddings.items():
+        #             vals.extend(jt.to_dense())
+        #         torch.cuda.nvtx.range_push("EC Backward Pass")
+        #         torch.cat(vals).sum().backward()
+        #         torch.cuda.nvtx.range_pop() 
+        #         torch.cuda.nvtx.range_push("EC Update Gradient Pass")
+        #         opt.step()
+        #         torch.cuda.nvtx.range_pop() 
+
+        # end_time = time.perf_counter()
+        # ec_time = end_time - start_time
+        # print(f"ec Time: {ec_time}")
+
         start_time = time.perf_counter()
         # 迭代数据加载器
         for epoch in range(num_epochs):
             for step in range(num_steps):
-                features = dataset.__getitem__(step)
-                features = features.to(device)
-                opt.zero_grad()
-                torch.cuda.nvtx.range_push("EC Forward Pass")
-                sequence_embeddings = ec(features)
-                torch.cuda.nvtx.range_pop() 
-                vals = []
-                for _name, jt in sequence_embeddings.items():
-                    vals.extend(jt.to_dense())
-                torch.cuda.nvtx.range_push("EC Backward Pass")
-                torch.cat(vals).sum().backward()
-                torch.cuda.nvtx.range_pop() 
-                torch.cuda.nvtx.range_push("EC Update Gradient Pass")
-                opt.step()
-                torch.cuda.nvtx.range_pop() 
-
-        end_time = time.perf_counter()
-        ec_time = end_time - start_time
-        print(f"ec Time: {ec_time}")
-
-        start_time = time.perf_counter()
-        # 迭代数据加载器
-        for epoch in range(num_epochs):
-            for step in range(num_steps):
+                print(f"epoch is {epoch}")
                 torch.cuda.nvtx.range_push("FEC Dataloader Pass")
                 features = dataset.__getitem__(step)
                 features = features.to(device)
@@ -1053,7 +1054,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         end_time = time.perf_counter()
         fused_ec_time = end_time - start_time
         print(f"fused ec Time: {fused_ec_time}")
-        print(f"speedup:{ec_time/fused_ec_time}")
+        # print(f"speedup:{ec_time/fused_ec_time}")
 
 
     @unittest.skipIf(
