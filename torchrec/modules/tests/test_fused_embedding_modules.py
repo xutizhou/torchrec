@@ -646,7 +646,7 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
                     fused_vals.append(param)
                 loss = torch.cat(fused_vals, dim=1).sum()
                 torch.cuda.nvtx.range_push("FEBC Backward+Optimizer Pass")
-                if epoch == 1 and step ==10:
+                if epoch == 1 and step ==9:
                     with profile(
                         activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],
                         on_trace_ready=tensorboard_trace_handler("./log"),
