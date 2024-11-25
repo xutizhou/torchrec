@@ -1056,7 +1056,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                     torch.cuda.nvtx.range_push("FEC Backward + Gradient Pass")
                     torch.cat(fused_vals).sum().backward()
                     torch.cuda.nvtx.range_pop() 
-            
+                    print(prof.key_averages().table(sort_by="self_cuda_memory_usage", row_limit=10))
                     prof.export_chrome_trace("trace.json")
 
 
