@@ -1038,8 +1038,8 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 with_stack=True      # Include stack traces for detailed analysis
             ) as prof:
             print("ttttt")            
-            print(prof.key_averages().table(sort_by="self_cuda_memory_usage", row_limit=10))
-            prof.export_chrome_trace("trace.json")
+        print(prof.key_averages().table(sort_by="self_cuda_memory_usage", row_limit=10))
+        prof.export_chrome_trace("trace.json")
         start_time = time.perf_counter()
         # 迭代数据加载器
 
