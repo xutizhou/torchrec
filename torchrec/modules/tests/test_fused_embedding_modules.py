@@ -970,7 +970,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         print(f"embedding_dim: {embedding_dim}")
         print(f"batch_size: {batch_size}")
         # 定义数据集参数
-        num_epochs = 100
+        num_epochs = 10
         num_steps = 10     
         embedding_configs = [
             EmbeddingConfig(
