@@ -1035,8 +1035,8 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         start_time = time.perf_counter()
         # 迭代数据加载器
 
-        for epoch in range(num_epochs):
-            for step in range(num_steps):
+        for epoch in range(1):
+            for step in range(1):
                 torch.cuda.nvtx.range_push("FEC Dataloader Pass")
                 features = dataset.__getitem__(step)
                 features = features.to(device)
@@ -1045,20 +1045,19 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 fused_embeddings = fused_ec(features)
                 torch.cuda.nvtx.range_pop() 
                 fused_vals = []
-                if epoch==1 and step==1:
-                    prof = profile(
-                            activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],  # Profile both CPU and GPU
-                            record_shapes=True,  # Record tensor shapes
-                            with_stack=True      # Include stack traces for detailed analysis
-                        )
-                for _name, jt in fused_embeddings.items():
-                    fused_vals.extend(jt.to_dense())
-                torch.cuda.nvtx.range_push("FEC Backward + Gradient Pass")
-                torch.cat(fused_vals).sum().backward()
-                torch.cuda.nvtx.range_pop() 
-                if epoch==1 and step==1:
-                    break
-        prof.export_chrome_trace("trace.json")
+                
+                with profile(
+                        activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],  # Profile both CPU and GPU
+                        record_shapes=True,  # Record tensor shapes
+                        with_stack=True      # Include stack traces for detailed analysis
+                    ) as prof:
+                    for _name, jt in fused_embeddings.items():
+                        fused_vals.extend(jt.to_dense())
+                    torch.cuda.nvtx.range_push("FEC Backward + Gradient Pass")
+                    torch.cat(fused_vals).sum().backward()
+                    torch.cuda.nvtx.range_pop() 
+            
+                    prof.export_chrome_trace("trace.json")
 
 
         end_time = time.perf_counter()
