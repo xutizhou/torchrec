@@ -83,7 +83,7 @@ class CustomDataset():
         self.hash_size = hash_size
         self.device = device
         self.min_ids_per_features = 0
-        self.ids_per_features = 64
+        self.ids_per_features = 4000
         self.keys = ["feature_0"]
         self.data = self._generate_data()
     def _generate_data(self):
@@ -568,7 +568,7 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         print(f"optimizer_kwargs: {optimizer_kwargs}")
         hash_size = 5000000
         embedding_dim = 128
-        batch_size = 4000
+        batch_size = 64
         # 定义数据集参数
         num_epochs = 1
         num_steps = 10
@@ -965,7 +965,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         print(f"optimizer_kwargs: {optimizer_kwargs}")
         hash_size = 5000000
         embedding_dim = 128
-        batch_size = 4000
+        batch_size = 64
         print(f"hash_size: {hash_size}")
         print(f"embedding_dim: {embedding_dim}")
         print(f"batch_size: {batch_size}")

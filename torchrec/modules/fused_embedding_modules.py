@@ -747,8 +747,9 @@ class FusedEmbeddingCollection(EmbeddingCollectionInterface, FusedOptimizerModul
             indicies = torch.cat(indicies)
             lengths = torch.cat(lengths)
             offsets = torch.ops.fbgemm.asynchronous_complete_cumsum(lengths)
-
+            torch.cuda.nvtx.range_push("embedding lookup Pass")
             lookups = emb_op(indicies.int(), offsets.int(), weights=None)
+            torch.cuda.nvtx.range_pop()
             lookups = torch.split(lookups, split_size_or_sections=splits)
 
             for feature, lookup, feature_length, values in zip(
