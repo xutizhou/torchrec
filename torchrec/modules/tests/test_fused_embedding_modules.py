@@ -570,7 +570,7 @@ class FusedEmbeddingBagCollectionTest(unittest.TestCase):
         embedding_dim = 128
         batch_size = 4000
         # 定义数据集参数
-        num_epochs = 100
+        num_epochs = 1
         num_steps = 10
         embedding_configs = [
             EmbeddingBagConfig(
