@@ -971,7 +971,7 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
         print(f"batch_size: {batch_size}")
         # 定义数据集参数
         num_epochs = 100
-        num_steps = 10     
+        num_steps = 100     
         embedding_configs = [
             EmbeddingConfig(
                 num_embeddings=hash_size,
@@ -1038,19 +1038,19 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
 
         for epoch in range(num_epochs):
             for step in range(num_steps):
-                torch.cuda.nvtx.range_push("FEC Dataloader Pass")
+                # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
                 features = dataset.__getitem__(step)
                 features = features.to(device)
-                torch.cuda.nvtx.range_pop() 
-                torch.cuda.nvtx.range_push("FEC Forward Pass")
+                # torch.cuda.nvtx.range_pop() 
+                # torch.cuda.nvtx.range_push("FEC Forward Pass")
                 fused_embeddings = fused_ec(features)
-                torch.cuda.nvtx.range_pop() 
+                # torch.cuda.nvtx.range_pop() 
                 fused_vals = []
                 for _name, jt in fused_embeddings.items():
                     fused_vals.append(jt.values())
-                torch.cuda.nvtx.range_push("FEC Backward + Gradient Pass")
+                # torch.cuda.nvtx.range_push("FEC Backward + Gradient Pass")
                 torch.cat(fused_vals).sum().backward()
-                torch.cuda.nvtx.range_pop() 
+                # torch.cuda.nvtx.range_pop() 
         end_time = time.perf_counter()
         fused_ec_time = end_time - start_time
         print(f"fused ec Time: {fused_ec_time}")
