@@ -1045,18 +1045,12 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                 torch.cuda.nvtx.range_push("FEC Forward Pass")
                 fused_embeddings = fused_ec(features)
                 torch.cuda.nvtx.range_pop() 
-                with profile(
-                        activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],  # Profile both CPU and GPU
-                        record_shapes=True,  # Record tensor shapes
-                        with_stack=True      # Include stack traces for detailed analysis
-                    ) as prof:
-                    fused_vals = []
-                    for _name, jt in fused_embeddings.items():
-                        fused_vals.append(jt.values())
-                    torch.cuda.nvtx.range_push("FEC Backward + Gradient Pass")
-                    torch.cat(fused_vals).sum().backward()
-                    torch.cuda.nvtx.range_pop() 
-        prof.export_chrome_trace("fec_backward_opt.json")
+                fused_vals = []
+                for _name, jt in fused_embeddings.items():
+                    fused_vals.append(jt.values())
+                torch.cuda.nvtx.range_push("FEC Backward + Gradient Pass")
+                torch.cat(fused_vals).sum().backward()
+                torch.cuda.nvtx.range_pop() 
         end_time = time.perf_counter()
         fused_ec_time = end_time - start_time
         print(f"fused ec Time: {fused_ec_time}")
