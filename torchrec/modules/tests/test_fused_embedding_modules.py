@@ -1052,6 +1052,8 @@ class FusedEmbeddingCollectionTest(unittest.TestCase):
                     ) as prof:
                     fused_vals = []
                     for _name, jt in fused_embeddings.items():
+                        print(jt.values().shape)
+                        print(jt.values())
                         fused_vals.extend(jt.to_dense())
                     torch.cuda.nvtx.range_push("FEC Backward + Gradient Pass")
                     torch.cat(fused_vals).sum().backward()
