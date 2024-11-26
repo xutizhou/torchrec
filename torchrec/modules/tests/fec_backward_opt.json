@@ -74,3277 +74,2009 @@
   "with_stack": 1,
   "traceEvents": [
   {
-    "ph": "X", "cat": "cpu_op", "name": "autograd::engine::evaluate_function: SumBackward0", "pid": 294734, "tid": 294765,
-    "ts": 4868643757670.876, "dur": 140.527,
+    "ph": "X", "cat": "cpu_op", "name": "autograd::engine::evaluate_function: SumBackward0", "pid": 295663, "tid": 295678,
+    "ts": 4869140274545.226, "dur": 105.796,
     "args": {
       "External id": 513,"Record function id": 0, "Sequence number": 3, "Fwd thread id": 1, "Ev Idx": 0
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "SumBackward0", "pid": 294734, "tid": 294765,
-    "ts": 4868643757713.112, "dur": 87.829,
+    "ph": "X", "cat": "cpu_op", "name": "SumBackward0", "pid": 295663, "tid": 295678,
+    "ts": 4869140274574.193, "dur": 53.586,
     "args": {
       "External id": 514,"Sequence number": 3, "Fwd thread id": 1, "Record function id": 0, "Concrete Inputs": [""], "Input type": ["float"], "Input Strides": [[]], "Input Dims": [[]], "Ev Idx": 1
     }
   },
   {
-    "ph": "f", "id": 1, "pid": 294734, "tid": 294765, "ts": 4868643757713.112,
+    "ph": "f", "id": 1, "pid": 295663, "tid": 295678, "ts": 4869140274574.193,
     "cat": "fwdbwd", "name": "fwdbwd", "bp": "e"
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::expand", "pid": 294734, "tid": 294765,
-    "ts": 4868643757757.976, "dur": 39.488,
+    "ph": "X", "cat": "cpu_op", "name": "aten::expand", "pid": 295663, "tid": 295678,
+    "ts": 4869140274600.597, "dur": 24.968,
     "args": {
       "External id": 515,"Record function id": 0, "Concrete Inputs": ["", "[256000, 128]", "False"], "Input type": ["float", "ScalarList", "Scalar"], "Input Strides": [[], [], []], "Input Dims": [[], [], []], "Ev Idx": 2
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 294734, "tid": 294765,
-    "ts": 4868643757783.711, "dur": 8.344,
+    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 295663, "tid": 295678,
+    "ts": 4869140274617.586, "dur": 4.734,
     "args": {
       "External id": 516,"Record function id": 0, "Concrete Inputs": ["", "[256000, 128]", "[0, 0]", ""], "Input type": ["float", "ScalarList", "ScalarList", ""], "Input Strides": [[], [], [], []], "Input Dims": [[], [], [], []], "Ev Idx": 3
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "autograd::engine::evaluate_function: CatBackward0", "pid": 294734, "tid": 294765,
-    "ts": 4868643757824.907, "dur": 45.282,
+    "ph": "X", "cat": "cpu_op", "name": "autograd::engine::evaluate_function: CatBackward0", "pid": 295663, "tid": 295678,
+    "ts": 4869140274674.497, "dur": 37.299,
     "args": {
       "External id": 517,"Record function id": 0, "Sequence number": 2, "Fwd thread id": 1, "Ev Idx": 4
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "CatBackward0", "pid": 294734, "tid": 294765,
-    "ts": 4868643757833.663, "dur": 31.472,
+    "ph": "X", "cat": "cpu_op", "name": "CatBackward0", "pid": 295663, "tid": 295678,
+    "ts": 4869140274682.940, "dur": 24.443,
     "args": {
       "External id": 518,"Sequence number": 2, "Fwd thread id": 1, "Record function id": 0, "Concrete Inputs": [""], "Input type": ["float"], "Input Strides": [[0, 0]], "Input Dims": [[256000, 128]], "Ev Idx": 5
     }
   },
   {
-    "ph": "f", "id": 2, "pid": 294734, "tid": 294765, "ts": 4868643757833.663,
+    "ph": "f", "id": 2, "pid": 295663, "tid": 295678, "ts": 4869140274682.940,
     "cat": "fwdbwd", "name": "fwdbwd", "bp": "e"
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::narrow", "pid": 294734, "tid": 294765,
-    "ts": 4868643757842.080, "dur": 21.906,
+    "ph": "X", "cat": "cpu_op", "name": "aten::narrow", "pid": 295663, "tid": 295678,
+    "ts": 4869140274689.733, "dur": 16.860,
     "args": {
       "External id": 519,"Record function id": 0, "Concrete Inputs": ["", "0", "0", "256000"], "Input type": ["float", "Scalar", "Scalar", "Scalar"], "Input Strides": [[0, 0], [], [], []], "Input Dims": [[256000, 128], [], [], []], "Ev Idx": 6
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::slice", "pid": 294734, "tid": 294765,
-    "ts": 4868643757847.844, "dur": 15.269,
+    "ph": "X", "cat": "cpu_op", "name": "aten::slice", "pid": 295663, "tid": 295678,
+    "ts": 4869140274693.040, "dur": 13.162,
     "args": {
       "External id": 520,"Record function id": 0, "Concrete Inputs": ["", "0", "0", "256000", "1"], "Input type": ["float", "Scalar", "Scalar", "Scalar", "Scalar"], "Input Strides": [[0, 0], [], [], [], []], "Input Dims": [[256000, 128], [], [], [], []], "Ev Idx": 7
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 294734, "tid": 294765,
-    "ts": 4868643757857.835, "dur": 1.187,
+    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 295663, "tid": 295678,
+    "ts": 4869140274701.136, "dur": 1.785,
     "args": {
       "External id": 521,"Record function id": 0, "Concrete Inputs": ["", "[256000, 128]", "[0, 0]", "0"], "Input type": ["float", "ScalarList", "ScalarList", "Scalar"], "Input Strides": [[0, 0], [], [], []], "Input Dims": [[256000, 128], [], [], []], "Ev Idx": 8
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "autograd::engine::evaluate_function: SplitWithSizesBackward0", "pid": 294734, "tid": 294765,
-    "ts": 4868643757881.518, "dur": 261.290,
+    "ph": "X", "cat": "cpu_op", "name": "autograd::engine::evaluate_function: SplitWithSizesBackward0", "pid": 295663, "tid": 295678,
+    "ts": 4869140274719.982, "dur": 141.252,
     "args": {
       "External id": 522,"Record function id": 0, "Sequence number": 1, "Fwd thread id": 1, "Ev Idx": 9
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "SplitWithSizesBackward0", "pid": 294734, "tid": 294765,
-    "ts": 4868643757883.643, "dur": 255.006,
+    "ph": "X", "cat": "cpu_op", "name": "SplitWithSizesBackward0", "pid": 295663, "tid": 295678,
+    "ts": 4869140274721.547, "dur": 136.745,
     "args": {
       "External id": 523,"Sequence number": 1, "Fwd thread id": 1, "Record function id": 0, "Concrete Inputs": [""], "Input type": ["float"], "Input Strides": [[0, 0]], "Input Dims": [[256000, 128]], "Ev Idx": 10
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::cat", "pid": 294734, "tid": 294765,
-    "ts": 4868643757894.394, "dur": 243.046,
+    "ph": "X", "cat": "cpu_op", "name": "aten::cat", "pid": 295663, "tid": 295678,
+    "ts": 4869140274728.641, "dur": 129.044,
     "args": {
       "External id": 524,"Record function id": 0, "Concrete Inputs": ["", "0"], "Input type": ["TensorList", "Scalar"], "Input Strides": [[[0, 0]], []], "Input Dims": [[[256000, 128]], []], "Ev Idx": 11
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::narrow", "pid": 294734, "tid": 294765,
-    "ts": 4868643757922.682, "dur": 8.037,
+    "ph": "X", "cat": "cpu_op", "name": "aten::narrow", "pid": 295663, "tid": 295678,
+    "ts": 4869140274745.694, "dur": 5.861,
     "args": {
       "External id": 525,"Record function id": 0, "Concrete Inputs": ["", "0", "0", "256000"], "Input type": ["float", "Scalar", "Scalar", "Scalar"], "Input Strides": [[128, 1], [], [], []], "Input Dims": [[256000, 128], [], [], []], "Ev Idx": 12
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::slice", "pid": 294734, "tid": 294765,
-    "ts": 4868643757924.013, "dur": 6.385,
+    "ph": "X", "cat": "cpu_op", "name": "aten::slice", "pid": 295663, "tid": 295678,
+    "ts": 4869140274746.687, "dur": 4.696,
     "args": {
       "External id": 526,"Record function id": 0, "Concrete Inputs": ["", "0", "0", "256000", "1"], "Input type": ["float", "Scalar", "Scalar", "Scalar", "Scalar"], "Input Strides": [[128, 1], [], [], [], []], "Input Dims": [[256000, 128], [], [], [], []], "Ev Idx": 13
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 294734, "tid": 294765,
-    "ts": 4868643757925.549, "dur": 4.351,
+    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 295663, "tid": 295678,
+    "ts": 4869140274748.061, "dur": 3.070,
     "args": {
       "External id": 527,"Record function id": 0, "Concrete Inputs": ["", "[256000, 128]", "[128, 1]", "0"], "Input type": ["float", "ScalarList", "ScalarList", "Scalar"], "Input Strides": [[128, 1], [], [], []], "Input Dims": [[256000, 128], [], [], []], "Ev Idx": 14
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "autograd::engine::evaluate_function: torch::autograd::CppNode<SplitNoBagLookupFunction_sgd_Op>", "pid": 294734, "tid": 294765,
-    "ts": 4868643758161.245, "dur": 13650.760,
+    "ph": "X", "cat": "cpu_op", "name": "autograd::engine::evaluate_function: torch::autograd::CppNode<SplitNoBagLookupFunction_sgd_Op>", "pid": 295663, "tid": 295678,
+    "ts": 4869140274872.165, "dur": 11194.208,
     "args": {
       "External id": 528,"Record function id": 0, "Sequence number": 0, "Fwd thread id": 1, "Ev Idx": 15
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "torch::autograd::CppNode<SplitNoBagLookupFunction_sgd_Op>", "pid": 294734, "tid": 294765,
-    "ts": 4868643758169.586, "dur": 13623.328,
+    "ph": "X", "cat": "cpu_op", "name": "torch::autograd::CppNode<SplitNoBagLookupFunction_sgd_Op>", "pid": 295663, "tid": 295678,
+    "ts": 4869140274877.407, "dur": 11179.649,
     "args": {
       "External id": 529,"Sequence number": 0, "Fwd thread id": 1, "Record function id": 0, "Concrete Inputs": [""], "Input type": ["float"], "Input Strides": [[128, 1]], "Input Dims": [[256000, 128]], "Ev Idx": 16
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "fbgemm::split_embedding_nobag_backward_codegen_sgd_unweighted_exact_cuda", "pid": 294734, "tid": 294765,
-    "ts": 4868643758203.845, "dur": 13576.137,
+    "ph": "X", "cat": "cpu_op", "name": "fbgemm::split_embedding_nobag_backward_codegen_sgd_unweighted_exact_cuda", "pid": 295663, "tid": 295678,
+    "ts": 4869140274900.581, "dur": 11150.244,
     "args": {
       "External id": 530,"Record function id": 0, "Concrete Inputs": ["", "", "", "", "", "", "128", "", "23", "", "", "", "32", "32", "True", "26", "67108863", "False", "True", ""], "Input type": ["float", "float", "float", "float", "int", "long int", "Scalar", "long int", "Scalar", "long int", "long int", "int", "Scalar", "Scalar", "Scalar", "Scalar", "Scalar", "Scalar", "Scalar", "float"], "Input Strides": [[128, 1], [1], [1], [1, 1], [1], [1], [], [1], [], [1], [1], [1], [], [], [], [], [], [], [], [1]], "Input Dims": [[256000, 128], [640000000], [0], [0, 0], [1], [1], [], [2], [], [256000], [65], [0], [], [], [], [], [], [], [], [1]], "Ev Idx": 17
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::item", "pid": 294734, "tid": 294765,
-    "ts": 4868643758230.968, "dur": 7.164,
+    "ph": "X", "cat": "cpu_op", "name": "aten::item", "pid": 295663, "tid": 295678,
+    "ts": 4869140274917.013, "dur": 2.940,
     "args": {
       "External id": 531,"Record function id": 0, "Concrete Inputs": [""], "Input type": ["float"], "Input Strides": [[1]], "Input Dims": [[1]], "Ev Idx": 18
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::_local_scalar_dense", "pid": 294734, "tid": 294765,
-    "ts": 4868643758235.159, "dur": 2.693,
+    "ph": "X", "cat": "cpu_op", "name": "aten::_local_scalar_dense", "pid": 295663, "tid": 295678,
+    "ts": 4869140274918.258, "dur": 1.567,
     "args": {
       "External id": 532,"Record function id": 0, "Concrete Inputs": [""], "Input type": ["float"], "Input Strides": [[1]], "Input Dims": [[1]], "Ev Idx": 19
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 294734, "tid": 294765,
-    "ts": 4868643758260.856, "dur": 24.419,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 295663, "tid": 295678,
+    "ts": 4869140274934.510, "dur": 14.604,
     "args": {
       "External id": 533,"Record function id": 0, "Concrete Inputs": ["", "4", "0", "", "", ""], "Input type": ["long int", "Scalar", "Scalar", "", "", ""], "Input Strides": [[1], [], [], [], [], []], "Input Dims": [[256000], [], [], [], [], []], "Ev Idx": 20
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 294734, "tid": 294765,
-    "ts": 4868643758270.861, "dur": 13.490,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 295663, "tid": 295678,
+    "ts": 4869140274940.890, "dur": 7.559,
     "args": {
       "External id": 534,"Record function id": 0, "Concrete Inputs": ["[256000]", "[1]", "4", "0", "", ""], "Input type": ["ScalarList", "ScalarList", "Scalar", "Scalar", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 21
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 294734, "tid": 294765,
-    "ts": 4868643758286.587, "dur": 13.795,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 295663, "tid": 295678,
+    "ts": 4869140274950.008, "dur": 8.304,
     "args": {
       "External id": 535,"Record function id": 0, "Concrete Inputs": ["", "", "", "", "", ""], "Input type": ["long int", "", "", "", "", ""], "Input Strides": [[1], [], [], [], [], []], "Input Dims": [[256000], [], [], [], [], []], "Ev Idx": 22
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 294734, "tid": 294765,
-    "ts": 4868643758292.037, "dur": 8.016,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 295663, "tid": 295678,
+    "ts": 4869140274953.589, "dur": 4.492,
     "args": {
       "External id": 536,"Record function id": 0, "Concrete Inputs": ["[256000]", "[1]", "4", "0", "", ""], "Input type": ["ScalarList", "ScalarList", "Scalar", "Scalar", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 23
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 294734, "tid": 294765,
-    "ts": 4868643758301.436, "dur": 7.418,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 295663, "tid": 295678,
+    "ts": 4869140274959.081, "dur": 4.504,
     "args": {
       "External id": 537,"Record function id": 0, "Concrete Inputs": ["", "", "", "", "", ""], "Input type": ["long int", "", "", "", "", ""], "Input Strides": [[1], [], [], [], [], []], "Input Dims": [[256000], [], [], [], [], []], "Ev Idx": 24
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 294734, "tid": 294765,
-    "ts": 4868643758302.597, "dur": 5.997,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 295663, "tid": 295678,
+    "ts": 4869140274959.929, "dur": 3.472,
     "args": {
       "External id": 538,"Record function id": 0, "Concrete Inputs": ["[256000]", "[1]", "4", "0", "", ""], "Input type": ["ScalarList", "ScalarList", "Scalar", "Scalar", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 25
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 294734, "tid": 294765,
-    "ts": 4868643758309.790, "dur": 6.546,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 295663, "tid": 295678,
+    "ts": 4869140274964.206, "dur": 4.569,
     "args": {
       "External id": 539,"Record function id": 0, "Concrete Inputs": ["", "", "", "", "", ""], "Input type": ["long int", "", "", "", "", ""], "Input Strides": [[1], [], [], [], [], []], "Input Dims": [[256000], [], [], [], [], []], "Ev Idx": 26
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 294734, "tid": 294765,
-    "ts": 4868643758310.870, "dur": 5.241,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 295663, "tid": 295678,
+    "ts": 4869140274964.960, "dur": 3.662,
     "args": {
       "External id": 540,"Record function id": 0, "Concrete Inputs": ["[256000]", "[1]", "4", "0", "", ""], "Input type": ["ScalarList", "ScalarList", "Scalar", "Scalar", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 27
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643761191.358, "dur": 17.028,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140277916.793, "dur": 8.974,
     "args": {
       "External id": 541,"Record function id": 0, "Concrete Inputs": ["[4171263]", "0", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 28
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643761434.399, "dur": 6.567,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140278085.242, "dur": 4.780,
     "args": {
       "External id": 542,"Record function id": 0, "Concrete Inputs": ["[256000]", "4", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 29
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zeros", "pid": 294734, "tid": 294765,
-    "ts": 4868643761449.423, "dur": 61.999,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zeros", "pid": 295663, "tid": 295678,
+    "ts": 4869140278094.397, "dur": 33.813,
     "args": {
       "External id": 543,"Record function id": 0, "Concrete Inputs": ["[256000]", "3", "0", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", ""], "Input Strides": [[], [], [], [], []], "Input Dims": [[], [], [], [], []], "Ev Idx": 30
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643761453.417, "dur": 6.442,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140278096.297, "dur": 4.241,
     "args": {
       "External id": 544,"Record function id": 0, "Concrete Inputs": ["[256000]", "3", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 31
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 294734, "tid": 294765,
-    "ts": 4868643761467.223, "dur": 43.635,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278103.801, "dur": 24.055,
     "args": {
       "External id": 545,"Record function id": 0, "Concrete Inputs": [""], "Input type": ["int"], "Input Strides": [[1]], "Input Dims": [[256000]], "Ev Idx": 32
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 294734, "tid": 294765,
-    "ts": 4868643761475.049, "dur": 33.643,
+    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278107.878, "dur": 18.702,
     "args": {
       "External id": 546,"Record function id": 0, "Concrete Inputs": ["", "0"], "Input type": ["int", "Scalar"], "Input Strides": [[1], []], "Input Dims": [[256000], []], "Ev Idx": 33
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zeros", "pid": 294734, "tid": 294765,
-    "ts": 4868643761513.817, "dur": 26.899,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zeros", "pid": 295663, "tid": 295678,
+    "ts": 4869140278129.547, "dur": 16.616,
     "args": {
       "External id": 547,"Record function id": 0, "Concrete Inputs": ["[1]", "3", "0", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", ""], "Input Strides": [[], [], [], [], []], "Input Dims": [[], [], [], [], []], "Ev Idx": 34
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643761515.286, "dur": 10.195,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140278132.470, "dur": 4.044,
     "args": {
       "External id": 548,"Record function id": 0, "Concrete Inputs": ["[1]", "3", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 35
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 294734, "tid": 294765,
-    "ts": 4868643761526.666, "dur": 13.813,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278137.189, "dur": 8.829,
     "args": {
       "External id": 549,"Record function id": 0, "Concrete Inputs": [""], "Input type": ["int"], "Input Strides": [[1]], "Input Dims": [[1]], "Ev Idx": 36
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 294734, "tid": 294765,
-    "ts": 4868643761528.997, "dur": 9.969,
+    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278138.526, "dur": 6.700,
     "args": {
       "External id": 550,"Record function id": 0, "Concrete Inputs": ["", "0"], "Input type": ["int", "Scalar"], "Input Strides": [[1], []], "Input Dims": [[1], []], "Ev Idx": 37
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643761548.872, "dur": 5.881,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140278150.793, "dur": 3.776,
     "args": {
       "External id": 551,"Record function id": 0, "Concrete Inputs": ["[6143]", "0", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 38
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643761665.684, "dur": 5.340,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140278224.593, "dur": 3.656,
     "args": {
       "External id": 552,"Record function id": 0, "Concrete Inputs": ["[256001]", "3", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 39
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::select", "pid": 294734, "tid": 294765,
-    "ts": 4868643761679.374, "dur": 17.871,
+    "ph": "X", "cat": "cpu_op", "name": "aten::select", "pid": 295663, "tid": 295678,
+    "ts": 4869140278232.584, "dur": 9.940,
     "args": {
       "External id": 553,"Record function id": 0, "Concrete Inputs": ["", "0", "0"], "Input type": ["int", "Scalar", "Scalar"], "Input Strides": [[1], [], []], "Input Dims": [[256001], [], []], "Ev Idx": 40
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 294734, "tid": 294765,
-    "ts": 4868643761689.583, "dur": 2.613,
+    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 295663, "tid": 295678,
+    "ts": 4869140278238.305, "dur": 1.513,
     "args": {
       "External id": 554,"Record function id": 0, "Concrete Inputs": ["", "[]", "[]", "0"], "Input type": ["int", "ScalarList", "ScalarList", "Scalar"], "Input Strides": [[1], [], [], []], "Input Dims": [[256001], [], [], []], "Ev Idx": 41
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 294734, "tid": 294765,
-    "ts": 4868643761698.744, "dur": 15.342,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278243.553, "dur": 9.616,
     "args": {
       "External id": 555,"Record function id": 0, "Concrete Inputs": [""], "Input type": ["int"], "Input Strides": [[]], "Input Dims": [[]], "Ev Idx": 42
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 294734, "tid": 294765,
-    "ts": 4868643761701.383, "dur": 11.134,
+    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278245.222, "dur": 6.977,
     "args": {
       "External id": 556,"Record function id": 0, "Concrete Inputs": ["", "0"], "Input type": ["int", "Scalar"], "Input Strides": [[], []], "Input Dims": [[], []], "Ev Idx": 43
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643761724.944, "dur": 5.723,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140278260.183, "dur": 3.898,
     "args": {
       "External id": 557,"Record function id": 0, "Concrete Inputs": ["[1791]", "0", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 44
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zeros_like", "pid": 294734, "tid": 294765,
-    "ts": 4868643761827.268, "dur": 38.517,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zeros_like", "pid": 295663, "tid": 295678,
+    "ts": 4869140278322.742, "dur": 27.903,
     "args": {
       "External id": 558,"Record function id": 0, "Concrete Inputs": ["", "", "", "", "", ""], "Input type": ["int", "", "", "", "", ""], "Input Strides": [[1], [], [], [], [], []], "Input Dims": [[1], [], [], [], [], []], "Ev Idx": 45
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 294734, "tid": 294765,
-    "ts": 4868643761838.964, "dur": 11.618,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 295663, "tid": 295678,
+    "ts": 4869140278329.373, "dur": 9.690,
     "args": {
       "External id": 559,"Record function id": 0, "Concrete Inputs": ["", "3", "0", "", "", ""], "Input type": ["int", "Scalar", "Scalar", "", "", ""], "Input Strides": [[1], [], [], [], [], []], "Input Dims": [[1], [], [], [], [], []], "Ev Idx": 46
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 294734, "tid": 294765,
-    "ts": 4868643761841.746, "dur": 8.128,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 295663, "tid": 295678,
+    "ts": 4869140278331.654, "dur": 6.991,
     "args": {
       "External id": 560,"Record function id": 0, "Concrete Inputs": ["[1]", "[1]", "3", "0", "", ""], "Input type": ["ScalarList", "ScalarList", "Scalar", "Scalar", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 47
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 294734, "tid": 294765,
-    "ts": 4868643761851.835, "dur": 13.488,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278339.827, "dur": 10.404,
     "args": {
       "External id": 561,"Record function id": 0, "Concrete Inputs": [""], "Input type": ["int"], "Input Strides": [[1]], "Input Dims": [[1]], "Ev Idx": 48
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 294734, "tid": 294765,
-    "ts": 4868643761853.791, "dur": 10.098,
+    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278341.083, "dur": 8.191,
     "args": {
       "External id": 562,"Record function id": 0, "Concrete Inputs": ["", "0"], "Input type": ["int", "Scalar"], "Input Strides": [[1], []], "Input Dims": [[1], []], "Ev Idx": 49
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643761884.813, "dur": 446.772,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140278366.644, "dur": 235.670,
     "args": {
       "External id": 563,"Record function id": 0, "Concrete Inputs": ["[256000]", "3", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 50
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zeros", "pid": 294734, "tid": 294765,
-    "ts": 4868643762338.043, "dur": 32.887,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zeros", "pid": 295663, "tid": 295678,
+    "ts": 4869140278606.423, "dur": 27.330,
     "args": {
       "External id": 564,"Record function id": 0, "Concrete Inputs": ["[1]", "3", "0", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", ""], "Input Strides": [[], [], [], [], []], "Input Dims": [[], [], [], [], []], "Ev Idx": 51
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643762339.925, "dur": 6.253,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140278607.763, "dur": 9.937,
     "args": {
       "External id": 565,"Record function id": 0, "Concrete Inputs": ["[1]", "3", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 52
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 294734, "tid": 294765,
-    "ts": 4868643762347.712, "dur": 22.838,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278618.888, "dur": 14.566,
     "args": {
       "External id": 566,"Record function id": 0, "Concrete Inputs": [""], "Input type": ["int"], "Input Strides": [[1]], "Input Dims": [[1]], "Ev Idx": 53
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 294734, "tid": 294765,
-    "ts": 4868643762350.236, "dur": 18.564,
+    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278620.902, "dur": 11.359,
     "args": {
       "External id": 567,"Record function id": 0, "Concrete Inputs": ["", "0"], "Input type": ["int", "Scalar"], "Input Strides": [[1], []], "Input Dims": [[1], []], "Ev Idx": 54
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643762373.971, "dur": 7.980,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140278636.023, "dur": 4.931,
     "args": {
       "External id": 568,"Record function id": 0, "Concrete Inputs": ["[256000]", "3", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 55
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zeros", "pid": 294734, "tid": 294765,
-    "ts": 4868643762386.677, "dur": 22.026,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zeros", "pid": 295663, "tid": 295678,
+    "ts": 4869140278642.487, "dur": 16.899,
     "args": {
       "External id": 569,"Record function id": 0, "Concrete Inputs": ["[1]", "3", "0", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", ""], "Input Strides": [[], [], [], [], []], "Input Dims": [[], [], [], [], []], "Ev Idx": 56
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643762388.166, "dur": 5.327,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140278643.494, "dur": 4.357,
     "args": {
       "External id": 570,"Record function id": 0, "Concrete Inputs": ["[1]", "3", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 57
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 294734, "tid": 294765,
-    "ts": 4868643762394.616, "dur": 13.850,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278648.775, "dur": 10.378,
     "args": {
       "External id": 571,"Record function id": 0, "Concrete Inputs": [""], "Input type": ["int"], "Input Strides": [[1]], "Input Dims": [[1]], "Ev Idx": 58
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 294734, "tid": 294765,
-    "ts": 4868643762396.725, "dur": 10.160,
+    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 295663, "tid": 295678,
+    "ts": 4869140278650.245, "dur": 7.876,
     "args": {
       "External id": 572,"Record function id": 0, "Concrete Inputs": ["", "0"], "Input type": ["int", "Scalar"], "Input Strides": [[1], []], "Input Dims": [[1], []], "Ev Idx": 59
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643762410.424, "dur": 6.334,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140278660.815, "dur": 4.616,
     "args": {
       "External id": 573,"Record function id": 0, "Concrete Inputs": ["[250]", "3", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 60
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zeros", "pid": 294734, "tid": 294765,
-    "ts": 4868643763137.775, "dur": 316.722,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zeros", "pid": 295663, "tid": 295678,
+    "ts": 4869140279368.077, "dur": 221.536,
     "args": {
       "External id": 574,"Record function id": 0, "Concrete Inputs": ["[250, 128]", "6", "0", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", ""], "Input Strides": [[], [], [], [], []], "Input Dims": [[], [], [], [], []], "Ev Idx": 61
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 294734, "tid": 294765,
-    "ts": 4868643763139.254, "dur": 281.087,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty", "pid": 295663, "tid": 295678,
+    "ts": 4869140279369.535, "dur": 196.863,
     "args": {
       "External id": 575,"Record function id": 0, "Concrete Inputs": ["[250, 128]", "6", "0", "", "", ""], "Input type": ["ScalarList", "Scalar", "Scalar", "", "", ""], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 62
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 294734, "tid": 294765,
-    "ts": 4868643763424.282, "dur": 29.745,
+    "ph": "X", "cat": "cpu_op", "name": "aten::zero_", "pid": 295663, "tid": 295678,
+    "ts": 4869140279569.209, "dur": 20.158,
     "args": {
       "External id": 576,"Record function id": 0, "Concrete Inputs": [""], "Input type": ["float"], "Input Strides": [[128, 1]], "Input Dims": [[250, 128]], "Ev Idx": 63
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 294734, "tid": 294765,
-    "ts": 4868643763431.435, "dur": 20.849,
+    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 295663, "tid": 295678,
+    "ts": 4869140279571.804, "dur": 16.243,
     "args": {
       "External id": 577,"Record function id": 0, "Concrete Inputs": ["", "0"], "Input type": ["float", "Scalar"], "Input Strides": [[128, 1], []], "Input Dims": [[250, 128], []], "Ev Idx": 64
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "autograd::engine::evaluate_function: torch::autograd::AccumulateGrad", "pid": 294734, "tid": 294765,
-    "ts": 4868643771856.784, "dur": 17.497,
+    "ph": "X", "cat": "cpu_op", "name": "autograd::engine::evaluate_function: torch::autograd::AccumulateGrad", "pid": 295663, "tid": 295678,
+    "ts": 4869140286087.715, "dur": 9.494,
     "args": {
       "External id": 578,"Record function id": 0, "Ev Idx": 65
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "torch::autograd::AccumulateGrad", "pid": 294734, "tid": 294765,
-    "ts": 4868643771866.780, "dur": 3.787,
+    "ph": "X", "cat": "cpu_op", "name": "torch::autograd::AccumulateGrad", "pid": 295663, "tid": 295678,
+    "ts": 4869140286092.829, "dur": 2.320,
     "args": {
       "External id": 579,"Record function id": 0, "Concrete Inputs": [""], "Input type": [""], "Input Strides": [[]], "Input Dims": [[]], "Ev Idx": 66
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::cat", "pid": 294734, "tid": 294734,
-    "ts": 4868643580347.604, "dur": 174759.003,
+    "ph": "X", "cat": "cpu_op", "name": "aten::cat", "pid": 295663, "tid": 295663,
+    "ts": 4869140272905.472, "dur": 337.445,
     "args": {
       "External id": 1,"Sequence number": 2, "Fwd thread id": 0, "Record function id": 0, "Concrete Inputs": ["", "0"], "Input type": ["TensorList", "Scalar"], "Input Strides": [[[128, 1]], []], "Input Dims": [[[256000, 128]], []], "Ev Idx": 67
     }
   },
   {
-    "ph": "s", "id": 2, "pid": 294734, "tid": 294734, "ts": 4868643580347.604,
+    "ph": "s", "id": 2, "pid": 295663, "tid": 295663, "ts": 4869140272905.472,
     "cat": "fwdbwd", "name": "fwdbwd"
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::narrow", "pid": 294734, "tid": 294734,
-    "ts": 4868643754891.909, "dur": 73.183,
+    "ph": "X", "cat": "cpu_op", "name": "aten::narrow", "pid": 295663, "tid": 295663,
+    "ts": 4869140273173.219, "dur": 26.421,
     "args": {
       "External id": 2,"Record function id": 0, "Concrete Inputs": ["", "0", "0", "256000"], "Input type": ["float", "Scalar", "Scalar", "Scalar"], "Input Strides": [[128, 1], [], [], []], "Input Dims": [[256000, 128], [], [], []], "Ev Idx": 68
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::slice", "pid": 294734, "tid": 294734,
-    "ts": 4868643754910.613, "dur": 53.085,
+    "ph": "X", "cat": "cpu_op", "name": "aten::slice", "pid": 295663, "tid": 295663,
+    "ts": 4869140273180.136, "dur": 18.941,
     "args": {
       "External id": 3,"Record function id": 0, "Concrete Inputs": ["", "0", "0", "256000", "1"], "Input type": ["float", "Scalar", "Scalar", "Scalar", "Scalar"], "Input Strides": [[128, 1], [], [], [], []], "Input Dims": [[256000, 128], [], [], [], []], "Ev Idx": 69
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 294734, "tid": 294734,
-    "ts": 4868643754947.907, "dur": 5.629,
+    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 295663, "tid": 295663,
+    "ts": 4869140273193.300, "dur": 2.297,
     "args": {
       "External id": 4,"Record function id": 0, "Concrete Inputs": ["", "[256000, 128]", "[128, 1]", "0"], "Input type": ["float", "ScalarList", "ScalarList", "Scalar"], "Input Strides": [[128, 1], [], [], []], "Input Dims": [[256000, 128], [], [], []], "Ev Idx": 70
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::sum", "pid": 294734, "tid": 294734,
-    "ts": 4868643755173.173, "dur": 416.049,
+    "ph": "X", "cat": "cpu_op", "name": "aten::sum", "pid": 295663, "tid": 295663,
+    "ts": 4869140273258.276, "dur": 166.576,
     "args": {
       "External id": 5,"Sequence number": 3, "Fwd thread id": 0, "Record function id": 0, "Concrete Inputs": ["", ""], "Input type": ["float", ""], "Input Strides": [[128, 1], []], "Input Dims": [[256000, 128], []], "Ev Idx": 71
     }
   },
   {
-    "ph": "s", "id": 1, "pid": 294734, "tid": 294734, "ts": 4868643755173.173,
+    "ph": "s", "id": 1, "pid": 295663, "tid": 295663, "ts": 4869140273258.276,
     "cat": "fwdbwd", "name": "fwdbwd"
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::sum", "pid": 294734, "tid": 294734,
-    "ts": 4868643755190.772, "dur": 395.027,
+    "ph": "X", "cat": "cpu_op", "name": "aten::sum", "pid": 295663, "tid": 295663,
+    "ts": 4869140273264.725, "dur": 158.655,
     "args": {
       "External id": 6,"Record function id": 0, "Concrete Inputs": ["", "[]", "False", ""], "Input type": ["float", "ScalarList", "Scalar", ""], "Input Strides": [[128, 1], [], [], []], "Input Dims": [[256000, 128], [], [], []], "Ev Idx": 72
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 294734, "tid": 294734,
-    "ts": 4868643755225.557, "dur": 1.740,
+    "ph": "X", "cat": "cpu_op", "name": "aten::as_strided", "pid": 295663, "tid": 295663,
+    "ts": 4869140273274.989, "dur": 0.824,
     "args": {
       "External id": 7,"Record function id": 0, "Concrete Inputs": ["", "[1, 1]", "[0, 0]", ""], "Input type": ["float", "ScalarList", "ScalarList", ""], "Input Strides": [[], [], [], []], "Input Dims": [[], [], [], []], "Ev Idx": 73
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::ones_like", "pid": 294734, "tid": 294734,
-    "ts": 4868643756203.844, "dur": 108.600,
+    "ph": "X", "cat": "cpu_op", "name": "aten::ones_like", "pid": 295663, "tid": 295663,
+    "ts": 4869140273649.861, "dur": 45.570,
     "args": {
       "External id": 8,"Record function id": 0, "Concrete Inputs": ["", "", "", "", "False", "1"], "Input type": ["float", "", "", "", "Scalar", "Scalar"], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 74
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 294734, "tid": 294734,
-    "ts": 4868643756215.647, "dur": 43.940,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_like", "pid": 295663, "tid": 295663,
+    "ts": 4869140273654.250, "dur": 18.194,
     "args": {
       "External id": 9,"Record function id": 0, "Concrete Inputs": ["", "", "", "", "False", "1"], "Input type": ["float", "", "", "", "Scalar", "Scalar"], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 75
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 294734, "tid": 294734,
-    "ts": 4868643756234.716, "dur": 22.803,
+    "ph": "X", "cat": "cpu_op", "name": "aten::empty_strided", "pid": 295663, "tid": 295663,
+    "ts": 4869140273662.516, "dur": 9.219,
     "args": {
       "External id": 10,"Record function id": 0, "Concrete Inputs": ["[]", "[]", "6", "0", "", "False"], "Input type": ["ScalarList", "ScalarList", "Scalar", "Scalar", "", "Scalar"], "Input Strides": [[], [], [], [], [], []], "Input Dims": [[], [], [], [], [], []], "Ev Idx": 76
     }
   },
   {
-    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 294734, "tid": 294734,
-    "ts": 4868643756270.805, "dur": 40.721,
+    "ph": "X", "cat": "cpu_op", "name": "aten::fill_", "pid": 295663, "tid": 295663,
+    "ts": 4869140273676.725, "dur": 18.369,
     "args": {
       "External id": 11,"Record function id": 0, "Concrete Inputs": ["", "1."], "Input type": ["float", "Scalar"], "Input Strides": [[], []], "Input Dims": [[], []], "Ev Idx": 77
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<frozen runpy>(198): _run_module_as_main", "pid": 294734, "tid": 294734,
-    "ts": 4868643579422.264, "dur": 192945.869,
+    "ph": "X", "cat": "python_function", "name": "<frozen runpy>(198): _run_module_as_main", "pid": 295663, "tid": 295663,
+    "ts": 4869140272450.665, "dur": 14195.935,
     "args": {
       "Python parent id": null, "Python id": 1, "Ev Idx": 78
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<frozen runpy>(88): _run_code", "pid": 294734, "tid": 294734,
-    "ts": 4868643579428.042, "dur": 192940.091,
+    "ph": "X", "cat": "python_function", "name": "<frozen runpy>(88): _run_code", "pid": 295663, "tid": 295663,
+    "ts": 4869140272453.383, "dur": 14193.217,
     "args": {
       "Python parent id": 1, "Python id": 2, "Ev Idx": 79
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "unittest/__main__.py(18): <module>", "pid": 294734, "tid": 294734,
-    "ts": 4868643579433.661, "dur": 192934.472,
+    "ph": "X", "cat": "python_function", "name": "unittest/__main__.py(18): <module>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272456.929, "dur": 14189.671,
     "args": {
       "Python parent id": 2, "Python id": 3, "Ev Idx": 80
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "unittest/main.py(104): __init__", "pid": 294734, "tid": 294734,
-    "ts": 4868643579440.307, "dur": 192927.826,
+    "ph": "X", "cat": "python_function", "name": "unittest/main.py(104): __init__", "pid": 295663, "tid": 295663,
+    "ts": 4869140272459.259, "dur": 14187.341,
     "args": {
       "Python parent id": 3, "Python id": 4, "Ev Idx": 81
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "unittest/main.py(270): runTests", "pid": 294734, "tid": 294734,
-    "ts": 4868643579451.368, "dur": 192916.765,
+    "ph": "X", "cat": "python_function", "name": "unittest/main.py(270): runTests", "pid": 295663, "tid": 295663,
+    "ts": 4869140272464.836, "dur": 14181.764,
     "args": {
       "Python parent id": 4, "Python id": 5, "Ev Idx": 82
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "unittest/runner.py(240): run", "pid": 294734, "tid": 294734,
-    "ts": 4868643579457.481, "dur": 192910.652,
+    "ph": "X", "cat": "python_function", "name": "unittest/runner.py(240): run", "pid": 295663, "tid": 295663,
+    "ts": 4869140272467.283, "dur": 14179.317,
     "args": {
       "Python parent id": 5, "Python id": 6, "Ev Idx": 83
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "unittest/suite.py(84): __call__", "pid": 294734, "tid": 294734,
-    "ts": 4868643579461.460, "dur": 192906.673,
+    "ph": "X", "cat": "python_function", "name": "unittest/suite.py(84): __call__", "pid": 295663, "tid": 295663,
+    "ts": 4869140272468.528, "dur": 14178.072,
     "args": {
       "Python parent id": 6, "Python id": 7, "Ev Idx": 84
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "unittest/suite.py(122): run", "pid": 294734, "tid": 294734,
-    "ts": 4868643579463.787, "dur": 192904.346,
+    "ph": "X", "cat": "python_function", "name": "unittest/suite.py(122): run", "pid": 295663, "tid": 295663,
+    "ts": 4869140272470.192, "dur": 14176.408,
     "args": {
       "Python parent id": 7, "Python id": 8, "Ev Idx": 85
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "unittest/suite.py(84): __call__", "pid": 294734, "tid": 294734,
-    "ts": 4868643579468.652, "dur": 192899.481,
+    "ph": "X", "cat": "python_function", "name": "unittest/suite.py(84): __call__", "pid": 295663, "tid": 295663,
+    "ts": 4869140272472.019, "dur": 14174.581,
     "args": {
       "Python parent id": 8, "Python id": 9, "Ev Idx": 86
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "unittest/suite.py(122): run", "pid": 294734, "tid": 294734,
-    "ts": 4868643579469.890, "dur": 192898.243,
+    "ph": "X", "cat": "python_function", "name": "unittest/suite.py(122): run", "pid": 295663, "tid": 295663,
+    "ts": 4869140272472.725, "dur": 14173.875,
     "args": {
       "Python parent id": 9, "Python id": 10, "Ev Idx": 87
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "unittest/case.py(707): __call__", "pid": 294734, "tid": 294734,
-    "ts": 4868643579475.206, "dur": 192892.927,
+    "ph": "X", "cat": "python_function", "name": "unittest/case.py(707): __call__", "pid": 295663, "tid": 295663,
+    "ts": 4869140272476.507, "dur": 14170.093,
     "args": {
       "Python parent id": 10, "Python id": 11, "Ev Idx": 88
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "unittest/case.py(651): run", "pid": 294734, "tid": 294734,
-    "ts": 4868643579481.763, "dur": 192886.370,
+    "ph": "X", "cat": "python_function", "name": "unittest/case.py(651): run", "pid": 295663, "tid": 295663,
+    "ts": 4869140272479.092, "dur": 14167.508,
     "args": {
       "Python parent id": 11, "Python id": 12, "Ev Idx": 89
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "unittest/case.py(606): _callTestMethod", "pid": 294734, "tid": 294734,
-    "ts": 4868643579486.443, "dur": 192881.690,
+    "ph": "X", "cat": "python_function", "name": "unittest/case.py(606): _callTestMethod", "pid": 295663, "tid": 295663,
+    "ts": 4869140272480.740, "dur": 14165.860,
     "args": {
       "Python parent id": 12, "Python id": 13, "Ev Idx": 90
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "test_fused_embedding_modules.py(940): test_optimizer_fusion", "pid": 294734, "tid": 294734,
-    "ts": 4868643579487.714, "dur": 192880.419,
+    "ph": "X", "cat": "python_function", "name": "test_fused_embedding_modules.py(940): test_optimizer_fusion", "pid": 295663, "tid": 295663,
+    "ts": 4869140272481.569, "dur": 14165.031,
     "args": {
       "Python parent id": 13, "Python id": 14, "Ev Idx": 91
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/core.py(1359): wrapped_test", "pid": 294734, "tid": 294734,
-    "ts": 4868643579497.326, "dur": 192870.807,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/core.py(1359): wrapped_test", "pid": 295663, "tid": 295663,
+    "ts": 4869140272487.259, "dur": 14159.341,
     "args": {
       "Python parent id": 14, "Python id": 15, "Ev Idx": 92
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/core.py(955): run_engine", "pid": 294734, "tid": 294734,
-    "ts": 4868643579502.286, "dur": 192865.847,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/core.py(955): run_engine", "pid": 295663, "tid": 295663,
+    "ts": 4869140272490.778, "dur": 14155.822,
     "args": {
       "Python parent id": 15, "Python id": 16, "Ev Idx": 93
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(474): run", "pid": 294734, "tid": 294734,
-    "ts": 4868643579506.449, "dur": 192861.684,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(474): run", "pid": 295663, "tid": 295663,
+    "ts": 4869140272492.122, "dur": 14154.478,
     "args": {
       "Python parent id": 16, "Python id": 17, "Ev Idx": 94
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(880): _run", "pid": 294734, "tid": 294734,
-    "ts": 4868643579515.592, "dur": 192852.541,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(878): _run", "pid": 295663, "tid": 295663,
+    "ts": 4869140272494.350, "dur": 14152.250,
     "args": {
       "Python parent id": 17, "Python id": 18, "Ev Idx": 95
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(612): generate_new_examples", "pid": 294734, "tid": 294734,
-    "ts": 4868643579521.942, "dur": 192846.191,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(552): reuse_existing_examples", "pid": 295663, "tid": 295663,
+    "ts": 4869140272498.719, "dur": 14147.881,
     "args": {
       "Python parent id": 18, "Python id": 19, "Ev Idx": 96
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(1059): cached_test_function", "pid": 294734, "tid": 294734,
-    "ts": 4868643579530.385, "dur": 192837.748,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(1059): cached_test_function", "pid": 295663, "tid": 295663,
+    "ts": 4869140272503.111, "dur": 14143.489,
     "args": {
       "Python parent id": 19, "Python id": 20, "Ev Idx": 97
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(209): test_function", "pid": 294734, "tid": 294734,
-    "ts": 4868643579535.995, "dur": 192832.138,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(209): test_function", "pid": 295663, "tid": 295663,
+    "ts": 4869140272505.213, "dur": 14141.387,
     "args": {
       "Python parent id": 20, "Python id": 21, "Ev Idx": 98
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(185): __stoppable_test_function", "pid": 294734, "tid": 294734,
-    "ts": 4868643579539.397, "dur": 192828.736,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/internal/conjecture/engine.py(185): __stoppable_test_function", "pid": 295663, "tid": 295663,
+    "ts": 4869140272506.621, "dur": 14139.979,
     "args": {
       "Python parent id": 21, "Python id": 22, "Ev Idx": 99
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/core.py(878): _execute_once_for_engine", "pid": 294734, "tid": 294734,
-    "ts": 4868643579542.724, "dur": 192825.409,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/core.py(878): _execute_once_for_engine", "pid": 295663, "tid": 295663,
+    "ts": 4869140272508.788, "dur": 14137.812,
     "args": {
       "Python parent id": 22, "Python id": 23, "Ev Idx": 100
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/core.py(817): execute_once", "pid": 294734, "tid": 294734,
-    "ts": 4868643579546.115, "dur": 192822.018,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/core.py(817): execute_once", "pid": 295663, "tid": 295663,
+    "ts": 4869140272510.661, "dur": 14135.939,
     "args": {
       "Python parent id": 23, "Python id": 24, "Ev Idx": 101
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/executors.py(47): default_new_style_executor", "pid": 294734, "tid": 294734,
-    "ts": 4868643579548.368, "dur": 192819.765,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/executors.py(47): default_new_style_executor", "pid": 295663, "tid": 295663,
+    "ts": 4869140272511.984, "dur": 14134.616,
     "args": {
       "Python parent id": 24, "Python id": 25, "Ev Idx": 102
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "hypothesis/core.py(813): run", "pid": 294734, "tid": 294734,
-    "ts": 4868643579551.918, "dur": 192816.215,
+    "ph": "X", "cat": "python_function", "name": "hypothesis/core.py(813): run", "pid": 295663, "tid": 295663,
+    "ts": 4869140272513.821, "dur": 14132.779,
     "args": {
       "Python parent id": 25, "Python id": 26, "Ev Idx": 103
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "test_fused_embedding_modules.py(1048): test_optimizer_fusion", "pid": 294734, "tid": 294734,
-    "ts": 4868643579559.367, "dur": 192808.766,
+    "ph": "X", "cat": "python_function", "name": "test_fused_embedding_modules.py(1048): test_optimizer_fusion", "pid": 295663, "tid": 295663,
+    "ts": 4869140272518.223, "dur": 14128.377,
     "args": {
       "Python parent id": 26, "Python id": 27, "Ev Idx": 104
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(773): __enter__", "pid": 294734, "tid": 294734,
-    "ts": 4868643579562.392, "dur": 489.924,
+    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(773): __enter__", "pid": 295663, "tid": 295663,
+    "ts": 4869140272520.321, "dur": 244.038,
     "args": {
       "Python parent id": 27, "Python id": 28, "Ev Idx": 105
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(783): start", "pid": 294734, "tid": 294734,
-    "ts": 4868643579563.584, "dur": 488.312,
+    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(783): start", "pid": 295663, "tid": 295663,
+    "ts": 4869140272520.953, "dur": 243.208,
     "args": {
       "Python parent id": 28, "Python id": 29, "Ev Idx": 106
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(836): _transit_action", "pid": 294734, "tid": 294734,
-    "ts": 4868643579565.621, "dur": 485.168,
+    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(836): _transit_action", "pid": 295663, "tid": 295663,
+    "ts": 4869140272522.255, "dur": 241.292,
     "args": {
       "Python parent id": 29, "Python id": 30, "Ev Idx": 107
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(199): start_trace", "pid": 294734, "tid": 294734,
-    "ts": 4868643579569.547, "dur": 480.162,
+    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(199): start_trace", "pid": 295663, "tid": 295663,
+    "ts": 4869140272523.547, "dur": 239.532,
     "args": {
       "Python parent id": 30, "Python id": 31, "Ev Idx": 108
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/autograd/profiler.py(358): _start_trace", "pid": 294734, "tid": 294734,
-    "ts": 4868643579571.287, "dur": 265.012,
+    "ph": "X", "cat": "python_function", "name": "torch/autograd/profiler.py(358): _start_trace", "pid": 295663, "tid": 295663,
+    "ts": 4869140272524.652, "dur": 148.794,
     "args": {
       "Python parent id": 31, "Python id": 32, "Ev Idx": 109
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function perf_counter_ns>", "pid": 294734, "tid": 294734,
-    "ts": 4868643579814.603, "dur": 8.777,
+    "ph": "X", "cat": "python_function", "name": "<built-in function perf_counter_ns>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272661.532, "dur": 5.391,
     "args": {
       "Python parent id": 32, "Python id": 33, "Ev Idx": 110
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(331): add_metadata_json", "pid": 294734, "tid": 294734,
-    "ts": 4868643579862.874, "dur": 19.352,
+    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(331): add_metadata_json", "pid": 295663, "tid": 295663,
+    "ts": 4869140272687.098, "dur": 11.663,
     "args": {
       "Python parent id": 31, "Python id": 34, "Ev Idx": 111
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method _add_metadata_json of PyCapsule object at 0x155495fa7a60>", "pid": 294734, "tid": 294734,
-    "ts": 4868643579876.294, "dur": 5.452,
+    "ph": "X", "cat": "python_function", "name": "<built-in method _add_metadata_json of PyCapsule object at 0x1554886a3830>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272695.622, "dur": 2.817,
     "args": {
       "Python parent id": 34, "Python id": 35, "Ev Idx": 112
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(331): add_metadata_json", "pid": 294734, "tid": 294734,
-    "ts": 4868643579899.784, "dur": 4.931,
+    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(331): add_metadata_json", "pid": 295663, "tid": 295663,
+    "ts": 4869140272705.534, "dur": 3.166,
     "args": {
       "Python parent id": 31, "Python id": 36, "Ev Idx": 113
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method _add_metadata_json of PyCapsule object at 0x155495fa7a60>", "pid": 294734, "tid": 294734,
-    "ts": 4868643579903.121, "dur": 1.412,
+    "ph": "X", "cat": "python_function", "name": "<built-in method _add_metadata_json of PyCapsule object at 0x1554886a3830>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272707.180, "dur": 1.385,
     "args": {
       "Python parent id": 36, "Python id": 37, "Ev Idx": 114
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method kineto_available of PyCapsule object at 0x155495fa7ba0>", "pid": 294734, "tid": 294734,
-    "ts": 4868643579912.230, "dur": 1.623,
+    "ph": "X", "cat": "python_function", "name": "<built-in method kineto_available of PyCapsule object at 0x1554886a3970>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272714.085, "dur": 0.957,
     "args": {
       "Python parent id": 31, "Python id": 38, "Ev Idx": 115
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(346): _get_distributed_info", "pid": 294734, "tid": 294734,
-    "ts": 4868643579920.089, "dur": 36.039,
+    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(346): _get_distributed_info", "pid": 295663, "tid": 295663,
+    "ts": 4869140272718.661, "dur": 17.662,
     "args": {
       "Python parent id": 31, "Python id": 39, "Ev Idx": 116
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/distributed/__init__.py(14): is_available", "pid": 294734, "tid": 294734,
-    "ts": 4868643579933.384, "dur": 8.392,
+    "ph": "X", "cat": "python_function", "name": "torch/distributed/__init__.py(14): is_available", "pid": 295663, "tid": 295663,
+    "ts": 4869140272723.877, "dur": 4.580,
     "args": {
       "Python parent id": 39, "Python id": 40, "Ev Idx": 117
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function hasattr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643579938.999, "dur": 2.150,
+    "ph": "X", "cat": "python_function", "name": "<built-in function hasattr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272726.700, "dur": 1.447,
     "args": {
       "Python parent id": 40, "Python id": 41, "Ev Idx": 118
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/distributed/distributed_c10d.py(1207): is_initialized", "pid": 294734, "tid": 294734,
-    "ts": 4868643579945.912, "dur": 9.816,
+    "ph": "X", "cat": "python_function", "name": "torch/distributed/distributed_c10d.py(1207): is_initialized", "pid": 295663, "tid": 295663,
+    "ts": 4869140272731.531, "dur": 4.598,
     "args": {
       "Python parent id": 39, "Python id": 42, "Ev Idx": 119
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/distributed/distributed_c10d.py(702): WORLD", "pid": 294734, "tid": 294734,
-    "ts": 4868643579951.289, "dur": 3.586,
+    "ph": "X", "cat": "python_function", "name": "torch/distributed/distributed_c10d.py(702): WORLD", "pid": 295663, "tid": 295663,
+    "ts": 4869140272734.177, "dur": 1.770,
     "args": {
       "Python parent id": 42, "Python id": 43, "Ev Idx": 120
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/distributed/distributed_c10d.py(577): default_pg", "pid": 294734, "tid": 294734,
-    "ts": 4868643579954.112, "dur": 0.393,
+    "ph": "X", "cat": "python_function", "name": "torch/distributed/distributed_c10d.py(577): default_pg", "pid": 295663, "tid": 295663,
+    "ts": 4869140272735.674, "dur": 0.129,
     "args": {
       "Python parent id": 43, "Python id": 44, "Ev Idx": 121
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function hasattr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643579960.262, "dur": 4.723,
+    "ph": "X", "cat": "python_function", "name": "<built-in function hasattr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272738.293, "dur": 0.664,
     "args": {
       "Python parent id": 31, "Python id": 45, "Ev Idx": 122
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/utils/_config_module.py(552): __getattr__", "pid": 294734, "tid": 294734,
-    "ts": 4868643579996.022, "dur": 42.383,
+    "ph": "X", "cat": "python_function", "name": "torch/utils/_config_module.py(552): __getattr__", "pid": 295663, "tid": 295663,
+    "ts": 4869140272747.407, "dur": 11.090,
     "args": {
       "Python parent id": 31, "Python id": 46, "Ev Idx": 123
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/utils/_config_module.py(257): __getattr__", "pid": 294734, "tid": 294734,
-    "ts": 4868643580010.373, "dur": 27.444,
+    "ph": "X", "cat": "python_function", "name": "torch/utils/_config_module.py(257): __getattr__", "pid": 295663, "tid": 295663,
+    "ts": 4869140272751.863, "dur": 6.379,
     "args": {
       "Python parent id": 46, "Python id": 47, "Ev Idx": 124
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643580034.850, "dur": 2.183,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272757.009, "dur": 0.877,
     "args": {
       "Python parent id": 47, "Python id": 48, "Ev Idx": 125
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method items of dict object at 0x15549353c680>", "pid": 294734, "tid": 294734,
-    "ts": 4868643580046.582, "dur": 1.457,
+    "ph": "X", "cat": "python_function", "name": "<built-in method items of dict object at 0x15541f7dd640>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272761.697, "dur": 0.580,
     "args": {
       "Python parent id": 31, "Python id": 49, "Ev Idx": 126
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method items of dict object at 0x15549353c680>", "pid": 294734, "tid": 294734,
-    "ts": 4868643580057.896, "dur": 0.372,
+    "ph": "X", "cat": "python_function", "name": "<built-in method items of dict object at 0x15541f7dd640>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272766.708, "dur": 0.142,
     "args": {
       "Python parent id": 27, "Python id": 50, "Ev Idx": 127
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torchrec/sparse/jagged_tensor.py(938): values", "pid": 294734, "tid": 294734,
-    "ts": 4868643580065.196, "dur": 0.373,
+    "ph": "X", "cat": "python_function", "name": "torchrec/sparse/jagged_tensor.py(938): values", "pid": 295663, "tid": 295663,
+    "ts": 4869140272769.870, "dur": 0.163,
     "args": {
       "Python parent id": 27, "Python id": 51, "Ev Idx": 128
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method append of list object at 0x15542d053dc0>", "pid": 294734, "tid": 294734,
-    "ts": 4868643580072.171, "dur": 1.270,
+    "ph": "X", "cat": "python_function", "name": "<built-in method append of list object at 0x15541f74ba40>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272773.148, "dur": 0.525,
     "args": {
       "Python parent id": 27, "Python id": 52, "Ev Idx": 129
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/nvtx.py(27): range_push", "pid": 294734, "tid": 294734,
-    "ts": 4868643580081.428, "dur": 8.683,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/nvtx.py(27): range_push", "pid": 295663, "tid": 295663,
+    "ts": 4869140272778.007, "dur": 7.409,
     "args": {
       "Python parent id": 27, "Python id": 53, "Ev Idx": 130
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method rangePushA of PyCapsule object at 0x1554eabfdb70>", "pid": 294734, "tid": 294734,
-    "ts": 4868643580086.007, "dur": 3.768,
+    "ph": "X", "cat": "python_function", "name": "<built-in method rangePushA of PyCapsule object at 0x1554e8df9df0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272780.055, "dur": 5.240,
     "args": {
       "Python parent id": 53, "Python id": 54, "Ev Idx": 131
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method cat of type object at 0x155553251780>", "pid": 294734, "tid": 294734,
-    "ts": 4868643580098.098, "dur": 175023.983,
+    "ph": "X", "cat": "python_function", "name": "<built-in method cat of type object at 0x155551a51780>", "pid": 295663, "tid": 295663,
+    "ts": 4869140272789.063, "dur": 457.532,
     "args": {
       "Python parent id": 27, "Python id": 55, "Ev Idx": 132
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method sum of Tensor object at 0x15542d045270>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755154.045, "dur": 440.222,
+    "ph": "X", "cat": "python_function", "name": "<built-in method sum of Tensor object at 0x15541f73dcc0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273252.318, "dur": 174.205,
     "args": {
       "Python parent id": 27, "Python id": 56, "Ev Idx": 133
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/_tensor.py(568): backward", "pid": 294734, "tid": 294734,
-    "ts": 4868643755627.874, "dur": 16326.652,
+    "ph": "X", "cat": "python_function", "name": "torch/_tensor.py(568): backward", "pid": 295663, "tid": 295663,
+    "ts": 4869140273434.134, "dur": 12698.214,
     "args": {
       "Python parent id": 27, "Python id": 57, "Ev Idx": 134
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function _has_torch_function_unary>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755634.681, "dur": 1.330,
+    "ph": "X", "cat": "python_function", "name": "<built-in function _has_torch_function_unary>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273436.884, "dur": 0.464,
     "args": {
       "Python parent id": 57, "Python id": 58, "Ev Idx": 135
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/autograd/__init__.py(242): backward", "pid": 294734, "tid": 294734,
-    "ts": 4868643755661.473, "dur": 16286.221,
+    "ph": "X", "cat": "python_function", "name": "torch/autograd/__init__.py(242): backward", "pid": 295663, "tid": 295663,
+    "ts": 4869140273443.062, "dur": 12685.651,
     "args": {
       "Python parent id": 57, "Python id": 59, "Ev Idx": 136
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method _are_functorch_transforms_active of PyCapsule object at 0x1554eab99300>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755683.353, "dur": 6.387,
+    "ph": "X", "cat": "python_function", "name": "<built-in method _are_functorch_transforms_active of PyCapsule object at 0x1554e8d95120>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273448.775, "dur": 1.820,
     "args": {
       "Python parent id": 59, "Python id": 60, "Ev Idx": 137
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755694.876, "dur": 1.016,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273452.145, "dur": 0.362,
     "args": {
       "Python parent id": 59, "Python id": 61, "Ev Idx": 138
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755704.868, "dur": 3.508,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273454.844, "dur": 1.260,
     "args": {
       "Python parent id": 59, "Python id": 62, "Ev Idx": 139
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function len>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755717.171, "dur": 1.201,
+    "ph": "X", "cat": "python_function", "name": "<built-in function len>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273459.981, "dur": 0.442,
     "args": {
       "Python parent id": 59, "Python id": 63, "Ev Idx": 140
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/autograd/__init__.py(232): _tensor_or_tensors_to_tuple", "pid": 294734, "tid": 294734,
-    "ts": 4868643755723.708, "dur": 2.580,
+    "ph": "X", "cat": "python_function", "name": "torch/autograd/__init__.py(232): _tensor_or_tensors_to_tuple", "pid": 295663, "tid": 295663,
+    "ts": 4869140273462.538, "dur": 0.866,
     "args": {
       "Python parent id": 59, "Python id": 64, "Ev Idx": 141
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/autograd/__init__.py(88): _make_grads", "pid": 294734, "tid": 294734,
-    "ts": 4868643755750.111, "dur": 575.666,
+    "ph": "X", "cat": "python_function", "name": "torch/autograd/__init__.py(88): _make_grads", "pid": 295663, "tid": 295663,
+    "ts": 4869140273471.832, "dur": 229.425,
     "args": {
       "Python parent id": 59, "Python id": 65, "Ev Idx": 142
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(426): inner", "pid": 294734, "tid": 294734,
-    "ts": 4868643755764.774, "dur": 251.212,
+    "ph": "X", "cat": "python_function", "name": "typing.py(426): inner", "pid": 295663, "tid": 295663,
+    "ts": 4869140273477.054, "dur": 95.270,
     "args": {
       "Python parent id": 65, "Python id": 66, "Ev Idx": 143
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(574): __getitem__", "pid": 294734, "tid": 294734,
-    "ts": 4868643755777.750, "dur": 235.376,
+    "ph": "X", "cat": "python_function", "name": "typing.py(574): __getitem__", "pid": 295663, "tid": 295663,
+    "ts": 4869140273480.805, "dur": 89.813,
     "args": {
       "Python parent id": 66, "Python id": 67, "Ev Idx": 144
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(753): Union", "pid": 294734, "tid": 294734,
-    "ts": 4868643755784.023, "dur": 228.331,
+    "ph": "X", "cat": "python_function", "name": "typing.py(753): Union", "pid": 295663, "tid": 295663,
+    "ts": 4869140273483.146, "dur": 87.149,
     "args": {
       "Python parent id": 67, "Python id": 68, "Ev Idx": 145
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755786.137, "dur": 0.659,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273484.365, "dur": 0.303,
     "args": {
       "Python parent id": 68, "Python id": 69, "Ev Idx": 146
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(789): <genexpr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755796.621, "dur": 33.274,
+    "ph": "X", "cat": "python_function", "name": "typing.py(789): <genexpr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273488.521, "dur": 12.290,
     "args": {
       "Python parent id": 68, "Python id": 70, "Ev Idx": 147
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(173): _type_check", "pid": 294734, "tid": 294734,
-    "ts": 4868643755808.449, "dur": 20.592,
+    "ph": "X", "cat": "python_function", "name": "typing.py(173): _type_check", "pid": 295663, "tid": 295663,
+    "ts": 4869140273491.649, "dur": 8.584,
     "args": {
       "Python parent id": 70, "Python id": 71, "Ev Idx": 148
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(164): _type_convert", "pid": 294734, "tid": 294734,
-    "ts": 4868643755817.242, "dur": 2.486,
+    "ph": "X", "cat": "python_function", "name": "typing.py(164): _type_convert", "pid": 295663, "tid": 295663,
+    "ts": 4869140273495.199, "dur": 1.264,
     "args": {
       "Python parent id": 71, "Python id": 72, "Ev Idx": 149
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755818.349, "dur": 1.056,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273495.826, "dur": 0.500,
     "args": {
       "Python parent id": 72, "Python id": 73, "Ev Idx": 150
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755821.425, "dur": 0.350,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273497.338, "dur": 0.115,
     "args": {
       "Python parent id": 71, "Python id": 74, "Ev Idx": 151
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755826.552, "dur": 0.557,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273499.303, "dur": 0.184,
     "args": {
       "Python parent id": 71, "Python id": 75, "Ev Idx": 152
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(789): <genexpr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755831.289, "dur": 9.151,
+    "ph": "X", "cat": "python_function", "name": "typing.py(789): <genexpr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273501.369, "dur": 4.089,
     "args": {
       "Python parent id": 68, "Python id": 76, "Ev Idx": 153
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(173): _type_check", "pid": 294734, "tid": 294734,
-    "ts": 4868643755832.528, "dur": 7.623,
+    "ph": "X", "cat": "python_function", "name": "typing.py(173): _type_check", "pid": 295663, "tid": 295663,
+    "ts": 4869140273502.060, "dur": 3.263,
     "args": {
       "Python parent id": 76, "Python id": 77, "Ev Idx": 154
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(164): _type_convert", "pid": 294734, "tid": 294734,
-    "ts": 4868643755834.445, "dur": 1.556,
+    "ph": "X", "cat": "python_function", "name": "typing.py(164): _type_convert", "pid": 295663, "tid": 295663,
+    "ts": 4869140273502.953, "dur": 0.630,
     "args": {
       "Python parent id": 77, "Python id": 78, "Ev Idx": 155
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755835.158, "dur": 0.594,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273503.271, "dur": 0.228,
     "args": {
       "Python parent id": 78, "Python id": 79, "Ev Idx": 156
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755836.781, "dur": 0.204,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273503.936, "dur": 0.108,
     "args": {
       "Python parent id": 77, "Python id": 80, "Ev Idx": 157
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755838.811, "dur": 0.394,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273504.783, "dur": 0.158,
     "args": {
       "Python parent id": 77, "Python id": 81, "Ev Idx": 158
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(789): <genexpr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755841.271, "dur": 0.564,
+    "ph": "X", "cat": "python_function", "name": "typing.py(789): <genexpr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273505.750, "dur": 0.166,
     "args": {
       "Python parent id": 68, "Python id": 82, "Ev Idx": 159
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(379): _remove_dups_flatten", "pid": 294734, "tid": 294734,
-    "ts": 4868643755850.161, "dur": 33.073,
+    "ph": "X", "cat": "python_function", "name": "typing.py(379): _remove_dups_flatten", "pid": 295663, "tid": 295663,
+    "ts": 4869140273509.483, "dur": 11.919,
     "args": {
       "Python parent id": 68, "Python id": 83, "Ev Idx": 160
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755853.687, "dur": 0.497,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273510.885, "dur": 0.260,
     "args": {
       "Python parent id": 83, "Python id": 84, "Ev Idx": 161
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method append of list object at 0x15542d053dc0>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755856.041, "dur": 1.206,
+    "ph": "X", "cat": "python_function", "name": "<built-in method append of list object at 0x15541f74ba40>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273511.930, "dur": 0.433,
     "args": {
       "Python parent id": 83, "Python id": 85, "Ev Idx": 162
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755858.288, "dur": 0.471,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273512.800, "dur": 0.220,
     "args": {
       "Python parent id": 83, "Python id": 86, "Ev Idx": 163
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method append of list object at 0x15542d053dc0>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755859.411, "dur": 0.244,
+    "ph": "X", "cat": "python_function", "name": "<built-in method append of list object at 0x15541f74ba40>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273513.249, "dur": 0.118,
     "args": {
       "Python parent id": 83, "Python id": 87, "Ev Idx": 164
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(351): _deduplicate", "pid": 294734, "tid": 294734,
-    "ts": 4868643755865.377, "dur": 15.003,
+    "ph": "X", "cat": "python_function", "name": "typing.py(351): _deduplicate", "pid": 295663, "tid": 295663,
+    "ts": 4869140273515.200, "dur": 5.080,
     "args": {
       "Python parent id": 83, "Python id": 88, "Ev Idx": 165
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method fromkeys of type object at 0x8932c0>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755876.659, "dur": 3.112,
+    "ph": "X", "cat": "python_function", "name": "<built-in method fromkeys of type object at 0x8932c0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273518.695, "dur": 1.382,
     "args": {
       "Python parent id": 88, "Python id": 89, "Ev Idx": 166
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function len>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755885.146, "dur": 0.352,
+    "ph": "X", "cat": "python_function", "name": "<built-in function len>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273522.185, "dur": 0.180,
     "args": {
       "Python parent id": 68, "Python id": 90, "Ev Idx": 167
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function len>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755887.363, "dur": 0.251,
+    "ph": "X", "cat": "python_function", "name": "<built-in function len>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273523.065, "dur": 0.071,
     "args": {
       "Python parent id": 68, "Python id": 91, "Ev Idx": 168
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1423): __init__", "pid": 294734, "tid": 294734,
-    "ts": 4868643755904.799, "dur": 106.637,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1423): __init__", "pid": 295663, "tid": 295663,
+    "ts": 4869140273528.080, "dur": 41.782,
     "args": {
       "Python parent id": 68, "Python id": 92, "Ev Idx": 169
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1307): __init__", "pid": 294734, "tid": 294734,
-    "ts": 4868643755912.037, "dur": 45.450,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1307): __init__", "pid": 295663, "tid": 295663,
+    "ts": 4869140273531.068, "dur": 18.306,
     "args": {
       "Python parent id": 92, "Python id": 93, "Ev Idx": 170
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 294734, "tid": 294734,
-    "ts": 4868643755917.337, "dur": 18.875,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 295663, "tid": 295663,
+    "ts": 4869140273533.083, "dur": 7.047,
     "args": {
       "Python parent id": 93, "Python id": 94, "Ev Idx": 171
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 294734, "tid": 294734,
-    "ts": 4868643755920.845, "dur": 6.157,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 295663, "tid": 295663,
+    "ts": 4869140273534.275, "dur": 2.767,
     "args": {
       "Python parent id": 94, "Python id": 95, "Ev Idx": 172
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x155554cc1a40>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755925.305, "dur": 1.207,
+    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x15555350afa0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273536.182, "dur": 0.600,
     "args": {
       "Python parent id": 95, "Python id": 96, "Ev Idx": 173
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 294734, "tid": 294734,
-    "ts": 4868643755938.198, "dur": 4.191,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 295663, "tid": 295663,
+    "ts": 4869140273541.321, "dur": 1.634,
     "args": {
       "Python parent id": 93, "Python id": 97, "Ev Idx": 174
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 294734, "tid": 294734,
-    "ts": 4868643755939.117, "dur": 1.306,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 295663, "tid": 295663,
+    "ts": 4869140273541.645, "dur": 0.560,
     "args": {
       "Python parent id": 97, "Python id": 98, "Ev Idx": 175
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x155554cc1a40>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755939.795, "dur": 0.302,
+    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x15555350afa0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273541.892, "dur": 0.182,
     "args": {
       "Python parent id": 98, "Python id": 99, "Ev Idx": 176
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 294734, "tid": 294734,
-    "ts": 4868643755943.591, "dur": 8.147,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 295663, "tid": 295663,
+    "ts": 4869140273543.762, "dur": 3.237,
     "args": {
       "Python parent id": 93, "Python id": 100, "Ev Idx": 177
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 294734, "tid": 294734,
-    "ts": 4868643755944.215, "dur": 5.926,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 295663, "tid": 295663,
+    "ts": 4869140273543.962, "dur": 2.274,
     "args": {
       "Python parent id": 100, "Python id": 101, "Ev Idx": 178
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x155554cc1a40>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755944.524, "dur": 0.477,
+    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x15555350afa0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273544.098, "dur": 0.212,
     "args": {
       "Python parent id": 101, "Python id": 102, "Ev Idx": 179
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method endswith of str object at 0x8affa8>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755949.244, "dur": 0.654,
+    "ph": "X", "cat": "python_function", "name": "<built-in method endswith of str object at 0x8affa8>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273545.713, "dur": 0.408,
     "args": {
       "Python parent id": 101, "Python id": 103, "Ev Idx": 180
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 294734, "tid": 294734,
-    "ts": 4868643755953.528, "dur": 3.772,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 295663, "tid": 295663,
+    "ts": 4869140273547.596, "dur": 1.654,
     "args": {
       "Python parent id": 93, "Python id": 104, "Ev Idx": 181
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 294734, "tid": 294734,
-    "ts": 4868643755954.161, "dur": 1.557,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 295663, "tid": 295663,
+    "ts": 4869140273547.879, "dur": 0.677,
     "args": {
       "Python parent id": 104, "Python id": 105, "Ev Idx": 182
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x155554cc1a40>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755954.468, "dur": 0.227,
+    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x15555350afa0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273548.047, "dur": 0.112,
     "args": {
       "Python parent id": 105, "Python id": 106, "Ev Idx": 183
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method endswith of str object at 0x8affa8>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755955.248, "dur": 0.313,
+    "ph": "X", "cat": "python_function", "name": "<built-in method endswith of str object at 0x8affa8>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273548.379, "dur": 0.132,
     "args": {
       "Python parent id": 105, "Python id": 107, "Ev Idx": 184
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755959.181, "dur": 0.256,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273549.894, "dur": 0.194,
     "args": {
       "Python parent id": 92, "Python id": 108, "Ev Idx": 185
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1427): <genexpr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755965.521, "dur": 0.773,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1427): <genexpr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273552.253, "dur": 0.594,
     "args": {
       "Python parent id": 92, "Python id": 109, "Ev Idx": 186
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1427): <genexpr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755967.748, "dur": 0.426,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1427): <genexpr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273553.391, "dur": 0.147,
     "args": {
       "Python parent id": 92, "Python id": 110, "Ev Idx": 187
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1427): <genexpr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755968.827, "dur": 0.200,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1427): <genexpr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273553.774, "dur": 0.100,
     "args": {
       "Python parent id": 92, "Python id": 111, "Ev Idx": 188
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 294734, "tid": 294734,
-    "ts": 4868643755971.571, "dur": 6.403,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 295663, "tid": 295663,
+    "ts": 4869140273555.071, "dur": 1.511,
     "args": {
       "Python parent id": 92, "Python id": 112, "Ev Idx": 189
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 294734, "tid": 294734,
-    "ts": 4868643755972.204, "dur": 1.444,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 295663, "tid": 295663,
+    "ts": 4869140273555.268, "dur": 0.653,
     "args": {
       "Python parent id": 112, "Python id": 113, "Ev Idx": 190
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x155554cc1a40>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755972.663, "dur": 0.294,
+    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x15555350afa0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273555.475, "dur": 0.096,
     "args": {
       "Python parent id": 113, "Python id": 114, "Ev Idx": 191
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method endswith of str object at 0x8affa8>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755973.343, "dur": 0.197,
+    "ph": "X", "cat": "python_function", "name": "<built-in method endswith of str object at 0x8affa8>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273555.785, "dur": 0.088,
     "args": {
       "Python parent id": 113, "Python id": 115, "Ev Idx": 192
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(260): _collect_type_parameters", "pid": 294734, "tid": 294734,
-    "ts": 4868643755988.340, "dur": 4.620,
+    "ph": "X", "cat": "python_function", "name": "typing.py(260): _collect_type_parameters", "pid": 295663, "tid": 295663,
+    "ts": 4869140273560.544, "dur": 1.758,
     "args": {
       "Python parent id": 92, "Python id": 116, "Ev Idx": 193
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755990.419, "dur": 0.451,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273561.234, "dur": 0.157,
     "args": {
       "Python parent id": 116, "Python id": 117, "Ev Idx": 194
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643755991.619, "dur": 0.228,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273561.695, "dur": 0.087,
     "args": {
       "Python parent id": 116, "Python id": 118, "Ev Idx": 195
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 294734, "tid": 294734,
-    "ts": 4868643756001.335, "dur": 4.331,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 295663, "tid": 295663,
+    "ts": 4869140273565.958, "dur": 1.489,
     "args": {
       "Python parent id": 92, "Python id": 119, "Ev Idx": 196
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 294734, "tid": 294734,
-    "ts": 4868643756002.100, "dur": 1.375,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 295663, "tid": 295663,
+    "ts": 4869140273566.222, "dur": 0.565,
     "args": {
       "Python parent id": 119, "Python id": 120, "Ev Idx": 197
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x155554cc1a40>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756002.546, "dur": 0.220,
+    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x15555350afa0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273566.378, "dur": 0.094,
     "args": {
       "Python parent id": 120, "Python id": 121, "Ev Idx": 198
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method endswith of str object at 0x8affa8>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756003.156, "dur": 0.204,
+    "ph": "X", "cat": "python_function", "name": "<built-in method endswith of str object at 0x8affa8>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273566.629, "dur": 0.088,
     "args": {
       "Python parent id": 120, "Python id": 122, "Ev Idx": 199
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 294734, "tid": 294734,
-    "ts": 4868643756008.233, "dur": 3.023,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1368): __setattr__", "pid": 295663, "tid": 295663,
+    "ts": 4869140273568.497, "dur": 1.285,
     "args": {
       "Python parent id": 92, "Python id": 123, "Ev Idx": 200
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 294734, "tid": 294734,
-    "ts": 4868643756008.656, "dur": 1.471,
+    "ph": "X", "cat": "python_function", "name": "typing.py(1294): _is_dunder", "pid": 295663, "tid": 295663,
+    "ts": 4869140273568.734, "dur": 0.497,
     "args": {
       "Python parent id": 123, "Python id": 124, "Ev Idx": 201
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x155554cc1a40>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756009.130, "dur": 0.204,
+    "ph": "X", "cat": "python_function", "name": "<built-in method startswith of str object at 0x15555350afa0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273568.867, "dur": 0.087,
     "args": {
       "Python parent id": 124, "Python id": 125, "Ev Idx": 202
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method endswith of str object at 0x8affa8>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756009.806, "dur": 0.193,
+    "ph": "X", "cat": "python_function", "name": "<built-in method endswith of str object at 0x8affa8>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273569.100, "dur": 0.084,
     "args": {
       "Python parent id": 124, "Python id": 126, "Ev Idx": 203
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "typing.py(2366): cast", "pid": 294734, "tid": 294734,
-    "ts": 4868643756018.778, "dur": 0.312,
+    "ph": "X", "cat": "python_function", "name": "typing.py(2366): cast", "pid": 295663, "tid": 295663,
+    "ts": 4869140273573.688, "dur": 0.114,
     "args": {
       "Python parent id": 65, "Python id": 127, "Ev Idx": 204
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756021.870, "dur": 0.909,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273574.975, "dur": 0.316,
     "args": {
       "Python parent id": 65, "Python id": 128, "Ev Idx": 205
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756036.872, "dur": 0.289,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273580.163, "dur": 0.179,
     "args": {
       "Python parent id": 65, "Python id": 129, "Ev Idx": 206
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756051.045, "dur": 1.390,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273586.213, "dur": 0.649,
     "args": {
       "Python parent id": 65, "Python id": 130, "Ev Idx": 207
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756060.421, "dur": 0.447,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273589.677, "dur": 0.211,
     "args": {
       "Python parent id": 65, "Python id": 131, "Ev Idx": 208
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756067.478, "dur": 0.316,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273593.157, "dur": 0.103,
     "args": {
       "Python parent id": 65, "Python id": 132, "Ev Idx": 209
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756071.081, "dur": 0.187,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273594.871, "dur": 0.099,
     "args": {
       "Python parent id": 65, "Python id": 133, "Ev Idx": 210
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method numel of Tensor object at 0x15542d045680>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756081.374, "dur": 3.154,
+    "ph": "X", "cat": "python_function", "name": "<built-in method numel of Tensor object at 0x15541f73dea0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273599.170, "dur": 1.001,
     "args": {
       "Python parent id": 65, "Python id": 134, "Ev Idx": 211
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756092.030, "dur": 0.438,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273603.490, "dur": 0.101,
     "args": {
       "Python parent id": 65, "Python id": 135, "Ev Idx": 212
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756096.682, "dur": 0.254,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273605.588, "dur": 0.091,
     "args": {
       "Python parent id": 65, "Python id": 136, "Ev Idx": 213
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method ones_like of type object at 0x155553251780>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756106.703, "dur": 210.180,
+    "ph": "X", "cat": "python_function", "name": "<built-in method ones_like of type object at 0x155551a51780>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273610.103, "dur": 87.395,
     "args": {
       "Python parent id": 65, "Python id": 137, "Ev Idx": 214
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method append of list object at 0x15542d053dc0>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756321.956, "dur": 0.724,
+    "ph": "X", "cat": "python_function", "name": "<built-in method append of list object at 0x15541f74ba40>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273699.640, "dur": 0.330,
     "args": {
       "Python parent id": 65, "Python id": 138, "Ev Idx": 215
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/autograd/graph.py(816): _engine_run_backward", "pid": 294734, "tid": 294734,
-    "ts": 4868643756339.446, "dur": 15605.731,
+    "ph": "X", "cat": "python_function", "name": "torch/autograd/graph.py(816): _engine_run_backward", "pid": 295663, "tid": 295663,
+    "ts": 4869140273705.907, "dur": 12422.041,
     "args": {
       "Python parent id": 59, "Python id": 139, "Ev Idx": 216
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "logging/__init__.py(1750): getEffectiveLevel", "pid": 294734, "tid": 294734,
-    "ts": 4868643756400.087, "dur": 2.267,
+    "ph": "X", "cat": "python_function", "name": "logging/__init__.py(1750): getEffectiveLevel", "pid": 295663, "tid": 295663,
+    "ts": 4869140273729.679, "dur": 1.000,
     "args": {
       "Python parent id": 139, "Python id": 140, "Ev Idx": 217
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method run_backward of torch._C._EngineBase object at 0x15555510f4b0>", "pid": 294734, "tid": 294734,
-    "ts": 4868643756423.167, "dur": 15518.612,
+    "ph": "X", "cat": "python_function", "name": "<built-in method run_backward of torch._C._EngineBase object at 0x155553b6b4b0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140273738.523, "dur": 12387.930,
     "args": {
       "Python parent id": 139, "Python id": 141, "Ev Idx": 218
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/nvtx.py(37): range_pop", "pid": 294734, "tid": 294734,
-    "ts": 4868643771992.930, "dur": 15.325,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/nvtx.py(37): range_pop", "pid": 295663, "tid": 295663,
+    "ts": 4869140286153.533, "dur": 9.634,
     "args": {
       "Python parent id": 27, "Python id": 142, "Ev Idx": 219
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method rangePop of PyCapsule object at 0x1554eabfdc10>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772003.990, "dur": 4.150,
+    "ph": "X", "cat": "python_function", "name": "<built-in method rangePop of PyCapsule object at 0x1554e8df9e90>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286159.298, "dur": 3.789,
     "args": {
       "Python parent id": 142, "Python id": 143, "Ev Idx": 220
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(776): __exit__", "pid": 294734, "tid": 294734,
-    "ts": 4868643772016.201, "dur": 351.932,
+    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(776): __exit__", "pid": 295663, "tid": 295663,
+    "ts": 4869140286165.804, "dur": 480.796,
     "args": {
       "Python parent id": 27, "Python id": 144, "Ev Idx": 221
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(790): stop", "pid": 294734, "tid": 294734,
-    "ts": 4868643772019.749, "dur": 348.384,
+    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(790): stop", "pid": 295663, "tid": 295663,
+    "ts": 4869140286167.604, "dur": 478.996,
     "args": {
       "Python parent id": 144, "Python id": 145, "Ev Idx": 222
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(832): _transit_action", "pid": 294734, "tid": 294734,
-    "ts": 4868643772022.430, "dur": 345.703,
+    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(832): _transit_action", "pid": 295663, "tid": 295663,
+    "ts": 4869140286169.087, "dur": 477.513,
     "args": {
       "Python parent id": 145, "Python id": 146, "Ev Idx": 223
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method get of dict object at 0x1554925ae880>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772027.444, "dur": 8.303,
+    "ph": "X", "cat": "python_function", "name": "<built-in method get of dict object at 0x15541f7df040>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286172.309, "dur": 4.509,
     "args": {
       "Python parent id": 146, "Python id": 147, "Ev Idx": 224
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "enum.py(1297): __hash__", "pid": 294734, "tid": 294734,
-    "ts": 4868643772030.975, "dur": 3.197,
+    "ph": "X", "cat": "python_function", "name": "enum.py(1297): __hash__", "pid": 295663, "tid": 295663,
+    "ts": 4869140286173.953, "dur": 1.784,
     "args": {
       "Python parent id": 147, "Python id": 148, "Ev Idx": 225
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function hash>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772033.472, "dur": 0.616,
+    "ph": "X", "cat": "python_function", "name": "<built-in function hash>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286175.397, "dur": 0.271,
     "args": {
       "Python parent id": 148, "Python id": 149, "Ev Idx": 226
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(235): stop_trace", "pid": 294734, "tid": 294734,
-    "ts": 4868643772040.607, "dur": 327.526,
+    "ph": "X", "cat": "python_function", "name": "torch/profiler/profiler.py(235): stop_trace", "pid": 295663, "tid": 295663,
+    "ts": 4869140286178.834, "dur": 467.766,
     "args": {
       "Python parent id": 146, "Python id": 150, "Ev Idx": 227
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/autograd/profiler.py(363): __exit__", "pid": 294734, "tid": 294734,
-    "ts": 4868643772049.381, "dur": 318.752,
+    "ph": "X", "cat": "python_function", "name": "torch/autograd/profiler.py(363): __exit__", "pid": 295663, "tid": 295663,
+    "ts": 4869140286181.164, "dur": 465.436,
     "args": {
       "Python parent id": 150, "Python id": 151, "Ev Idx": 228
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function hasattr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772051.885, "dur": 0.424,
+    "ph": "X", "cat": "python_function", "name": "<built-in function hasattr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286182.323, "dur": 0.239,
     "args": {
       "Python parent id": 151, "Python id": 152, "Ev Idx": 229
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function getattr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772054.228, "dur": 0.237,
+    "ph": "X", "cat": "python_function", "name": "<built-in function getattr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286183.718, "dur": 0.104,
     "args": {
       "Python parent id": 151, "Python id": 153, "Ev Idx": 230
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function hasattr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772055.528, "dur": 1.407,
+    "ph": "X", "cat": "python_function", "name": "<built-in function hasattr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286184.345, "dur": 0.312,
     "args": {
       "Python parent id": 151, "Python id": 154, "Ev Idx": 231
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(959): synchronize", "pid": 294734, "tid": 294734,
-    "ts": 4868643772059.988, "dur": 308.145,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(959): synchronize", "pid": 295663, "tid": 295663,
+    "ts": 4869140286186.479, "dur": 460.121,
     "args": {
       "Python parent id": 151, "Python id": 155, "Ev Idx": 232
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(289): _lazy_init", "pid": 294734, "tid": 294734,
-    "ts": 4868643772064.347, "dur": 6.312,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(289): _lazy_init", "pid": 295663, "tid": 295663,
+    "ts": 4869140286189.621, "dur": 3.800,
     "args": {
       "Python parent id": 155, "Python id": 156, "Ev Idx": 233
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(242): is_initialized", "pid": 294734, "tid": 294734,
-    "ts": 4868643772065.827, "dur": 4.493,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(242): is_initialized", "pid": 295663, "tid": 295663,
+    "ts": 4869140286190.552, "dur": 2.594,
     "args": {
       "Python parent id": 156, "Python id": 157, "Ev Idx": 234
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_isInBadFork>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772068.644, "dur": 1.462,
+    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_isInBadFork>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286192.119, "dur": 0.902,
     "args": {
       "Python parent id": 157, "Python id": 158, "Ev Idx": 235
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(439): __init__", "pid": 294734, "tid": 294734,
-    "ts": 4868643772080.210, "dur": 100.601,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(439): __init__", "pid": 295663, "tid": 295663,
+    "ts": 4869140286197.286, "dur": 50.191,
     "args": {
       "Python parent id": 155, "Python id": 159, "Ev Idx": 236
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/_utils.py(9): _get_device_index", "pid": 294734, "tid": 294734,
-    "ts": 4868643772085.729, "dur": 92.933,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/_utils.py(9): _get_device_index", "pid": 295663, "tid": 295663,
+    "ts": 4869140286199.704, "dur": 46.907,
     "args": {
       "Python parent id": 159, "Python id": 160, "Ev Idx": 237
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772086.396, "dur": 0.933,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286200.091, "dur": 0.436,
     "args": {
       "Python parent id": 160, "Python id": 161, "Ev Idx": 238
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772089.141, "dur": 0.095,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286201.484, "dur": 0.052,
     "args": {
       "Python parent id": 160, "Python id": 162, "Ev Idx": 239
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772090.661, "dur": 0.063,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286202.407, "dur": 0.044,
     "args": {
       "Python parent id": 160, "Python id": 163, "Ev Idx": 240
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/_jit_internal.py(103): is_scripting", "pid": 294734, "tid": 294734,
-    "ts": 4868643772094.189, "dur": 0.241,
+    "ph": "X", "cat": "python_function", "name": "torch/_jit_internal.py(103): is_scripting", "pid": 295663, "tid": 295663,
+    "ts": 4869140286204.209, "dur": 0.038,
     "args": {
       "Python parent id": 160, "Python id": 164, "Ev Idx": 241
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772095.440, "dur": 0.244,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286204.907, "dur": 0.142,
     "args": {
       "Python parent id": 160, "Python id": 165, "Ev Idx": 242
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/_utils.py(791): _get_device_index", "pid": 294734, "tid": 294734,
-    "ts": 4868643772099.157, "dur": 79.291,
+    "ph": "X", "cat": "python_function", "name": "torch/_utils.py(791): _get_device_index", "pid": 295663, "tid": 295663,
+    "ts": 4869140286207.113, "dur": 39.345,
     "args": {
       "Python parent id": 160, "Python id": 166, "Ev Idx": 243
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772100.754, "dur": 0.086,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286208.063, "dur": 0.067,
     "args": {
       "Python parent id": 166, "Python id": 167, "Ev Idx": 244
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772103.647, "dur": 0.111,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286208.823, "dur": 0.049,
     "args": {
       "Python parent id": 166, "Python id": 168, "Ev Idx": 245
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772104.764, "dur": 0.078,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286209.497, "dur": 0.053,
     "args": {
       "Python parent id": 166, "Python id": 169, "Ev Idx": 246
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/_jit_internal.py(103): is_scripting", "pid": 294734, "tid": 294734,
-    "ts": 4868643772105.992, "dur": 0.052,
+    "ph": "X", "cat": "python_function", "name": "torch/_jit_internal.py(103): is_scripting", "pid": 295663, "tid": 295663,
+    "ts": 4869140286210.270, "dur": 0.045,
     "args": {
       "Python parent id": 166, "Python id": 170, "Ev Idx": 247
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/_utils.py(765): _get_current_device_index", "pid": 294734, "tid": 294734,
-    "ts": 4868643772109.456, "dur": 68.725,
+    "ph": "X", "cat": "python_function", "name": "torch/_utils.py(765): _get_current_device_index", "pid": 295663, "tid": 295663,
+    "ts": 4869140286211.680, "dur": 34.597,
     "args": {
       "Python parent id": 166, "Python id": 171, "Ev Idx": 248
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/_utils.py(751): _get_device_attr", "pid": 294734, "tid": 294734,
-    "ts": 4868643772115.929, "dur": 61.768,
+    "ph": "X", "cat": "python_function", "name": "torch/_utils.py(751): _get_device_attr", "pid": 295663, "tid": 295663,
+    "ts": 4869140286214.228, "dur": 31.857,
     "args": {
       "Python parent id": 171, "Python id": 172, "Ev Idx": 249
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/_utils.py(736): _get_available_device_type", "pid": 294734, "tid": 294734,
-    "ts": 4868643772120.088, "dur": 37.108,
+    "ph": "X", "cat": "python_function", "name": "torch/_utils.py(736): _get_available_device_type", "pid": 295663, "tid": 295663,
+    "ts": 4869140286215.904, "dur": 19.340,
     "args": {
       "Python parent id": 172, "Python id": 173, "Ev Idx": 250
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(116): is_available", "pid": 294734, "tid": 294734,
-    "ts": 4868643772123.235, "dur": 33.616,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(116): is_available", "pid": 295663, "tid": 295663,
+    "ts": 4869140286217.130, "dur": 18.022,
     "args": {
       "Python parent id": 173, "Python id": 174, "Ev Idx": 251
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(107): _is_compiled", "pid": 294734, "tid": 294734,
-    "ts": 4868643772124.592, "dur": 1.917,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(107): _is_compiled", "pid": 295663, "tid": 295663,
+    "ts": 4869140286218.433, "dur": 1.767,
     "args": {
       "Python parent id": 174, "Python id": 175, "Ev Idx": 252
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function hasattr>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772125.642, "dur": 0.800,
+    "ph": "X", "cat": "python_function", "name": "<built-in function hasattr>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286219.571, "dur": 0.582,
     "args": {
       "Python parent id": 175, "Python id": 176, "Ev Idx": 253
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(112): _nvml_based_avail", "pid": 294734, "tid": 294734,
-    "ts": 4868643772127.574, "dur": 26.312,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(112): _nvml_based_avail", "pid": 295663, "tid": 295663,
+    "ts": 4869140286221.092, "dur": 12.196,
     "args": {
       "Python parent id": 174, "Python id": 177, "Ev Idx": 254
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<frozen os>(810): getenv", "pid": 294734, "tid": 294734,
-    "ts": 4868643772130.406, "dur": 22.563,
+    "ph": "X", "cat": "python_function", "name": "<frozen os>(810): getenv", "pid": 295663, "tid": 295663,
+    "ts": 4869140286222.005, "dur": 10.915,
     "args": {
       "Python parent id": 177, "Python id": 178, "Ev Idx": 255
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<frozen _collections_abc>(808): get", "pid": 294734, "tid": 294734,
-    "ts": 4868643772136.076, "dur": 16.771,
+    "ph": "X", "cat": "python_function", "name": "<frozen _collections_abc>(808): get", "pid": 295663, "tid": 295663,
+    "ts": 4869140286223.421, "dur": 9.401,
     "args": {
       "Python parent id": 178, "Python id": 179, "Ev Idx": 256
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<frozen os>(711): __getitem__", "pid": 294734, "tid": 294734,
-    "ts": 4868643772139.368, "dur": 12.213,
+    "ph": "X", "cat": "python_function", "name": "<frozen os>(711): __getitem__", "pid": 295663, "tid": 295663,
+    "ts": 4869140286224.642, "dur": 7.425,
     "args": {
       "Python parent id": 179, "Python id": 180, "Ev Idx": 257
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<frozen os>(793): encode", "pid": 294734, "tid": 294734,
-    "ts": 4868643772141.549, "dur": 4.397,
+    "ph": "X", "cat": "python_function", "name": "<frozen os>(793): encode", "pid": 295663, "tid": 295663,
+    "ts": 4869140286226.062, "dur": 3.243,
     "args": {
       "Python parent id": 180, "Python id": 181, "Ev Idx": 258
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772142.035, "dur": 0.069,
+    "ph": "X", "cat": "python_function", "name": "<built-in function isinstance>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286226.530, "dur": 0.120,
     "args": {
       "Python parent id": 181, "Python id": 182, "Ev Idx": 259
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method encode of str object at 0x1554d7538e90>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772144.762, "dur": 1.084,
+    "ph": "X", "cat": "python_function", "name": "<built-in method encode of str object at 0x1554d013d020>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286228.535, "dur": 0.673,
     "args": {
       "Python parent id": 181, "Python id": 183, "Ev Idx": 260
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_getDeviceCount>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772155.760, "dur": 0.863,
+    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_getDeviceCount>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286234.504, "dur": 0.520,
     "args": {
       "Python parent id": 174, "Python id": 184, "Ev Idx": 261
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method lower of str object at 0x155554cc0c90>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772160.073, "dur": 0.589,
+    "ph": "X", "cat": "python_function", "name": "<built-in method lower of str object at 0x1555534dc1b0>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286237.535, "dur": 0.296,
     "args": {
       "Python parent id": 172, "Python id": 185, "Ev Idx": 262
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/_utils.py(767): <lambda>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772162.315, "dur": 15.266,
+    "ph": "X", "cat": "python_function", "name": "torch/_utils.py(767): <lambda>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286238.957, "dur": 7.040,
     "args": {
       "Python parent id": 172, "Python id": 186, "Ev Idx": 263
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(953): current_device", "pid": 294734, "tid": 294734,
-    "ts": 4868643772165.789, "dur": 11.591,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(953): current_device", "pid": 295663, "tid": 295663,
+    "ts": 4869140286240.251, "dur": 5.673,
     "args": {
       "Python parent id": 186, "Python id": 187, "Ev Idx": 264
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(289): _lazy_init", "pid": 294734, "tid": 294734,
-    "ts": 4868643772166.548, "dur": 1.356,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(289): _lazy_init", "pid": 295663, "tid": 295663,
+    "ts": 4869140286240.799, "dur": 0.741,
     "args": {
       "Python parent id": 187, "Python id": 188, "Ev Idx": 265
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(242): is_initialized", "pid": 294734, "tid": 294734,
-    "ts": 4868643772166.978, "dur": 0.793,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(242): is_initialized", "pid": 295663, "tid": 295663,
+    "ts": 4869140286240.986, "dur": 0.483,
     "args": {
       "Python parent id": 188, "Python id": 189, "Ev Idx": 266
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_isInBadFork>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772167.518, "dur": 0.137,
+    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_isInBadFork>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286241.305, "dur": 0.096,
     "args": {
       "Python parent id": 189, "Python id": 190, "Ev Idx": 267
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_getDevice>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772170.826, "dur": 6.487,
+    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_getDevice>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286242.878, "dur": 3.005,
     "args": {
       "Python parent id": 187, "Python id": 191, "Ev Idx": 268
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(443): __enter__", "pid": 294734, "tid": 294734,
-    "ts": 4868643772184.295, "dur": 7.833,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(443): __enter__", "pid": 295663, "tid": 295663,
+    "ts": 4869140286249.270, "dur": 4.515,
     "args": {
       "Python parent id": 155, "Python id": 192, "Ev Idx": 269
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_exchangeDevice>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772186.935, "dur": 4.945,
+    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_exchangeDevice>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286250.975, "dur": 2.632,
     "args": {
       "Python parent id": 192, "Python id": 193, "Ev Idx": 270
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_synchronize>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772194.449, "dur": 143.190,
+    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_synchronize>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286255.308, "dur": 370.043,
     "args": {
       "Python parent id": 155, "Python id": 194, "Ev Idx": 271
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(446): __exit__", "pid": 294734, "tid": 294734,
-    "ts": 4868643772339.163, "dur": 28.970,
+    "ph": "X", "cat": "python_function", "name": "torch/cuda/__init__.py(446): __exit__", "pid": 295663, "tid": 295663,
+    "ts": 4869140286626.290, "dur": 20.310,
     "args": {
       "Python parent id": 155, "Python id": 195, "Ev Idx": 272
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_maybeExchangeDevice>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772346.417, "dur": 1.364,
+    "ph": "X", "cat": "python_function", "name": "<built-in function _cuda_maybeExchangeDevice>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286634.381, "dur": 0.833,
     "args": {
       "Python parent id": 195, "Python id": 196, "Ev Idx": 273
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in function perf_counter_ns>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772350.293, "dur": 0.779,
+    "ph": "X", "cat": "python_function", "name": "<built-in function perf_counter_ns>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286637.031, "dur": 0.463,
     "args": {
       "Python parent id": 195, "Python id": 197, "Ev Idx": 274
     }
   },
   {
-    "ph": "X", "cat": "python_function", "name": "<built-in method _disable_profiler of PyCapsule object at 0x155495fa7830>", "pid": 294734, "tid": 294734,
-    "ts": 4868643772353.847, "dur": 14.286,
+    "ph": "X", "cat": "python_function", "name": "<built-in method _disable_profiler of PyCapsule object at 0x1554886a3600>", "pid": 295663, "tid": 295663,
+    "ts": 4869140286639.129, "dur": 7.471,
     "args": {
       "Python parent id": 195, "Python id": 198, "Ev Idx": 275
     }
   },
   {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaStreamIsCapturing", "pid": 294734, "tid": 294734,
-    "ts": 4868643584182.474, "dur": 6.927,
-    "args": {
-      "External id": 1,      "cbid": 317, "correlation": 6
-    }
-  },
-  {
-    "ph": "f", "id": 6, "pid": 294734, "tid": 294734, "ts": 4868643584182.474,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaMalloc", "pid": 294734, "tid": 294734,
-    "ts": 4868643584190.471, "dur": 170601.946,
-    "args": {
-      "External id": 1,      "cbid": 20, "correlation": 7
-    }
-  },
-  {
-    "ph": "f", "id": 7, "pid": 294734, "tid": 294734, "ts": 4868643584190.471,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "gpu_memcpy", "name": "Memcpy DtoD (Device -> Device)", "pid": 0, "tid": 7,
-    "ts": 4868643755068.927, "dur": 334.271,
-    "args": {
-      "External id": 1,      "device": 0, "context": 1,      "stream": 7, "correlation": 11,      "bytes": 131072000, "memory bandwidth (GB/s)": 392.11298616990405
-    }
-  },
-  {
-    "ph": "f", "id": 11, "pid": 0, "tid": 7, "ts": 4868643755068.927,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaMemcpyAsync", "pid": 294734, "tid": 294734,
-    "ts": 4868643754991.831, "dur": 87.332,
-    "args": {
-      "External id": 1,      "cbid": 41, "correlation": 11
-    }
-  },
-  {
-    "ph": "s", "id": 11, "pid": 294734, "tid": 294734, "ts": 4868643754991.831,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "gpu_memset", "name": "Memset (Device)", "pid": 0, "tid": 7,
-    "ts": 4868643755404.350, "dur": 0.416,
-    "args": {
-      "External id": 6,      "device": 0, "context": 1,      "stream": 7, "correlation": 28,      "bytes": 4, "memory bandwidth (GB/s)": 0.009615384615384616
-    }
-  },
-  {
-    "ph": "f", "id": 28, "pid": 0, "tid": 7, "ts": 4868643755404.350,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaMemsetAsync", "pid": 294734, "tid": 294734,
-    "ts": 4868643755275.612, "dur": 28.739,
-    "args": {
-      "External id": 6,      "cbid": 51, "correlation": 28
-    }
-  },
-  {
-    "ph": "s", "id": 28, "pid": 294734, "tid": 294734, "ts": 4868643755275.612,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void at::native::reduce_kernel<512, 1, at::native::ReduceOp<float, at::native::func_wrapper_t<float, at::native::sum_functor<float, float, float>::operator()(at::TensorIterator&)::{lambda(float, float)#1}>, unsigned int, float, 4> >(at::native::ReduceOp<float, at::native::func_wrapper_t<float, at::native::sum_functor<float, float, float>::operator()(at::TensorIterator&)::{lambda(float, float)#1}>, unsigned int, float, 4>)", "pid": 0, "tid": 7,
-    "ts": 4868643755569.790, "dur": 197.824,
-    "args": {
-      "External id": 6,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 30,      "registers per thread": 32,      "shared memory": 2064,      "blocks per SM": 3.000000,      "warps per SM": 48.000000,      "grid": [1, 276, 1],      "block": [512, 1, 1],      "est. achieved occupancy %": 100
-    }
-  },
-  {
-    "ph": "f", "id": 30, "pid": 0, "tid": 7, "ts": 4868643755569.790,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294734,
-    "ts": 4868643755315.416, "dur": 259.656,
-    "args": {
-      "External id": 6,      "cbid": 211, "correlation": 30
-    }
-  },
-  {
-    "ph": "s", "id": 30, "pid": 294734, "tid": 294734, "ts": 4868643755315.416,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<float>, at::detail::Array<char*, 1> >(int, at::native::FillFunctor<float>, at::detail::Array<char*, 1>)", "pid": 0, "tid": 7,
-    "ts": 4868643756304.638, "dur": 1.152,
-    "args": {
-      "External id": 11,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 43,      "registers per thread": 16,      "shared memory": 0,      "blocks per SM": 0.010870,      "warps per SM": 0.043478,      "grid": [1, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 0
-    }
-  },
-  {
-    "ph": "f", "id": 43, "pid": 0, "tid": 7, "ts": 4868643756304.638,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294734,
-    "ts": 4868643756284.381, "dur": 22.686,
-    "args": {
-      "External id": 11,      "cbid": 211, "correlation": 43
-    }
-  },
-  {
-    "ph": "s", "id": 43, "pid": 294734, "tid": 294734, "ts": 4868643756284.381,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1} const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1} const&)::{lambda(int)#1})", "pid": 0, "tid": 7,
-    "ts": 4868643758124.414, "dur": 126.176,
-    "args": {
-      "External id": 524,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 72,      "registers per thread": 16,      "shared memory": 0,      "blocks per SM": 1391.304321,      "warps per SM": 5565.217285,      "grid": [128000, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 100
-    }
-  },
-  {
-    "ph": "f", "id": 72, "pid": 0, "tid": 7, "ts": 4868643758124.414,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643757960.481, "dur": 166.457,
-    "args": {
-      "External id": 524,      "cbid": 211, "correlation": 72
-    }
-  },
-  {
-    "ph": "s", "id": 72, "pid": 294734, "tid": 294765, "ts": 4868643757960.481,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaDeviceGetAttribute", "pid": 294734, "tid": 294765,
-    "ts": 4868643758250.301, "dur": 1.917,
-    "args": {
-      "External id": 530,      "cbid": 200, "correlation": 84
-    }
-  },
-  {
-    "ph": "f", "id": 84, "pid": 294734, "tid": 294765, "ts": 4868643758250.301,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void linearize_index_kernel<long, long, true, false>(at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, int, unsigned int, unsigned int, unsigned int, unsigned int const*, fbgemm_gpu::FixedDivisor)", "pid": 0, "tid": 7,
-    "ts": 4868643761148.894, "dur": 572.704,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 115,      "registers per thread": 54,      "shared memory": 0,      "blocks per SM": 0.010870,      "warps per SM": 0.347826,      "grid": [1, 1, 1],      "block": [1024, 1, 1],      "est. achieved occupancy %": 1
-    }
-  },
-  {
-    "ph": "f", "id": 115, "pid": 0, "tid": 7, "ts": 4868643761148.894,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643758330.761, "dur": 2820.805,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 115
-    }
-  },
-  {
-    "ph": "s", "id": 115, "pid": 294734, "tid": 294765, "ts": 4868643758330.761,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "gpu_memset", "name": "Memset (Device)", "pid": 0, "tid": 7,
-    "ts": 4868643761723.902, "dur": 0.384,
-    "args": {
-      "External id": 530,      "device": 0, "context": 1,      "stream": 7, "correlation": 135,      "bytes": 12, "memory bandwidth (GB/s)": 0.03125
-    }
-  },
-  {
-    "ph": "f", "id": 135, "pid": 0, "tid": 7, "ts": 4868643761723.902,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaMemsetAsync", "pid": 294734, "tid": 294765,
-    "ts": 4868643761213.751, "dur": 10.637,
-    "args": {
-      "External id": 530,      "cbid": 51, "correlation": 135
-    }
-  },
-  {
-    "ph": "s", "id": 135, "pid": 294734, "tid": 294765, "ts": 4868643761213.751,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "gpu_memset", "name": "Memset (Device)", "pid": 0, "tid": 7,
-    "ts": 4868643761725.118, "dur": 1.248,
-    "args": {
-      "External id": 530,      "device": 0, "context": 1,      "stream": 7, "correlation": 137,      "bytes": 6144, "memory bandwidth (GB/s)": 4.923076923076923
-    }
-  },
-  {
-    "ph": "f", "id": 137, "pid": 0, "tid": 7, "ts": 4868643761725.118,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaMemsetAsync", "pid": 294734, "tid": 294765,
-    "ts": 4868643761225.366, "dur": 11.408,
-    "args": {
-      "External id": 530,      "cbid": 51, "correlation": 137
-    }
-  },
-  {
-    "ph": "s", "id": 137, "pid": 294734, "tid": 294765, "ts": 4868643761225.366,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaDeviceGetAttribute", "pid": 294734, "tid": 294765,
-    "ts": 4868643761238.986, "dur": 1.277,
-    "args": {
-      "External id": 530,      "cbid": 200, "correlation": 141
-    }
-  },
-  {
-    "ph": "f", "id": 141, "pid": 294734, "tid": 294765, "ts": 4868643761238.986,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags", "pid": 294734, "tid": 294765,
-    "ts": 4868643761244.368, "dur": 33.849,
-    "args": {
-      "External id": 530,      "cbid": 251, "correlation": 143
-    }
-  },
-  {
-    "ph": "f", "id": 143, "pid": 294734, "tid": 294765, "ts": 4868643761244.368,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void cub::DeviceRadixSortHistogramKernel<cub::DeviceRadixSortPolicy<long, long, unsigned long long>::Policy800, false, long, unsigned long long>(unsigned long long*, long const*, unsigned long long, int, int)", "pid": 0, "tid": 7,
-    "ts": 4868643761730.846, "dur": 3.680,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 145,      "registers per thread": 71,      "shared memory": 8192,      "blocks per SM": 7.000000,      "warps per SM": 28.000000,      "grid": [644, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 58
-    }
-  },
-  {
-    "ph": "f", "id": 145, "pid": 0, "tid": 7, "ts": 4868643761730.846,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761283.478, "dur": 9.059,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 145
-    }
-  },
-  {
-    "ph": "s", "id": 145, "pid": 294734, "tid": 294765, "ts": 4868643761283.478,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761293.271, "dur": 0.399,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 146
-    }
-  },
-  {
-    "ph": "f", "id": 146, "pid": 294734, "tid": 294765, "ts": 4868643761293.271,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void cub::DeviceRadixSortExclusiveSumKernel<cub::DeviceRadixSortPolicy<long, long, unsigned long long>::Policy800, unsigned long long>(unsigned long long*)", "pid": 0, "tid": 7,
-    "ts": 4868643761738.750, "dur": 1.280,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 149,      "registers per thread": 28,      "shared memory": 2336,      "blocks per SM": 0.032609,      "warps per SM": 0.260870,      "grid": [3, 1, 1],      "block": [256, 1, 1],      "est. achieved occupancy %": 1
-    }
-  },
-  {
-    "ph": "f", "id": 149, "pid": 0, "tid": 7, "ts": 4868643761738.750,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761296.237, "dur": 25.687,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 149
-    }
-  },
-  {
-    "ph": "s", "id": 149, "pid": 294734, "tid": 294765, "ts": 4868643761296.237,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761322.261, "dur": 0.151,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 150
-    }
-  },
-  {
-    "ph": "f", "id": 150, "pid": 294734, "tid": 294765, "ts": 4868643761322.261,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "gpu_memset", "name": "Memset (Device)", "pid": 0, "tid": 7,
-    "ts": 4868643761740.766, "dur": 1.152,
-    "args": {
-      "External id": 530,      "device": 0, "context": 1,      "stream": 7, "correlation": 153,      "bytes": 68608, "memory bandwidth (GB/s)": 59.55555555555556
-    }
-  },
-  {
-    "ph": "f", "id": 153, "pid": 0, "tid": 7, "ts": 4868643761740.766,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaMemsetAsync", "pid": 294734, "tid": 294765,
-    "ts": 4868643761323.798, "dur": 6.018,
-    "args": {
-      "External id": 530,      "cbid": 51, "correlation": 153
-    }
-  },
-  {
-    "ph": "s", "id": 153, "pid": 294734, "tid": 294765, "ts": 4868643761323.798,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void cub::DeviceRadixSortOnesweepKernel<cub::DeviceRadixSortPolicy<long, long, unsigned long long>::Policy800, false, long, long, unsigned long long, int, int>(int*, int*, unsigned long long*, unsigned long long const*, long*, long const*, long*, long const*, int, int, int)", "pid": 0, "tid": 7,
-    "ts": 4868643761748.638, "dur": 12.064,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 155,      "registers per thread": 69,      "shared memory": 32768,      "blocks per SM": 0.728261,      "warps per SM": 8.739130,      "grid": [67, 1, 1],      "block": [384, 1, 1],      "est. achieved occupancy %": 18
-    }
-  },
-  {
-    "ph": "f", "id": 155, "pid": 0, "tid": 7, "ts": 4868643761748.638,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761334.703, "dur": 62.950,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 155
-    }
-  },
-  {
-    "ph": "s", "id": 155, "pid": 294734, "tid": 294765, "ts": 4868643761334.703,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761397.952, "dur": 0.148,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 156
-    }
-  },
-  {
-    "ph": "f", "id": 156, "pid": 294734, "tid": 294765, "ts": 4868643761397.952,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "gpu_memset", "name": "Memset (Device)", "pid": 0, "tid": 7,
-    "ts": 4868643761761.438, "dur": 1.024,
-    "args": {
-      "External id": 530,      "device": 0, "context": 1,      "stream": 7, "correlation": 159,      "bytes": 68608, "memory bandwidth (GB/s)": 67
-    }
-  },
-  {
-    "ph": "f", "id": 159, "pid": 0, "tid": 7, "ts": 4868643761761.438,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaMemsetAsync", "pid": 294734, "tid": 294765,
-    "ts": 4868643761400.047, "dur": 5.020,
-    "args": {
-      "External id": 530,      "cbid": 51, "correlation": 159
-    }
-  },
-  {
-    "ph": "s", "id": 159, "pid": 294734, "tid": 294765, "ts": 4868643761400.047,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void cub::DeviceRadixSortOnesweepKernel<cub::DeviceRadixSortPolicy<long, long, unsigned long long>::Policy800, false, long, long, unsigned long long, int, int>(int*, int*, unsigned long long*, unsigned long long const*, long*, long const*, long*, long const*, int, int, int)", "pid": 0, "tid": 7,
-    "ts": 4868643761763.230, "dur": 10.272,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 161,      "registers per thread": 69,      "shared memory": 32768,      "blocks per SM": 0.728261,      "warps per SM": 8.739130,      "grid": [67, 1, 1],      "block": [384, 1, 1],      "est. achieved occupancy %": 18
-    }
-  },
-  {
-    "ph": "f", "id": 161, "pid": 0, "tid": 7, "ts": 4868643761763.230,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761406.095, "dur": 5.754,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 161
-    }
-  },
-  {
-    "ph": "s", "id": 161, "pid": 294734, "tid": 294765, "ts": 4868643761406.095,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761412.204, "dur": 0.152,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 162
-    }
-  },
-  {
-    "ph": "f", "id": 162, "pid": 294734, "tid": 294765, "ts": 4868643761412.204,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "gpu_memset", "name": "Memset (Device)", "pid": 0, "tid": 7,
-    "ts": 4868643761774.238, "dur": 1.024,
-    "args": {
-      "External id": 530,      "device": 0, "context": 1,      "stream": 7, "correlation": 165,      "bytes": 68608, "memory bandwidth (GB/s)": 67
-    }
-  },
-  {
-    "ph": "f", "id": 165, "pid": 0, "tid": 7, "ts": 4868643761774.238,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaMemsetAsync", "pid": 294734, "tid": 294765,
-    "ts": 4868643761413.753, "dur": 6.031,
-    "args": {
-      "External id": 530,      "cbid": 51, "correlation": 165
-    }
-  },
-  {
-    "ph": "s", "id": 165, "pid": 294734, "tid": 294765, "ts": 4868643761413.753,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void cub::DeviceRadixSortOnesweepKernel<cub::DeviceRadixSortPolicy<long, long, unsigned long long>::Policy800, false, long, long, unsigned long long, int, int>(int*, int*, unsigned long long*, unsigned long long const*, long*, long const*, long*, long const*, int, int, int)", "pid": 0, "tid": 7,
-    "ts": 4868643761776.062, "dur": 9.216,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 167,      "registers per thread": 69,      "shared memory": 32768,      "blocks per SM": 0.728261,      "warps per SM": 8.739130,      "grid": [67, 1, 1],      "block": [384, 1, 1],      "est. achieved occupancy %": 18
-    }
-  },
-  {
-    "ph": "f", "id": 167, "pid": 0, "tid": 7, "ts": 4868643761776.062,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761420.489, "dur": 4.784,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 167
-    }
-  },
-  {
-    "ph": "s", "id": 167, "pid": 294734, "tid": 294765, "ts": 4868643761420.489,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761425.484, "dur": 0.176,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 168
-    }
-  },
-  {
-    "ph": "f", "id": 168, "pid": 294734, "tid": 294765, "ts": 4868643761425.484,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<int>, at::detail::Array<char*, 1> >(int, at::native::FillFunctor<int>, at::detail::Array<char*, 1>)", "pid": 0, "tid": 7,
-    "ts": 4868643761786.046, "dur": 1.568,
-    "args": {
-      "External id": 546,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 189,      "registers per thread": 16,      "shared memory": 0,      "blocks per SM": 5.434783,      "warps per SM": 21.739130,      "grid": [500, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 45
-    }
-  },
-  {
-    "ph": "f", "id": 189, "pid": 0, "tid": 7, "ts": 4868643761786.046,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761495.438, "dur": 10.622,
-    "args": {
-      "External id": 546,      "cbid": 211, "correlation": 189
-    }
-  },
-  {
-    "ph": "s", "id": 189, "pid": 294734, "tid": 294765, "ts": 4868643761495.438,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<int>, at::detail::Array<char*, 1> >(int, at::native::FillFunctor<int>, at::detail::Array<char*, 1>)", "pid": 0, "tid": 7,
-    "ts": 4868643761788.382, "dur": 0.832,
-    "args": {
-      "External id": 550,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 205,      "registers per thread": 16,      "shared memory": 0,      "blocks per SM": 0.010870,      "warps per SM": 0.043478,      "grid": [1, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 0
-    }
-  },
-  {
-    "ph": "f", "id": 205, "pid": 0, "tid": 7, "ts": 4868643761788.382,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761531.641, "dur": 5.609,
-    "args": {
-      "External id": 550,      "cbid": 211, "correlation": 205
-    }
-  },
-  {
-    "ph": "s", "id": 205, "pid": 294734, "tid": 294765, "ts": 4868643761531.641,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void cub::DeviceCompactInitKernel<cub::ReduceByKeyScanTileState<int, int, true>, int*>(cub::ReduceByKeyScanTileState<int, int, true>, int, int*)", "pid": 0, "tid": 7,
-    "ts": 4868643761793.726, "dur": 0.960,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 238,      "registers per thread": 16,      "shared memory": 0,      "blocks per SM": 0.032609,      "warps per SM": 0.130435,      "grid": [3, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 0
-    }
-  },
-  {
-    "ph": "f", "id": 238, "pid": 0, "tid": 7, "ts": 4868643761793.726,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761561.713, "dur": 22.681,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 238
-    }
-  },
-  {
-    "ph": "s", "id": 238, "pid": 294734, "tid": 294765, "ts": 4868643761561.713,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761584.718, "dur": 0.159,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 239
-    }
-  },
-  {
-    "ph": "f", "id": 239, "pid": 294734, "tid": 294765, "ts": 4868643761584.718,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761585.086, "dur": 0.162,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 240
-    }
-  },
-  {
-    "ph": "f", "id": 240, "pid": 294734, "tid": 294765, "ts": 4868643761585.086,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags", "pid": 294734, "tid": 294765,
-    "ts": 4868643761586.499, "dur": 59.785,
-    "args": {
-      "External id": 530,      "cbid": 251, "correlation": 243
-    }
-  },
-  {
-    "ph": "f", "id": 243, "pid": 294734, "tid": 294765, "ts": 4868643761586.499,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaDeviceGetAttribute", "pid": 294734, "tid": 294765,
-    "ts": 4868643761647.459, "dur": 0.692,
-    "args": {
-      "External id": 530,      "cbid": 200, "correlation": 246
-    }
-  },
-  {
-    "ph": "f", "id": 246, "pid": 294734, "tid": 294765, "ts": 4868643761647.459,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void cub::DeviceReduceByKeyKernel<cub::DispatchReduceByKey<long*, long*, cub::ConstantInputIterator<int, int>, int*, int*, cub::Equality, cub::Sum, int, int>::PtxReduceByKeyPolicy, long*, long*, cub::ConstantInputIterator<int, int>, int*, int*, cub::ReduceByKeyScanTileState<int, int, true>, cub::Equality, cub::Sum, int, int>(long*, long*, cub::ConstantInputIterator<int, int>, int*, int*, cub::ReduceByKeyScanTileState<int, int, true>, int, cub::Equality, cub::Sum, int)", "pid": 0, "tid": 7,
-    "ts": 4868643761802.078, "dur": 5.056,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 248,      "registers per thread": 40,      "shared memory": 12304,      "blocks per SM": 3.630435,      "warps per SM": 14.521739,      "grid": [334, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 30
-    }
-  },
-  {
-    "ph": "f", "id": 248, "pid": 0, "tid": 7, "ts": 4868643761802.078,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761649.064, "dur": 6.854,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 248
-    }
-  },
-  {
-    "ph": "s", "id": 248, "pid": 294734, "tid": 294765, "ts": 4868643761649.064,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761656.173, "dur": 0.160,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 249
-    }
-  },
-  {
-    "ph": "f", "id": 249, "pid": 294734, "tid": 294765, "ts": 4868643761656.173,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761656.557, "dur": 0.164,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 250
-    }
-  },
-  {
-    "ph": "f", "id": 250, "pid": 294734, "tid": 294765, "ts": 4868643761656.557,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<int>, at::detail::Array<char*, 1> >(int, at::native::FillFunctor<int>, at::detail::Array<char*, 1>)", "pid": 0, "tid": 7,
-    "ts": 4868643761807.902, "dur": 0.864,
-    "args": {
-      "External id": 556,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 265,      "registers per thread": 16,      "shared memory": 0,      "blocks per SM": 0.010870,      "warps per SM": 0.043478,      "grid": [1, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 0
-    }
-  },
-  {
-    "ph": "f", "id": 265, "pid": 0, "tid": 7, "ts": 4868643761807.902,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761704.558, "dur": 6.064,
-    "args": {
-      "External id": 556,      "cbid": 211, "correlation": 265
-    }
-  },
-  {
-    "ph": "s", "id": 265, "pid": 294734, "tid": 294765, "ts": 4868643761704.558,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void cub::DeviceScanInitKernel<cub::ScanTileState<int, true> >(cub::ScanTileState<int, true>, int)", "pid": 0, "tid": 7,
-    "ts": 4868643761812.926, "dur": 0.896,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 298,      "registers per thread": 16,      "shared memory": 0,      "blocks per SM": 0.021739,      "warps per SM": 0.086957,      "grid": [2, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 0
-    }
-  },
-  {
-    "ph": "f", "id": 298, "pid": 0, "tid": 7, "ts": 4868643761812.926,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761736.517, "dur": 27.647,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 298
-    }
-  },
-  {
-    "ph": "s", "id": 298, "pid": 294734, "tid": 294765, "ts": 4868643761736.517,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761764.499, "dur": 0.167,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 299
-    }
-  },
-  {
-    "ph": "f", "id": 299, "pid": 294734, "tid": 294765, "ts": 4868643761764.499,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761764.880, "dur": 0.158,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 300
-    }
-  },
-  {
-    "ph": "f", "id": 300, "pid": 294734, "tid": 294765, "ts": 4868643761764.880,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaOccupancyMaxActiveBlocksPerMultiprocessorWithFlags", "pid": 294734, "tid": 294765,
-    "ts": 4868643761766.144, "dur": 40.046,
-    "args": {
-      "External id": 530,      "cbid": 251, "correlation": 303
-    }
-  },
-  {
-    "ph": "f", "id": 303, "pid": 294734, "tid": 294765, "ts": 4868643761766.144,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaDeviceGetAttribute", "pid": 294734, "tid": 294765,
-    "ts": 4868643761807.223, "dur": 0.483,
-    "args": {
-      "External id": 530,      "cbid": 200, "correlation": 306
-    }
-  },
-  {
-    "ph": "f", "id": 306, "pid": 294734, "tid": 294765, "ts": 4868643761807.223,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void cub::DeviceScanKernel<cub::DeviceScanPolicy<int>::Policy600, int*, int*, cub::ScanTileState<int, true>, cub::Sum, cub::NullType, int, int>(int*, int*, cub::ScanTileState<int, true>, int, cub::Sum, cub::NullType, int)", "pid": 0, "tid": 7,
-    "ts": 4868643761819.326, "dur": 3.744,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 308,      "registers per thread": 52,      "shared memory": 7696,      "blocks per SM": 1.456522,      "warps per SM": 5.826087,      "grid": [134, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 12
-    }
-  },
-  {
-    "ph": "f", "id": 308, "pid": 0, "tid": 7, "ts": 4868643761819.326,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761808.579, "dur": 6.584,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 308
-    }
-  },
-  {
-    "ph": "s", "id": 308, "pid": 294734, "tid": 294765, "ts": 4868643761808.579,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761815.428, "dur": 0.172,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 309
-    }
-  },
-  {
-    "ph": "f", "id": 309, "pid": 294734, "tid": 294765, "ts": 4868643761815.428,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaPeekAtLastError", "pid": 294734, "tid": 294765,
-    "ts": 4868643761815.816, "dur": 0.178,
-    "args": {
-      "External id": 530,      "cbid": 11, "correlation": 310
-    }
-  },
-  {
-    "ph": "f", "id": 310, "pid": 294734, "tid": 294765, "ts": 4868643761815.816,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<int>, at::detail::Array<char*, 1> >(int, at::native::FillFunctor<int>, at::detail::Array<char*, 1>)", "pid": 0, "tid": 7,
-    "ts": 4868643761863.614, "dur": 0.864,
-    "args": {
-      "External id": 562,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 326,      "registers per thread": 16,      "shared memory": 0,      "blocks per SM": 0.010870,      "warps per SM": 0.043478,      "grid": [1, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 0
-    }
-  },
-  {
-    "ph": "f", "id": 326, "pid": 0, "tid": 7, "ts": 4868643761863.614,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643761856.426, "dur": 5.757,
-    "args": {
-      "External id": 562,      "cbid": 211, "correlation": 326
-    }
-  },
-  {
-    "ph": "s", "id": 326, "pid": 294734, "tid": 294765, "ts": 4868643761856.426,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaStreamIsCapturing", "pid": 294734, "tid": 294765,
-    "ts": 4868643761893.634, "dur": 1.600,
-    "args": {
-      "External id": 563,      "cbid": 317, "correlation": 337
-    }
-  },
-  {
-    "ph": "f", "id": 337, "pid": 294734, "tid": 294765, "ts": 4868643761893.634,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaMalloc", "pid": 294734, "tid": 294765,
-    "ts": 4868643761895.867, "dur": 428.098,
-    "args": {
-      "External id": 563,      "cbid": 20, "correlation": 338
-    }
-  },
-  {
-    "ph": "f", "id": 338, "pid": 294734, "tid": 294765, "ts": 4868643761895.867,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<int>, at::detail::Array<char*, 1> >(int, at::native::FillFunctor<int>, at::detail::Array<char*, 1>)", "pid": 0, "tid": 7,
-    "ts": 4868643762367.710, "dur": 0.832,
-    "args": {
-      "External id": 567,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 353,      "registers per thread": 16,      "shared memory": 0,      "blocks per SM": 0.010870,      "warps per SM": 0.043478,      "grid": [1, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 0
-    }
-  },
-  {
-    "ph": "f", "id": 353, "pid": 0, "tid": 7, "ts": 4868643762367.710,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643762354.959, "dur": 11.574,
-    "args": {
-      "External id": 567,      "cbid": 211, "correlation": 353
-    }
-  },
-  {
-    "ph": "s", "id": 353, "pid": 294734, "tid": 294765, "ts": 4868643762354.959,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<int>, at::detail::Array<char*, 1> >(int, at::native::FillFunctor<int>, at::detail::Array<char*, 1>)", "pid": 0, "tid": 7,
-    "ts": 4868643762406.142, "dur": 0.832,
-    "args": {
-      "External id": 572,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 376,      "registers per thread": 16,      "shared memory": 0,      "blocks per SM": 0.010870,      "warps per SM": 0.043478,      "grid": [1, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 0
-    }
-  },
-  {
-    "ph": "f", "id": 376, "pid": 0, "tid": 7, "ts": 4868643762406.142,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643762399.158, "dur": 5.823,
-    "args": {
-      "External id": 572,      "cbid": 211, "correlation": 376
-    }
-  },
-  {
-    "ph": "s", "id": 376, "pid": 294734, "tid": 294765, "ts": 4868643762399.158,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "embedding_ops::split_embedding_backward_codegen_find_long_segments(at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, int, int, bool)", "pid": 0, "tid": 7,
-    "ts": 4868643763132.317, "dur": 2.433,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 390,      "registers per thread": 32,      "shared memory": 0,      "blocks per SM": 2.717391,      "warps per SM": 86.956520,      "grid": [250, 1, 1],      "block": [1024, 1, 1],      "est. achieved occupancy %": 67
-    }
-  },
-  {
-    "ph": "f", "id": 390, "pid": 0, "tid": 7, "ts": 4868643763132.317,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643762429.946, "dur": 702.299,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 390
-    }
-  },
-  {
-    "ph": "s", "id": 390, "pid": 294734, "tid": 294765, "ts": 4868643762429.946,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaStreamIsCapturing", "pid": 294734, "tid": 294765,
-    "ts": 4868643763147.431, "dur": 1.723,
-    "args": {
-      "External id": 575,      "cbid": 317, "correlation": 397
-    }
-  },
-  {
-    "ph": "f", "id": 397, "pid": 294734, "tid": 294765, "ts": 4868643763147.431,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaMalloc", "pid": 294734, "tid": 294765,
-    "ts": 4868643763149.790, "dur": 262.982,
-    "args": {
-      "External id": 575,      "cbid": 20, "correlation": 398
-    }
-  },
-  {
-    "ph": "f", "id": 398, "pid": 294734, "tid": 294765, "ts": 4868643763149.790,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void at::native::vectorized_elementwise_kernel<4, at::native::FillFunctor<float>, at::detail::Array<char*, 1> >(int, at::native::FillFunctor<float>, at::detail::Array<char*, 1>)", "pid": 0, "tid": 7,
-    "ts": 4868643763450.301, "dur": 1.217,
-    "args": {
-      "External id": 577,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 406,      "registers per thread": 16,      "shared memory": 0,      "blocks per SM": 0.684783,      "warps per SM": 2.739130,      "grid": [63, 1, 1],      "block": [128, 1, 1],      "est. achieved occupancy %": 6
-    }
-  },
-  {
-    "ph": "f", "id": 406, "pid": 0, "tid": 7, "ts": 4868643763450.301,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643763440.526, "dur": 9.384,
-    "args": {
-      "External id": 577,      "cbid": 211, "correlation": 406
-    }
-  },
-  {
-    "ph": "s", "id": 406, "pid": 294734, "tid": 294765, "ts": 4868643763440.526,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaFuncSetAttribute", "pid": 294734, "tid": 294765,
-    "ts": 4868643763456.277, "dur": 5211.522,
-    "args": {
-      "External id": 530,      "cbid": 273, "correlation": 412
-    }
-  },
-  {
-    "ph": "f", "id": 412, "pid": 294734, "tid": 294765, "ts": 4868643763456.277,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void split_embedding_nobag_backward_codegen_sgd_unweighted_kernel_cta_per_row_1<float, float, float, 1, 32, false>(at::GenericPackedTensorAccessor<float, 2ul, at::RestrictPtrTraits, long>, at::GenericPackedTensorAccessor<float, 1ul, at::RestrictPtrTraits, long>, at::GenericPackedTensorAccessor<float, 1ul, at::RestrictPtrTraits, long>, at::GenericPackedTensorAccessor<float, 2ul, at::RestrictPtrTraits, long>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, long, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, bool, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, bool, at::PhiloxCudaState, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<at::AccumulateType<float, true>::type, 2ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, int, bool, int, float)", "pid": 0, "tid": 7,
-    "ts": 4868643768709.629, "dur": 1.984,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 416,      "registers per thread": 48,      "shared memory": 16384,      "blocks per SM": 2.717391,      "warps per SM": 86.956520,      "grid": [250, 1, 1],      "block": [32, 32, 1],      "est. achieved occupancy %": 67
-    }
-  },
-  {
-    "ph": "f", "id": 416, "pid": 0, "tid": 7, "ts": 4868643768709.629,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643768694.949, "dur": 16.476,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 416
-    }
-  },
-  {
-    "ph": "s", "id": 416, "pid": 294734, "tid": 294765, "ts": 4868643768694.949,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "kernel", "name": "void split_embedding_nobag_backward_codegen_sgd_unweighted_kernel_warp_per_row_1<float, float, float, 1, 32, false>(at::GenericPackedTensorAccessor<float, 2ul, at::RestrictPtrTraits, long>, at::GenericPackedTensorAccessor<float, 1ul, at::RestrictPtrTraits, long>, at::GenericPackedTensorAccessor<float, 1ul, at::RestrictPtrTraits, long>, at::GenericPackedTensorAccessor<float, 2ul, at::RestrictPtrTraits, long>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, long, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<long, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, bool, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, at::GenericPackedTensorAccessor<int, 1ul, at::RestrictPtrTraits, int>, int, bool, at::PhiloxCudaState, int, int, float)", "pid": 0, "tid": 7,
-    "ts": 4868643771744.348, "dur": 587.776,
-    "args": {
-      "External id": 530,      "queued": 0, "device": 0, "context": 1,      "stream": 7, "correlation": 420,      "registers per thread": 35,      "shared memory": 0,      "blocks per SM": 64.000000,      "warps per SM": 1024.000000,      "grid": [5888, 1, 1],      "block": [32, 16, 1],      "est. achieved occupancy %": 100
-    }
-  },
-  {
-    "ph": "f", "id": 420, "pid": 0, "tid": 7, "ts": 4868643771744.348,
-    "cat": "ac2g", "name": "ac2g", "bp": "e"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaLaunchKernel", "pid": 294734, "tid": 294765,
-    "ts": 4868643768720.834, "dur": 3024.519,
-    "args": {
-      "External id": 530,      "cbid": 211, "correlation": 420
-    }
-  },
-  {
-    "ph": "s", "id": 420, "pid": 294734, "tid": 294765, "ts": 4868643768720.834,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "ph": "X", "cat": "cuda_runtime", "name": "cudaDeviceSynchronize", "pid": 294734, "tid": 294734,
-    "ts": 4868643772221.160, "dur": 115.471,
-    "args": {
-      "External id": 432,      "cbid": 165, "correlation": 432
-    }
-  },
-  {
-    "ph": "s", "id": 432, "pid": 294734, "tid": 294734, "ts": 4868643772221.160,
-    "cat": "ac2g", "name": "ac2g"
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 294734, "tid": 0,
+    "name": "process_name", "ph": "M", "ts": 4869140272624.567, "pid": 295663, "tid": 0,
     "args": {
       "name": "python"
     }
   },
   {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 294734, "tid": 0,
+    "name": "process_labels", "ph": "M", "ts": 4869140272624.567, "pid": 295663, "tid": 0,
     "args": {
       "labels": "CPU"
     }
   },
   {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 294734, "tid": 0,
+    "name": "process_sort_index", "ph": "M", "ts": 4869140272624.567, "pid": 295663, "tid": 0,
     "args": {
-      "sort_index": 294734
+      "sort_index": 295663
     }
   },
   {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 0, "tid": 0,
+    "name": "thread_name", "ph": "M", "ts": 4869140272624.567, "pid": 295663, "tid": 295678,
     "args": {
-      "name": "python"
+      "name": "thread 295678 (python)"
     }
   },
   {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 0, "tid": 0,
+    "name": "thread_sort_index", "ph": "M", "ts": 4869140272624.567, "pid": 295663, "tid": 295678,
     "args": {
-      "labels": "GPU 0"
+      "sort_index": 295678
     }
   },
   {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 0, "tid": 0,
+    "name": "thread_name", "ph": "M", "ts": 4869140272624.567, "pid": 295663, "tid": 295678,
     "args": {
-      "sort_index": 5000000
+      "name": "thread 295678 (pt_autograd_0)"
     }
   },
   {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 1, "tid": 0,
+    "name": "thread_sort_index", "ph": "M", "ts": 4869140272624.567, "pid": 295663, "tid": 295678,
     "args": {
-      "name": "python"
+      "sort_index": 295678
     }
   },
   {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 1, "tid": 0,
+    "name": "thread_name", "ph": "M", "ts": 4869140272624.567, "pid": 295663, "tid": 295663,
     "args": {
-      "labels": "GPU 1"
+      "name": "thread 295663 (python)"
     }
   },
   {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 1, "tid": 0,
+    "name": "thread_sort_index", "ph": "M", "ts": 4869140272624.567, "pid": 295663, "tid": 295663,
     "args": {
-      "sort_index": 5000001
+      "sort_index": 295663
     }
   },
   {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 2, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 2, "tid": 0,
-    "args": {
-      "labels": "GPU 2"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 2, "tid": 0,
-    "args": {
-      "sort_index": 5000002
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 3, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 3, "tid": 0,
-    "args": {
-      "labels": "GPU 3"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 3, "tid": 0,
-    "args": {
-      "sort_index": 5000003
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 4, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 4, "tid": 0,
-    "args": {
-      "labels": "GPU 4"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 4, "tid": 0,
-    "args": {
-      "sort_index": 5000004
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 5, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 5, "tid": 0,
-    "args": {
-      "labels": "GPU 5"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 5, "tid": 0,
-    "args": {
-      "sort_index": 5000005
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 6, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 6, "tid": 0,
-    "args": {
-      "labels": "GPU 6"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 6, "tid": 0,
-    "args": {
-      "sort_index": 5000006
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 7, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 7, "tid": 0,
-    "args": {
-      "labels": "GPU 7"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 7, "tid": 0,
-    "args": {
-      "sort_index": 5000007
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 8, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 8, "tid": 0,
-    "args": {
-      "labels": "GPU 8"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 8, "tid": 0,
-    "args": {
-      "sort_index": 5000008
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 9, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 9, "tid": 0,
-    "args": {
-      "labels": "GPU 9"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 9, "tid": 0,
-    "args": {
-      "sort_index": 5000009
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 10, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 10, "tid": 0,
-    "args": {
-      "labels": "GPU 10"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 10, "tid": 0,
-    "args": {
-      "sort_index": 5000010
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 11, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 11, "tid": 0,
-    "args": {
-      "labels": "GPU 11"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 11, "tid": 0,
-    "args": {
-      "sort_index": 5000011
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 12, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 12, "tid": 0,
-    "args": {
-      "labels": "GPU 12"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 12, "tid": 0,
-    "args": {
-      "sort_index": 5000012
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 13, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 13, "tid": 0,
-    "args": {
-      "labels": "GPU 13"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 13, "tid": 0,
-    "args": {
-      "sort_index": 5000013
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 14, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 14, "tid": 0,
-    "args": {
-      "labels": "GPU 14"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 14, "tid": 0,
-    "args": {
-      "sort_index": 5000014
-    }
-  },
-  {
-    "name": "process_name", "ph": "M", "ts": 4868643579749.016, "pid": 15, "tid": 0,
-    "args": {
-      "name": "python"
-    }
-  },
-  {
-    "name": "process_labels", "ph": "M", "ts": 4868643579749.016, "pid": 15, "tid": 0,
-    "args": {
-      "labels": "GPU 15"
-    }
-  },
-  {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 15, "tid": 0,
-    "args": {
-      "sort_index": 5000015
-    }
-  },
-  {
-    "name": "thread_name", "ph": "M", "ts": 4868643579749.016, "pid": 0, "tid": 7,
-    "args": {
-      "name": "stream 7 "
-    }
-  },
-  {
-    "name": "thread_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 0, "tid": 7,
-    "args": {
-      "sort_index": 7
-    }
-  },
-  {
-    "name": "thread_name", "ph": "M", "ts": 4868643579749.016, "pid": 294734, "tid": 294765,
-    "args": {
-      "name": "thread 294765 (pt_autograd_0)"
-    }
-  },
-  {
-    "name": "thread_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 294734, "tid": 294765,
-    "args": {
-      "sort_index": 294765
-    }
-  },
-  {
-    "name": "thread_name", "ph": "M", "ts": 4868643579749.016, "pid": 294734, "tid": 294765,
-    "args": {
-      "name": "thread 294765 (python)"
-    }
-  },
-  {
-    "name": "thread_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 294734, "tid": 294765,
-    "args": {
-      "sort_index": 294765
-    }
-  },
-  {
-    "name": "thread_name", "ph": "M", "ts": 4868643579749.016, "pid": 294734, "tid": 294734,
-    "args": {
-      "name": "thread 294734 (python)"
-    }
-  },
-  {
-    "name": "thread_sort_index", "ph": "M", "ts": 4868643579749.016, "pid": 294734, "tid": 294734,
-    "args": {
-      "sort_index": 294734
-    }
-  },
-  {
-    "ph": "X", "cat": "Trace", "ts": 4868643579184.411, "dur": 193183.722,
+    "ph": "X", "cat": "Trace", "ts": 4869140272326.294, "dur": 14320.306,
     "pid": "Spans", "tid": "PyTorch Profiler",
     "name": "PyTorch Profiler (0)",
     "args": {
@@ -3352,7 +2084,7 @@
     }
   },
   {
-    "name": "process_sort_index", "ph": "M", "ts": 4868643579184.411,
+    "name": "process_sort_index", "ph": "M", "ts": 4869140272326.294,
     "pid": "Spans", "tid": 0,
     "args": {
       "sort_index": 536870912
@@ -3360,11 +2092,11 @@
   },
   {
     "name": "Iteration Start: PyTorch Profiler", "ph": "i", "s": "g",
-    "pid": "Traces", "tid": "Trace PyTorch Profiler", "ts": 4868643579184.411
+    "pid": "Traces", "tid": "Trace PyTorch Profiler", "ts": 4869140272326.294
   },
   {
     "name": "Record Window End", "ph": "i", "s": "g",
-    "pid": "", "tid": "", "ts": 4868643775915.095
+    "pid": "", "tid": "", "ts": 4869140289030.295
   }
   ],
   "traceName": "fec_backward_opt.json",
