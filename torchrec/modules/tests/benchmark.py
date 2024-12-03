@@ -84,7 +84,7 @@ def test_fc_forward() -> None:
     print(f"batch_size: {batch_size}")
     print(f"seq_len: {seq_len}")
     print(f"dataset_size: {dataset_size}")
-    print(f"dataset embedding size GB: {dataset_size * embedding_dim * 4 / 1024 / 1024 / 1024}")
+    print(f"fetched embedding size GB: {dataset_size * embedding_dim * 4 / 1024 / 1024 / 1024}")
     print(f"num_epochs: {num_epochs}")
     print(f"num_steps: {num_steps}")
     
