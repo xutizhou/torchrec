@@ -74,9 +74,9 @@ def test_fc_forward() -> None:
     hash_size = 80000000
     embedding_dim = 128
     batch_size = 2048
-    seq_len = 64
+    seq_len = 4096
     num_epochs = 1
-    dataset_size = 800000000
+    dataset_size = 1600000000
     num_steps = dataset_size // (batch_size * seq_len)
     print(f"hash_size: {hash_size}")
     print(f'hash_size GB: {hash_size * embedding_dim * 4 / 1024 / 1024 / 1024}')
@@ -134,9 +134,9 @@ def test_fc_forward() -> None:
             features = dataset.__getitem__(step)
             features = features.to(device)
             # torch.cuda.nvtx.range_pop() 
-            torch.cuda.nvtx.range_push("FEC Forward Pass")
+            # torch.cuda.nvtx.range_push("FEC Forward Pass")
             fused_embeddings = fused_ec(features)
-            torch.cuda.nvtx.range_pop() 
+            # torch.cuda.nvtx.range_pop() 
             # fused_vals = []
             # for _name, jt in fused_embeddings.items():
             #     fused_vals.append(jt.values())
