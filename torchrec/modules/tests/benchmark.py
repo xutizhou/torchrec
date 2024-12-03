@@ -73,8 +73,8 @@ def test_fc_forward() -> None:
     print(f"optimizer_kwargs: {optimizer_kwargs}")
     hash_size = 80000000
     embedding_dim = 128
-    batch_size = 64
-    seq_len = 2048
+    batch_size = 2048
+    seq_len = 64
     num_epochs = 1
     dataset_size = 800000000
     num_steps = dataset_size // (batch_size * seq_len)
