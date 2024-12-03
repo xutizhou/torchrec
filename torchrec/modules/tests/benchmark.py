@@ -76,7 +76,7 @@ def test_fc_forward() -> None:
     batch_size = 2048
     seq_len = 4096
     num_epochs = 1
-    dataset_size = 1600000000
+    dataset_size = 8000000000
     num_steps = dataset_size // (batch_size * seq_len)
     print(f"hash_size: {hash_size}")
     print(f'hash_size GB: {hash_size * embedding_dim * 4 / 1024 / 1024 / 1024}')
