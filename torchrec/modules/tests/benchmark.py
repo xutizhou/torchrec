@@ -143,5 +143,4 @@ def test_fc_forward() -> None:
     fused_ec_time = end_time - start_time
     print(f"fused ec Time: {fused_ec_time}")
 
-def main():
-    test_fc_forward()
+test_fc_forward()
