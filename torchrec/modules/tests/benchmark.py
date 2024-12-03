@@ -71,16 +71,20 @@ def test_fc_forward() -> None:
     print(f"device: {device}")
     print(f"optimizer_type: {optimizer_type}")
     print(f"optimizer_kwargs: {optimizer_kwargs}")
-    hash_size = 5000000
+    hash_size = 80000000
     embedding_dim = 128
-    batch_size = 4000
+    batch_size = 2048
     seq_len = 64
-    num_epochs = 100
-    num_steps = 100
+    num_epochs = 1
+    dataset_size = 80000000
+    num_steps = dataset_size // (batch_size * seq_len)
     print(f"hash_size: {hash_size}")
+    print(f'hash_size GB: {hash_size * embedding_dim * 4 / 1024 / 1024 / 1024}')
     print(f"embedding_dim: {embedding_dim}")
     print(f"batch_size: {batch_size}")
     print(f"seq_len: {seq_len}")
+    print(f"dataset_size: {dataset_size}")
+    print(f"data_size GB: {dataset_size * embedding_dim * 4 / 1024 / 1024 / 1024}")
     print(f"num_epochs: {num_epochs}")
     print(f"num_steps: {num_steps}")
     
@@ -126,6 +130,7 @@ def test_fc_forward() -> None:
 
     for epoch in range(num_epochs):
         for step in range(num_steps):
+            print(f"step={step}")
             # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
             features = dataset.__getitem__(step)
             features = features.to(device)
