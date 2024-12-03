@@ -134,9 +134,9 @@ def test_fc_forward() -> None:
             features = dataset.__getitem__(step)
             features = features.to(device)
             # torch.cuda.nvtx.range_pop() 
-            # torch.cuda.nvtx.range_push("FEC Forward Pass")
+            torch.cuda.nvtx.range_push("FEC Forward Pass")
             fused_embeddings = fused_ec(features)
-            # torch.cuda.nvtx.range_pop() 
+            torch.cuda.nvtx.range_pop() 
             # fused_vals = []
             # for _name, jt in fused_embeddings.items():
             #     fused_vals.append(jt.values())
