@@ -257,8 +257,8 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
             EmbeddingConfig(
                 name="table_0",
                 feature_names=["feature_0"],
-                embedding_dim=8,
-                num_embeddings=4,
+                embedding_dim=128,
+                num_embeddings=80000000,
             ),
         ]
 
