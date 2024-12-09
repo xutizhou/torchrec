@@ -146,7 +146,7 @@ def _test_sharding(  # noqa C901
         for embedding_name in embedding_names:
             unsharded_jt = unsharded_model_pred_jt_dict_this_rank[embedding_name]
             sharded_jt = sharded_model_pred_jts_dict[embedding_name]
-
+            print(f"###########sharded_jt.values():{sharded_jt.values()}")
             torch.testing.assert_close(unsharded_jt.values(), sharded_jt.values())
             torch.testing.assert_close(unsharded_jt.lengths(), sharded_jt.lengths())
             torch.testing.assert_close(unsharded_jt.offsets(), sharded_jt.offsets())
