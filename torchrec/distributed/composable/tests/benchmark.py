@@ -89,7 +89,7 @@ def _test_sharding(  # noqa C901
     local_size: Optional[int] = None,
     use_apply_optimizer_in_backward: bool = False,
     use_index_dedup: bool = False,
-    test: int = 0,
+    dataset: Optional[CustomDataset] = None,
 ) -> None:
     hash_size = 80000000
     embedding_dim = 128
@@ -108,7 +108,7 @@ def _test_sharding(  # noqa C901
     print(f"num_epochs: {num_epochs}")
     print(f"num_steps: {num_steps}")
     # 创建数据集和数据加载器
-    dataset = CustomDataset(num_steps, hash_size, batch_size=batch_size, seq_len=seq_len, device=torch.device("cuda"))
+    
     #get dataset size
     cnt = 0
     for step in range(num_steps):
@@ -285,7 +285,7 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
                 lengths=torch.LongTensor([2, 2, 4, 2, 0, 1]),
             ),
         ]
-
+        dataset = CustomDataset(10, 8000, batch_size=64, seq_len=1024, device=torch.device("cuda"))
         self._run_multi_process_test(
             callable=_test_sharding,
             world_size=WORLD_SIZE,
@@ -294,5 +294,5 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
             backend="nccl",
             use_apply_optimizer_in_backward=use_apply_optimizer_in_backward,
             use_index_dedup=use_index_dedup,
-            test=1,
+            dataset=dataset,
         )
