@@ -43,9 +43,7 @@ from torchrec.sparse.jagged_tensor import JaggedTensor, KeyedJaggedTensor
 from torchrec.test_utils import skip_if_asan_class
 import resource
 
-# 增加文件描述符限制
-soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
-resource.setrlimit(resource.RLIMIT_NOFILE, (4096, hard))
+
 
 class CustomDataset():
     def __init__(self, num_steps, hash_size, batch_size, seq_len, device):
@@ -226,7 +224,9 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
         use_apply_optimizer_in_backward: bool,
         use_index_dedup: bool,
     ) -> None:
-
+        # 增加文件描述符限制
+        soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+        resource.setrlimit(resource.RLIMIT_NOFILE, (4096, hard))
         WORLD_SIZE = 2
 
         embedding_config = [
