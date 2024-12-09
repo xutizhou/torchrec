@@ -195,11 +195,22 @@ def _test_sharding(  # noqa C901
 
 @skip_if_asan_class
 class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
-    def test_sharding_ebc(
-        self
-    ) -> None:
+    @unittest.skipIf(
+        torch.cuda.device_count() <= 1,
+        "Not enough GPUs, this test requires at least two GPUs",
+    )
+    @settings(verbosity=Verbosity.verbose, max_examples=10, deadline=None)
+    # pyre-ignore
+    @given(
         use_apply_optimizer_in_backward=st.booleans(),
         use_index_dedup=st.booleans(),
+    )
+    def test_sharding_ebc(
+        self,
+        use_apply_optimizer_in_backward: bool,
+        use_index_dedup: bool,
+    ) -> None:
+
         WORLD_SIZE = 2
 
         embedding_config = [
@@ -255,5 +266,3 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
             use_apply_optimizer_in_backward=use_apply_optimizer_in_backward,
             use_index_dedup=use_index_dedup,
         )
-
-ShardedEmbeddingCollectionParallelTest().test_sharding_ebc()
