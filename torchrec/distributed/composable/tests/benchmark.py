@@ -89,7 +89,7 @@ def _test_sharding(  # noqa C901
     local_size: Optional[int] = None,
     use_apply_optimizer_in_backward: bool = False,
     use_index_dedup: bool = False,
-    test,
+    test: int = 0,
 ) -> None:
     hash_size = 80000000
     embedding_dim = 128
@@ -294,5 +294,5 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
             backend="nccl",
             use_apply_optimizer_in_backward=use_apply_optimizer_in_backward,
             use_index_dedup=use_index_dedup,
-            1,
+            test=1,
         )
