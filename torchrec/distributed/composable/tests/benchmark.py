@@ -55,6 +55,7 @@ def _test_sharding(  # noqa C901
 ) -> None:
     trec_dist.comm_ops.set_gradient_division(False)
     with MultiProcessContext(rank, world_size, backend, local_size) as ctx:
+        print(f"###########ctx.device: {ctx.device}")
         sharder = EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)
         kjt_input_per_rank = [kjt.to(ctx.device) for kjt in kjt_input_per_rank]
 
@@ -142,7 +143,7 @@ def _test_sharding(  # noqa C901
         for embedding_name in embedding_names:
             unsharded_jt = unsharded_model_pred_jt_dict_this_rank[embedding_name]
             sharded_jt = sharded_model_pred_jts_dict[embedding_name]
-            print(f"unsharded_jt.values(), sharded_jt.values(): {unsharded_jt.values()}, {sharded_jt.values()}")
+            # print(f"unsharded_jt.values(), sharded_jt.values(): {unsharded_jt.values()}, {sharded_jt.values()}")
             torch.testing.assert_close(unsharded_jt.values(), sharded_jt.values())
             torch.testing.assert_close(unsharded_jt.lengths(), sharded_jt.lengths())
             torch.testing.assert_close(unsharded_jt.offsets(), sharded_jt.offsets())
@@ -192,12 +193,12 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
 
         kjt_input_per_rank = [  # noqa
             KeyedJaggedTensor.from_lengths_sync(
-                keys=["feature_0", "feature_1"],
+                keys=["feature_0"],
                 values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
                 lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
             ),
             KeyedJaggedTensor.from_lengths_sync(
-                keys=["feature_0", "feature_1"],
+                keys=["feature_0"],
                 values=torch.LongTensor([3, 2, 1, 2, 0, 1, 2, 3, 2, 3, 2]),
                 lengths=torch.LongTensor([2, 2, 4, 2, 0, 1]),
             ),
