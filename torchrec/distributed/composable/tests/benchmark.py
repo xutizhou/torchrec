@@ -225,21 +225,21 @@ def _test_sharding(  # noqa C901
             lengths=length,
         ).to(ctx.device)
         print(f"embedding={sharded_model(sparse_features)['feature_0'].values()}")
-        for epoch in range(num_epochs):
-            for step in range(num_steps):
-                print(f"epoch:{epoch}, step:{step}")
-                # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
-                features = dataset.__getitem__(step)
-                features = features.to(ctx.device)
-                print(f"features:{features.values()}")
-                # torch.cuda.nvtx.range_pop() 
-                # torch.cuda.nvtx.range_push("FEC Forward Pass")
-                embeddings = sharded_model(features)
-                print(f"embeddings:{embeddings['feature_0'].values()}")
+        # for epoch in range(num_epochs):
+        #     for step in range(num_steps):
+        #         print(f"epoch:{epoch}, step:{step}")
+        #         # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
+        #         features = dataset.__getitem__(step)
+        #         features = features.to(ctx.device)
+        #         print(f"features:{features.values()}")
+        #         # torch.cuda.nvtx.range_pop() 
+        #         # torch.cuda.nvtx.range_push("FEC Forward Pass")
+        #         embeddings = sharded_model(features)
+        #         print(f"embeddings:{embeddings['feature_0'].values()}")
                  
-        end_time = time.perf_counter()
-        ec_time = end_time - start_time
-        print(f"fused ec Time: {ec_time}")
+        # end_time = time.perf_counter()
+        # ec_time = end_time - start_time
+        # print(f"fused ec Time: {ec_time}")
 
 
 @skip_if_asan_class
