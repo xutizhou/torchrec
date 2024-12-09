@@ -92,8 +92,6 @@ class CustomDataset():
             values = []
             lengths = []
             hash_size = self.hash_size
-            min_num_ids = self.min_ids_per_features
-            max_num_ids = self.ids_per_features
             length = torch.full((self.batch_size,), self.ids_per_features)
             value = torch.randint(
                 0, hash_size, (int(length.sum()),)
