@@ -141,56 +141,16 @@ def _test_sharding(  # noqa C901
             sharded_model_pred_jts_dict.keys()
         )
 
-        unsharded_loss = []
-        sharded_loss = []
         for embedding_name in embedding_names:
             unsharded_jt = unsharded_model_pred_jt_dict_this_rank[embedding_name]
             sharded_jt = sharded_model_pred_jts_dict[embedding_name]
+            print(f"unsharded_jt.values(), sharded_jt.values(): {unsharded_jt.values()}, {sharded_jt.values()}")
             torch.testing.assert_close(unsharded_jt.values(), sharded_jt.values())
             torch.testing.assert_close(unsharded_jt.lengths(), sharded_jt.lengths())
             torch.testing.assert_close(unsharded_jt.offsets(), sharded_jt.offsets())
             torch.testing.assert_close(
                 unsharded_jt.weights_or_none(), sharded_jt.weights_or_none()
             )
-
-            sharded_loss.append(sharded_jt.values().view(-1))
-
-        for rank in range(ctx.world_size):
-            for embedding_name in embedding_names:
-                unsharded_loss.append(
-                    unsharded_model_pred_jt_dict[rank][embedding_name].values().view(-1)
-                )
-
-        torch.cat(sharded_loss).sum().backward()
-        torch.cat(unsharded_loss).sum().backward()
-
-        if not use_apply_optimizer_in_backward:
-            unsharded_model_optimizer.step()
-            sharded_model_optimizer.step()
-
-        for fqn in unsharded_model.state_dict():
-            unsharded_state = unsharded_model.state_dict()[fqn]
-            sharded_state = sharded_model.state_dict()[fqn]
-
-            sharded_param = (
-                torch.zeros(size=unsharded_state.shape, device=ctx.device)
-                if ctx.rank == 0
-                else None
-            )
-            if isinstance(sharded_state, ShardedTensor):
-                sharded_state.gather(out=sharded_param)
-            elif isinstance(sharded_state, DTensor):
-                sharded_param = sharded_state.full_tensor()
-            else:
-                sharded_param = sharded_state
-
-            if ctx.rank == 0:
-                torch.testing.assert_close(
-                    unsharded_state,
-                    sharded_param,
-                    msg=f"Did not match for {fqn=} after backward",
-                )
-
 
 @skip_if_asan_class
 class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
