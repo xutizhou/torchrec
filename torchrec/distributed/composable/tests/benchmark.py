@@ -89,7 +89,6 @@ def _test_sharding(  # noqa C901
     local_size: Optional[int] = None,
     use_apply_optimizer_in_backward: bool = False,
     use_index_dedup: bool = False,
-    dataset: Optional[CustomDataset] = None,
 ) -> None:
     hash_size = 80000000
     embedding_dim = 128
@@ -97,7 +96,7 @@ def _test_sharding(  # noqa C901
     seq_len = 4096
     num_epochs = 1
     dataset_size = 8000000000
-    num_steps = 10     
+    num_steps = dataset_size // (batch_size * seq_len)        
     print(f"hash_size: {hash_size}")
     print(f'hash_size GB: {hash_size * embedding_dim * 4 / 1024 / 1024 / 1024}')
     print(f"embedding_dim: {embedding_dim}")
@@ -108,7 +107,7 @@ def _test_sharding(  # noqa C901
     print(f"num_epochs: {num_epochs}")
     print(f"num_steps: {num_steps}")
     # 创建数据集和数据加载器
-    
+    dataset = CustomDataset(num_steps, hash_size, batch_size=batch_size, seq_len=seq_len, device=torch.device("cuda"))
     #get dataset size
     cnt = 0
     for step in range(num_steps):
@@ -215,31 +214,28 @@ def _test_sharding(  # noqa C901
             )
         start_time = time.perf_counter()
         # 迭代数据加载器
-        length = torch.full((10,), 10)
-        value = torch.randint(
-            0, 10, (int(length.sum()),)
-        )
-        sparse_features = KeyedJaggedTensor.from_lengths_sync(
-            keys=["feature_0"],
-            values=value,
-            lengths=length,
-        ).to(ctx.device)
-        print(f"embedding={sharded_model(sparse_features)['feature_0'].values()}")
-        # for epoch in range(num_epochs):
-        #     for step in range(num_steps):
-        #         print(f"epoch:{epoch}, step:{step}")
-        #         # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
-        #         features = dataset.__getitem__(step)
-        #         features = features.to(ctx.device)
-        #         print(f"features:{features.values()}")
-        #         # torch.cuda.nvtx.range_pop() 
-        #         # torch.cuda.nvtx.range_push("FEC Forward Pass")
-        #         embeddings = sharded_model(features)
-        #         print(f"embeddings:{embeddings['feature_0'].values()}")
+        indices = KeyedJaggedTensor.from_lengths_sync(
+                keys=["feature_0"],
+                values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
+                lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
+            ).to(ctx.device)
+        embeddings = sharded_model(features)
+        print(f"embeddings:{embeddings['feature_0'].values()}")
+        for epoch in range(num_epochs):
+            for step in range(num_steps):
+                print(f"epoch:{epoch}, step:{step}")
+                # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
+                features = dataset.__getitem__(step)
+                features = features.to(ctx.device)
+                print(f"features:{features.values()}")
+                # torch.cuda.nvtx.range_pop() 
+                # torch.cuda.nvtx.range_push("FEC Forward Pass")
+                embeddings = sharded_model(features)
+                print(f"embeddings:{embeddings['feature_0'].values()}")
                  
-        # end_time = time.perf_counter()
-        # ec_time = end_time - start_time
-        # print(f"fused ec Time: {ec_time}")
+        end_time = time.perf_counter()
+        ec_time = end_time - start_time
+        print(f"fused ec Time: {ec_time}")
 
 
 @skip_if_asan_class
@@ -294,7 +290,7 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
                 lengths=torch.LongTensor([2, 2, 4, 2, 0, 1]),
             ),
         ]
-        dataset = CustomDataset(10, 8000, batch_size=64, seq_len=1024, device=torch.device("cuda"))
+
         self._run_multi_process_test(
             callable=_test_sharding,
             world_size=WORLD_SIZE,
@@ -303,5 +299,4 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
             backend="nccl",
             use_apply_optimizer_in_backward=use_apply_optimizer_in_backward,
             use_index_dedup=use_index_dedup,
-            dataset=dataset,
         )
