@@ -220,7 +220,7 @@ def _test_sharding(  # noqa C901
                 lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
             ).to(ctx.device)
         embeddings = sharded_model(indices)
-        # print(f"embeddings:{embeddings['feature_0'].values()}")
+        print(f"embeddings:{embeddings['feature_0'].values()}")
         # for epoch in range(num_epochs):
         #     for step in range(num_steps):
         #         print(f"epoch:{epoch}, step:{step}")
