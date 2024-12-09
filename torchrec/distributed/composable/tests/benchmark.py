@@ -42,7 +42,7 @@ from torchrec.modules.embedding_modules import EmbeddingCollection
 from torchrec.sparse.jagged_tensor import JaggedTensor, KeyedJaggedTensor
 from torchrec.test_utils import skip_if_asan_class
 
-hash_size = 80000000
+hash_size = 8000000
 embedding_dim = 128
 batch_size = 2048
 seq_len = 4096
