@@ -223,8 +223,8 @@ def _test_sharding(  # noqa C901
                 print(f"features:{features.values()}")
                 # torch.cuda.nvtx.range_pop() 
                 # torch.cuda.nvtx.range_push("FEC Forward Pass")
-                # embeddings = sharded_model(features)
-                # print(f"embeddings:{embeddings['feature_0'].values()}")
+                embeddings = sharded_model(features)
+                print(f"embeddings:{embeddings['feature_0'].values()}")
                  
         end_time = time.perf_counter()
         ec_time = end_time - start_time
