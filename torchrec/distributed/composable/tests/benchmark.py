@@ -146,6 +146,7 @@ def _test_sharding(  # noqa C901
         for embedding_name in embedding_names:
             unsharded_jt = unsharded_model_pred_jt_dict_this_rank[embedding_name]
             sharded_jt = sharded_model_pred_jts_dict[embedding_name]
+            print(f"###########sharded_jt.values():{sharded_jt.values()}")
             torch.testing.assert_close(unsharded_jt.values(), sharded_jt.values())
             torch.testing.assert_close(unsharded_jt.lengths(), sharded_jt.lengths())
             torch.testing.assert_close(unsharded_jt.offsets(), sharded_jt.offsets())
@@ -194,22 +195,11 @@ def _test_sharding(  # noqa C901
 
 @skip_if_asan_class
 class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
-    @unittest.skipIf(
-        torch.cuda.device_count() <= 1,
-        "Not enough GPUs, this test requires at least two GPUs",
-    )
-    @settings(verbosity=Verbosity.verbose, max_examples=10, deadline=None)
-    # pyre-ignore
-    @given(
+    def test_sharding_ebc(
+        self
+    ) -> None:
         use_apply_optimizer_in_backward=st.booleans(),
         use_index_dedup=st.booleans(),
-    )
-    def test_sharding_ebc(
-        self,
-        use_apply_optimizer_in_backward: bool,
-        use_index_dedup: bool,
-    ) -> None:
-
         WORLD_SIZE = 2
 
         embedding_config = [
@@ -265,3 +255,6 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
             use_apply_optimizer_in_backward=use_apply_optimizer_in_backward,
             use_index_dedup=use_index_dedup,
         )
+
+test_instance = ShardedEmbeddingCollectionParallelTest()
+test_instance.test_sharding_ebc()
