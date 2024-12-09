@@ -214,6 +214,7 @@ def _test_sharding(  # noqa C901
             )
         # start_time = time.perf_counter()
         # # 迭代数据加载器
+        print("####start training")
         indices = KeyedJaggedTensor.from_lengths_sync(
                 keys=["feature_0"],
                 values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
