@@ -256,5 +256,4 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
             use_index_dedup=use_index_dedup,
         )
 
-test_instance = ShardedEmbeddingCollectionParallelTest()
-test_instance.test_sharding_ebc()
+ShardedEmbeddingCollectionParallelTest().test_sharding_ebc()
