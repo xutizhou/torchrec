@@ -41,6 +41,11 @@ from torchrec.modules.embedding_modules import EmbeddingCollection
 
 from torchrec.sparse.jagged_tensor import JaggedTensor, KeyedJaggedTensor
 from torchrec.test_utils import skip_if_asan_class
+import resource
+
+# 增加文件描述符限制
+soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+resource.setrlimit(resource.RLIMIT_NOFILE, (4096, hard))
 
 class CustomDataset():
     def __init__(self, num_steps, hash_size, batch_size, seq_len, device):
@@ -87,6 +92,8 @@ def _test_sharding(  # noqa C901
     local_size: Optional[int] = None,
     use_apply_optimizer_in_backward: bool = False,
     use_index_dedup: bool = False,
+    num_epochs: int = 1,
+    num_steps: int = 0,
 ) -> None:
     trec_dist.comm_ops.set_gradient_division(False)
     with MultiProcessContext(rank, world_size, backend, local_size) as ctx:
@@ -188,8 +195,8 @@ def _test_sharding(  # noqa C901
         start_time = time.perf_counter()
         # 迭代数据加载器
 
-        for epoch in range(10):
-            for step in range(10):
+        for epoch in range(num_epochs):
+            for step in range(num_steps):
                 # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
                 features = dataset.__getitem__(step)
                 features = features.to(ctx.device)
@@ -288,4 +295,6 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
             backend="nccl",
             use_apply_optimizer_in_backward=use_apply_optimizer_in_backward,
             use_index_dedup=use_index_dedup,
+            num_epochs=num_epochs,
+            num_steps=num_steps,
         )
