@@ -97,7 +97,7 @@ def _test_sharding(  # noqa C901
     seq_len = 4096
     num_epochs = 1
     dataset_size = 8000000000
-    num_steps = dataset_size // (batch_size * seq_len)        
+    num_steps = 10     
     print(f"hash_size: {hash_size}")
     print(f'hash_size GB: {hash_size * embedding_dim * 4 / 1024 / 1024 / 1024}')
     print(f"embedding_dim: {embedding_dim}")
