@@ -215,7 +215,16 @@ def _test_sharding(  # noqa C901
             )
         start_time = time.perf_counter()
         # 迭代数据加载器
-
+        length = torch.full((10,), 10)
+        value = torch.randint(
+            0, 10, (int(length.sum()),)
+        )
+        sparse_features = KeyedJaggedTensor.from_lengths_sync(
+            keys=["feature_0"],
+            values=value,
+            lengths=length,
+        ).to(ctx.device)
+        print(f"embedding={sharded_model(sparse_features)['feature_0'].values()}")
         for epoch in range(num_epochs):
             for step in range(num_steps):
                 print(f"epoch:{epoch}, step:{step}")
