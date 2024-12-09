@@ -217,6 +217,7 @@ def _test_sharding(  # noqa C901
 
         for epoch in range(num_epochs):
             for step in range(num_steps):
+                print(f"epoch:{epoch}, step:{step}")
                 # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
                 features = dataset.__getitem__(step)
                 features = features.to(ctx.device)
