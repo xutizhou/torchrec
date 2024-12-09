@@ -273,7 +273,7 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
         print(f"num_epochs: {num_epochs}")
         print(f"num_steps: {num_steps}")
         # 创建数据集和数据加载器
-        dataset = CustomDataset(num_steps, hash_size, batch_size=batch_size, seq_len=seq_len, device=device)
+        dataset = CustomDataset(num_steps, hash_size, batch_size=batch_size, seq_len=seq_len, device=torch.device("cuda"))
         #get dataset size
         cnt = 0
         for step in range(num_steps):
