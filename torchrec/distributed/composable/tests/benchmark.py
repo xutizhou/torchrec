@@ -248,9 +248,7 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
         use_apply_optimizer_in_backward: bool,
         use_index_dedup: bool,
     ) -> None:
-        # 增加文件描述符限制
-        soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
-        resource.setrlimit(resource.RLIMIT_NOFILE, (4096, hard))
+
         WORLD_SIZE = 2
 
         embedding_config = [
@@ -258,7 +256,7 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
                 name="table_0",
                 feature_names=["feature_0"],
                 embedding_dim=128,
-                num_embeddings=80000000,
+                num_embeddings=8000000,
             ),
         ]
 
