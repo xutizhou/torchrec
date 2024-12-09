@@ -42,6 +42,22 @@ from torchrec.modules.embedding_modules import EmbeddingCollection
 from torchrec.sparse.jagged_tensor import JaggedTensor, KeyedJaggedTensor
 from torchrec.test_utils import skip_if_asan_class
 
+hash_size = 80000000
+embedding_dim = 128
+batch_size = 2048
+seq_len = 4096
+num_epochs = 1
+dataset_size = 8000000000
+num_steps = dataset_size // (batch_size * seq_len)
+print(f"hash_size: {hash_size}")
+print(f'hash_size GB: {hash_size * embedding_dim * 4 / 1024 / 1024 / 1024}')
+print(f"embedding_dim: {embedding_dim}")
+print(f"batch_size: {batch_size}")
+print(f"seq_len: {seq_len}")
+print(f"dataset_size: {dataset_size}")
+print(f"fetched embedding size GB: {dataset_size * embedding_dim * 4 / 1024 / 1024 / 1024}")
+print(f"num_epochs: {num_epochs}")
+print(f"num_steps: {num_steps}")
 class CustomDataset():
     def __init__(self, num_steps, hash_size, batch_size, seq_len, device):
         self.num_steps = num_steps
