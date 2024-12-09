@@ -212,30 +212,30 @@ def _test_sharding(  # noqa C901
             torch.testing.assert_close(
                 unsharded_jt.weights_or_none(), sharded_jt.weights_or_none()
             )
-        start_time = time.perf_counter()
-        # 迭代数据加载器
-        indices = KeyedJaggedTensor.from_lengths_sync(
-                keys=["feature_0"],
-                values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
-                lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
-            ).to(ctx.device)
-        embeddings = sharded_model(features)
-        print(f"embeddings:{embeddings['feature_0'].values()}")
-        for epoch in range(num_epochs):
-            for step in range(num_steps):
-                print(f"epoch:{epoch}, step:{step}")
-                # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
-                features = dataset.__getitem__(step)
-                features = features.to(ctx.device)
-                print(f"features:{features.values()}")
-                # torch.cuda.nvtx.range_pop() 
-                # torch.cuda.nvtx.range_push("FEC Forward Pass")
-                embeddings = sharded_model(features)
-                print(f"embeddings:{embeddings['feature_0'].values()}")
+        # start_time = time.perf_counter()
+        # # 迭代数据加载器
+        # indices = KeyedJaggedTensor.from_lengths_sync(
+        #         keys=["feature_0"],
+        #         values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
+        #         lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
+        #     ).to(ctx.device)
+        # embeddings = sharded_model(features)
+        # print(f"embeddings:{embeddings['feature_0'].values()}")
+        # for epoch in range(num_epochs):
+        #     for step in range(num_steps):
+        #         print(f"epoch:{epoch}, step:{step}")
+        #         # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
+        #         features = dataset.__getitem__(step)
+        #         features = features.to(ctx.device)
+        #         print(f"features:{features.values()}")
+        #         # torch.cuda.nvtx.range_pop() 
+        #         # torch.cuda.nvtx.range_push("FEC Forward Pass")
+        #         embeddings = sharded_model(features)
+        #         print(f"embeddings:{embeddings['feature_0'].values()}")
                  
-        end_time = time.perf_counter()
-        ec_time = end_time - start_time
-        print(f"fused ec Time: {ec_time}")
+        # end_time = time.perf_counter()
+        # ec_time = end_time - start_time
+        # print(f"fused ec Time: {ec_time}")
 
 
 @skip_if_asan_class
