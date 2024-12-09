@@ -214,12 +214,12 @@ def _test_sharding(  # noqa C901
             )
         # start_time = time.perf_counter()
         # # 迭代数据加载器
-        # indices = KeyedJaggedTensor.from_lengths_sync(
-        #         keys=["feature_0"],
-        #         values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
-        #         lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
-        #     ).to(ctx.device)
-        # embeddings = sharded_model(features)
+        indices = KeyedJaggedTensor.from_lengths_sync(
+                keys=["feature_0"],
+                values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
+                lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
+            ).to(ctx.device)
+        embeddings = sharded_model(indices)
         # print(f"embeddings:{embeddings['feature_0'].values()}")
         # for epoch in range(num_epochs):
         #     for step in range(num_steps):
