@@ -184,6 +184,14 @@ def _test_sharding(  # noqa C901
             torch.testing.assert_close(
                 unsharded_jt.weights_or_none(), sharded_jt.weights_or_none()
             )
+        indices = KeyedJaggedTensor.from_lengths_sync(
+                keys=["feature_0"],
+                values=torch.LongTensor([3, 2, 1, 2, 0, 1, 2, 3, 2, 3, 2]),
+                lengths=torch.LongTensor([2, 2, 4, 2, 0, 1]),
+            ).to(ctx.device)
+        sharded_model_pred_jts_dict = sharded_model(indices)
+        print(sharded_model_pred_jts_dict['feature_0'].values())
+
 
 @skip_if_asan_class
 class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
