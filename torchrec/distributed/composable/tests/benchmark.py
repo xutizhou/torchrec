@@ -85,14 +85,36 @@ def _test_sharding(  # noqa C901
     rank: int,
     world_size: int,
     kjt_input_per_rank: List[KeyedJaggedTensor],
-    dataset: CustomDataset,
     backend: str,
     local_size: Optional[int] = None,
     use_apply_optimizer_in_backward: bool = False,
     use_index_dedup: bool = False,
-    num_epochs: int = 1,
-    num_steps: int = 0,
 ) -> None:
+    hash_size = 80000000
+    embedding_dim = 128
+    batch_size = 2048
+    seq_len = 4096
+    num_epochs = 1
+    dataset_size = 8000000000
+    num_steps = dataset_size // (batch_size * seq_len)        
+    print(f"hash_size: {hash_size}")
+    print(f'hash_size GB: {hash_size * embedding_dim * 4 / 1024 / 1024 / 1024}')
+    print(f"embedding_dim: {embedding_dim}")
+    print(f"batch_size: {batch_size}")
+    print(f"seq_len: {seq_len}")
+    print(f"dataset_size: {dataset_size}")
+    print(f"fetched embedding size GB: {dataset_size * embedding_dim * 4 / 1024 / 1024 / 1024}")
+    print(f"num_epochs: {num_epochs}")
+    print(f"num_steps: {num_steps}")
+    # 创建数据集和数据加载器
+    dataset = CustomDataset(num_steps, hash_size, batch_size=batch_size, seq_len=seq_len, device=torch.device("cuda"))
+    #get dataset size
+    cnt = 0
+    for step in range(num_steps):
+        features = dataset.__getitem__(step)
+        cnt += features.values().shape[0]
+    print(f"dataset size={cnt}")
+
     trec_dist.comm_ops.set_gradient_division(False)
     with MultiProcessContext(rank, world_size, backend, local_size) as ctx:
         print(f"###########ctx.device: {ctx.device}")
@@ -261,40 +283,13 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
                 lengths=torch.LongTensor([2, 2, 4, 2, 0, 1]),
             ),
         ]
-        hash_size = 80000000
-        embedding_dim = 128
-        batch_size = 2048
-        seq_len = 4096
-        num_epochs = 1
-        dataset_size = 8000000000
-        num_steps = dataset_size // (batch_size * seq_len)        
-        print(f"hash_size: {hash_size}")
-        print(f'hash_size GB: {hash_size * embedding_dim * 4 / 1024 / 1024 / 1024}')
-        print(f"embedding_dim: {embedding_dim}")
-        print(f"batch_size: {batch_size}")
-        print(f"seq_len: {seq_len}")
-        print(f"dataset_size: {dataset_size}")
-        print(f"fetched embedding size GB: {dataset_size * embedding_dim * 4 / 1024 / 1024 / 1024}")
-        print(f"num_epochs: {num_epochs}")
-        print(f"num_steps: {num_steps}")
-        # 创建数据集和数据加载器
-        dataset = CustomDataset(num_steps, hash_size, batch_size=batch_size, seq_len=seq_len, device=torch.device("cuda"))
-        #get dataset size
-        cnt = 0
-        for step in range(num_steps):
-            features = dataset.__getitem__(step)
-            cnt += features.values().shape[0]
-        print(f"dataset size={cnt}")
 
         self._run_multi_process_test(
             callable=_test_sharding,
             world_size=WORLD_SIZE,
             tables=embedding_config,
             kjt_input_per_rank=kjt_input_per_rank,
-            dataset=dataset,
             backend="nccl",
             use_apply_optimizer_in_backward=use_apply_optimizer_in_backward,
             use_index_dedup=use_index_dedup,
-            num_epochs=num_epochs,
-            num_steps=num_steps,
         )
