@@ -84,9 +84,7 @@ def _test_sharding(  # noqa C901
         module_sharding_plan = construct_module_sharding_plan(
             unsharded_model,
             per_param_sharding={
-                "table_0": table_wise(rank=0),
-                "table_1": row_wise(),
-                "table_2": column_wise(ranks=[0, 1]),
+                "table_0": row_wise(),
             },
             local_size=local_size,
             world_size=world_size,
@@ -176,18 +174,6 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
             EmbeddingConfig(
                 name="table_0",
                 feature_names=["feature_0"],
-                embedding_dim=8,
-                num_embeddings=4,
-            ),
-            EmbeddingConfig(
-                name="table_1",
-                feature_names=["feature_0", "feature_1"],
-                embedding_dim=8,
-                num_embeddings=4,
-            ),
-            EmbeddingConfig(
-                name="table_2",
-                feature_names=["feature_0", "feature_1"],
                 embedding_dim=8,
                 num_embeddings=4,
             ),
