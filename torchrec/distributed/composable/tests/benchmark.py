@@ -184,7 +184,7 @@ def _test_sharding(  # noqa C901
             torch.testing.assert_close(
                 unsharded_jt.weights_or_none(), sharded_jt.weights_or_none()
             )
-        length = torch.full((64), 1024)
+        length = torch.full((64,), 1024)
         value = torch.randint(
             0, 40, (int(length.sum()),)
         )            
