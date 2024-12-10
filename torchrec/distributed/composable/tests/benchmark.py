@@ -115,21 +115,17 @@ def _test_sharding(  # noqa C901
         print(f"###########ctx.device: {ctx.device}")  
         sharder = EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)
         kjt_input_per_rank = [kjt.to(ctx.device) for kjt in kjt_input_per_rank] 
-        # print(torch.cuda.memory_summary(device=torch.device('cuda:0'), abbreviated=False))
-        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+        print(torch.cuda.memory_summary(device=torch.device('cuda:0'), abbreviated=False))
         unsharded_model = EmbeddingCollection(
             tables=tables,
             device=torch.device("cpu"),
             need_indices=True,
         )         
-        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-
         # syncs model across ranks
         torch.manual_seed(0)
         for param in unsharded_model.parameters():
             nn.init.uniform_(param, -1, 1)
         torch.manual_seed(0)
-        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
 
 
@@ -158,11 +154,11 @@ def _test_sharding(  # noqa C901
             device=ctx.device,
         )
 
-        # # sharded model
-        # # each rank gets a subbatch
-        # sharded_model_pred_jts_dict: Dict[str, JaggedTensor] = sharded_model(
-        #     kjt_input_per_rank[ctx.rank]
-        # )
+        # sharded model
+        # each rank gets a subbatch
+        sharded_model_pred_jts_dict: Dict[str, JaggedTensor] = sharded_model(
+            kjt_input_per_rank[ctx.rank]
+        )
 
         length = torch.full((64,), 1024)
         value = torch.randint(
@@ -179,11 +175,11 @@ def _test_sharding(  # noqa C901
         # Check memory usage on each GPU
         # print(f"GPU {ctx.rank}: {torch.cuda.memory_allocated(ctx.rank) / 1e9:.2f} GB allocated")  
 
-        for fqn in sharded_model.state_dict():
-            sharded_state = sharded_model.state_dict()[fqn]
+        # for fqn in sharded_model.state_dict():
+        #     sharded_state = sharded_model.state_dict()[fqn]
 
-            metadata = sharded_state.metadata()
-            print(f"Global ShardedTensor Metadata: {metadata}")      
+        #     metadata = sharded_state.metadata()
+        #     print(f"Global ShardedTensor Metadata: {metadata}")      
 
         import time
         train_start_time = time.perf_counter()
