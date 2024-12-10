@@ -168,9 +168,7 @@ def _test_sharding(  # noqa C901
             unsharded_model_optimizer.step()
             sharded_model_optimizer.step()
 
-        for sharded_tensor in sharded_model.state_dict():
-            metadata = sharded_tensor.metadata()
-            print(f"Global ShardedTensor Metadata: {metadata}")
+
 
         for fqn in unsharded_model.state_dict():
             unsharded_state = unsharded_model.state_dict()[fqn]
@@ -181,7 +179,8 @@ def _test_sharding(  # noqa C901
                 if ctx.rank == 0
                 else None
             )
-
+            metadata = sharded_state.metadata()
+            print(f"Global ShardedTensor Metadata: {metadata}")
 
             if isinstance(sharded_state, ShardedTensor):
                 sharded_state.gather(out=sharded_param)
