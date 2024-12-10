@@ -118,7 +118,7 @@ def _test_sharding(  # noqa C901
         print(torch.cuda.memory_summary(device=torch.device('cuda:0'), abbreviated=False))
         unsharded_model = EmbeddingCollection(
             tables=tables,
-            device=ctx.device,
+            device=torch.device("cpu"),
             need_indices=True,
         )         
         # syncs model across ranks
