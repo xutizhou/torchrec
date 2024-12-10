@@ -115,6 +115,7 @@ def _test_sharding(  # noqa C901
         print(f"###########ctx.device: {ctx.device}")  
         sharder = EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)
         kjt_input_per_rank = [kjt.to(ctx.device) for kjt in kjt_input_per_rank] 
+        print(torch.cuda.memory_summary(device=torch.device('cuda:0'), abbreviated=False))
         unsharded_model = EmbeddingCollection(
             tables=tables,
             device=ctx.device,
@@ -172,26 +173,25 @@ def _test_sharding(  # noqa C901
         print(sharded_model_pred_jts_dict['feature_0'].values())
 
         # Check memory usage on each GPU
-        print(f"GPU {ctx.rank}: {torch.cuda.memory_allocated(ctx.rank) / 1e9:.2f} GB allocated")  
+        # print(f"GPU {ctx.rank}: {torch.cuda.memory_allocated(ctx.rank) / 1e9:.2f} GB allocated")  
 
-        for fqn in sharded_model.state_dict():
-            sharded_state = sharded_model.state_dict()[fqn]
+        # for fqn in sharded_model.state_dict():
+        #     sharded_state = sharded_model.state_dict()[fqn]
 
-            metadata = sharded_state.metadata()
-            print(f"Global ShardedTensor Metadata: {metadata}")      
+        #     metadata = sharded_state.metadata()
+        #     print(f"Global ShardedTensor Metadata: {metadata}")      
 
         import time
         train_start_time = time.perf_counter()
         for step in range(num_steps):
             # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
             features = dataset.__getitem__(step)
-            # print_gpu_memory_usage()  
             features = features.to(ctx.device)
             # torch.cuda.nvtx.range_pop() 
             torch.cuda.nvtx.range_push("FEC Forward Pass")
-            fused_embeddings = sharded_model(features)   
+            fused_embeddings = sharded_model(features)  
+            torch.cuda.nvtx.range_pop() 
             # print(f"embeddings are {fused_embeddings['feature_0'].values()}")  
-            # print_gpu_memory_usage()   
         train_end_time = time.perf_counter()
         train_time = train_end_time - train_start_time
         if ctx.rank == 0:
