@@ -116,16 +116,20 @@ def _test_sharding(  # noqa C901
         sharder = EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)
         kjt_input_per_rank = [kjt.to(ctx.device) for kjt in kjt_input_per_rank] 
         # print(torch.cuda.memory_summary(device=torch.device('cuda:0'), abbreviated=False))
+        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         unsharded_model = EmbeddingCollection(
             tables=tables,
             device=torch.device("cpu"),
             need_indices=True,
         )         
+        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+
         # syncs model across ranks
         torch.manual_seed(0)
         for param in unsharded_model.parameters():
             nn.init.uniform_(param, -1, 1)
         torch.manual_seed(0)
+        print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
 
 
