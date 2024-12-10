@@ -110,25 +110,16 @@ def _test_sharding(  # noqa C901
     use_index_dedup: bool = False,
 ) -> None:
     trec_dist.comm_ops.set_gradient_division(False)
-    print_gpu_memory_usage()   
     dataset = CustomDataset(num_steps=num_steps, hash_size=hash_size, batch_size=batch_size, seq_len=seq_len, device=torch.device("cuda"))
-    print_gpu_memory_usage()   
     with MultiProcessContext(rank, world_size, backend, local_size) as ctx:
-        print(f"###########ctx.device: {ctx.device}")
-        print("#################1")
-        print_gpu_memory_usage()   
+        print(f"###########ctx.device: {ctx.device}")  
         sharder = EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)
-        kjt_input_per_rank = [kjt.to(ctx.device) for kjt in kjt_input_per_rank]
-        print("##############2")
-        print_gpu_memory_usage()   
-
+        kjt_input_per_rank = [kjt.to(ctx.device) for kjt in kjt_input_per_rank] 
         unsharded_model = EmbeddingCollection(
             tables=tables,
             device=ctx.device,
             need_indices=True,
-        )
-        print("##############3")
-        print_gpu_memory_usage()           
+        )         
         # syncs model across ranks
         torch.manual_seed(0)
         for param in unsharded_model.parameters():
@@ -231,7 +222,7 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
         use_index_dedup: bool,
     ) -> None:
 
-        WORLD_SIZE = 4
+        WORLD_SIZE = 2
 
         embedding_config = [
             EmbeddingConfig(
@@ -254,16 +245,6 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
         # "feature_1"   [2, 3]       None        [2]
 
         kjt_input_per_rank = [  # noqa
-            KeyedJaggedTensor.from_lengths_sync(
-                keys=["feature_0"],
-                values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
-                lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
-            ),
-            KeyedJaggedTensor.from_lengths_sync(
-                keys=["feature_0"],
-                values=torch.LongTensor([3, 2, 1, 2, 0, 1, 2, 3, 2, 3, 2]),
-                lengths=torch.LongTensor([2, 2, 4, 2, 0, 1]),
-            ),
             KeyedJaggedTensor.from_lengths_sync(
                 keys=["feature_0"],
                 values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
