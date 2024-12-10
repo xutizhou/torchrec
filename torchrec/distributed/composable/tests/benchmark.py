@@ -274,7 +274,27 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
                 values=torch.LongTensor([3, 2, 1, 2, 0, 1, 2, 3, 2, 3, 2]),
                 lengths=torch.LongTensor([2, 2, 4, 2, 0, 1]),
             ),
-        ]
+            KeyedJaggedTensor.from_lengths_sync(
+                keys=["feature_0"],
+                values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
+                lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
+            ),
+            KeyedJaggedTensor.from_lengths_sync(
+                keys=["feature_0"],
+                values=torch.LongTensor([3, 2, 1, 2, 0, 1, 2, 3, 2, 3, 2]),
+                lengths=torch.LongTensor([2, 2, 4, 2, 0, 1]),
+            ),
+            KeyedJaggedTensor.from_lengths_sync(
+                keys=["feature_0"],
+                values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
+                lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
+            ),
+            KeyedJaggedTensor.from_lengths_sync(
+                keys=["feature_0"],
+                values=torch.LongTensor([3, 2, 1, 2, 0, 1, 2, 3, 2, 3, 2]),
+                lengths=torch.LongTensor([2, 2, 4, 2, 0, 1]),
+            ),
+            ]
         self._run_multi_process_test(
             callable=_test_sharding,
             world_size=WORLD_SIZE,
