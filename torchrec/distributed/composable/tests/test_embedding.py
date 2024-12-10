@@ -184,12 +184,16 @@ def _test_sharding(  # noqa C901
             else:
                 sharded_param = sharded_state
 
+            for i in range(torch.cuda.device_count()):
+                print(f"GPU {i}: {torch.cuda.memory_allocated(i) / 1e9:.2f} GB allocated")
+                
             if ctx.rank == 0:
                 torch.testing.assert_close(
                     unsharded_state,
                     sharded_param,
                     msg=f"Did not match for {fqn=} after backward",
                 )
+
 
 
 @skip_if_asan_class
@@ -217,19 +221,19 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
                 name="table_0",
                 feature_names=["feature_0"],
                 embedding_dim=8,
-                num_embeddings=4,
+                num_embeddings=80000000,
             ),
             EmbeddingConfig(
                 name="table_1",
                 feature_names=["feature_0", "feature_1"],
                 embedding_dim=8,
-                num_embeddings=4,
+                num_embeddings=80000000,
             ),
             EmbeddingConfig(
                 name="table_2",
                 feature_names=["feature_0", "feature_1"],
                 embedding_dim=8,
-                num_embeddings=4,
+                num_embeddings=80000000,
             ),
         ]
 
