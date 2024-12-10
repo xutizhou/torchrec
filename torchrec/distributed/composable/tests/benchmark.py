@@ -173,6 +173,8 @@ def _test_sharding(  # noqa C901
         sharded_model_pred_jts_dict = sharded_model(indices)
         print(sharded_model_pred_jts_dict['feature_0'].values())
 
+        print(f"sharded_model.plan{sharded_model.plan}")
+
         import time
         train_start_time = time.perf_counter()
         for step in range(num_steps):
