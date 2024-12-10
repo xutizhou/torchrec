@@ -168,8 +168,9 @@ def _test_sharding(  # noqa C901
             unsharded_model_optimizer.step()
             sharded_model_optimizer.step()
 
-        for table_name, table_shard in sharded_model.state_dict().items():
-            print(f"Table: {table_name}, Shard Info: {table_shard}")
+        for sharded_tensor in sharded_model.state_dict():
+            metadata = sharded_tensor.metadata()
+            print(f"Global ShardedTensor Metadata: {metadata}")
 
         for fqn in unsharded_model.state_dict():
             unsharded_state = unsharded_model.state_dict()[fqn]
