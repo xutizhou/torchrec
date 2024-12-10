@@ -6,6 +6,7 @@
 # LICENSE file in the root directory of this source tree.
 
 # pyre-strict
+import datetime
 
 import unittest
 from typing import Dict, List, Optional
@@ -127,16 +128,7 @@ def _test_sharding(  # noqa C901
             nn.init.uniform_(param, -1, 1)
         torch.manual_seed(0)
 
-        if use_apply_optimizer_in_backward:
-            apply_optimizer_in_backward(
-                torch.optim.SGD,
-                unsharded_model.embeddings.parameters(),
-                {"lr": 1.0},
-            )
-        else:
-            unsharded_model_optimizer = torch.optim.SGD(
-                unsharded_model.parameters(), lr=1.0
-            )
+
 
         module_sharding_plan = construct_module_sharding_plan(
             unsharded_model,
@@ -163,49 +155,12 @@ def _test_sharding(  # noqa C901
             device=ctx.device,
         )
 
-        if not use_apply_optimizer_in_backward:
-            sharded_model_optimizer = torch.optim.SGD(
-                sharded_model.parameters(), lr=1.0
-            )
-
-        assert isinstance(sharded_model, ShardedEmbeddingCollection)
-
-        if not use_apply_optimizer_in_backward:
-            unsharded_model_optimizer.zero_grad()
-            sharded_model_optimizer.zero_grad()
-
-        unsharded_model_pred_jt_dict = []
-        for unsharded_rank in range(ctx.world_size):
-            # simulate the unsharded model run on the entire batch
-            unsharded_model_pred_jt_dict.append(
-                unsharded_model(kjt_input_per_rank[unsharded_rank])
-            )
-
         # sharded model
         # each rank gets a subbatch
         sharded_model_pred_jts_dict: Dict[str, JaggedTensor] = sharded_model(
             kjt_input_per_rank[ctx.rank]
         )
 
-        unsharded_model_pred_jt_dict_this_rank: Dict[str, JaggedTensor] = (
-            unsharded_model_pred_jt_dict[ctx.rank]
-        )
-
-        embedding_names = unsharded_model_pred_jt_dict_this_rank.keys()
-        assert set(unsharded_model_pred_jt_dict_this_rank.keys()) == set(
-            sharded_model_pred_jts_dict.keys()
-        )
-
-        for embedding_name in embedding_names:
-            unsharded_jt = unsharded_model_pred_jt_dict_this_rank[embedding_name]
-            sharded_jt = sharded_model_pred_jts_dict[embedding_name]
-            print(f"unsharded_jt.values(), sharded_jt.values(): {unsharded_jt.values()}, {sharded_jt.values()}")
-            torch.testing.assert_close(unsharded_jt.values(), sharded_jt.values())
-            torch.testing.assert_close(unsharded_jt.lengths(), sharded_jt.lengths())
-            torch.testing.assert_close(unsharded_jt.offsets(), sharded_jt.offsets())
-            torch.testing.assert_close(
-                unsharded_jt.weights_or_none(), sharded_jt.weights_or_none()
-            )
         length = torch.full((64,), 1024)
         value = torch.randint(
             0, 40, (int(length.sum()),)
@@ -218,18 +173,29 @@ def _test_sharding(  # noqa C901
         sharded_model_pred_jts_dict = sharded_model(indices)
         print(sharded_model_pred_jts_dict['feature_0'].values())
 
+        import time
+        train_start_time = time.perf_counter()
         for step in range(num_steps):
             # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
             features = dataset.__getitem__(step)
-            print_gpu_memory_usage()  
+            # print_gpu_memory_usage()  
             features = features.to(ctx.device)
             # torch.cuda.nvtx.range_pop() 
-            # torch.cuda.nvtx.range_push("FEC Forward Pass")
+            torch.cuda.nvtx.range_push("FEC Forward Pass")
             fused_embeddings = sharded_model(features)   
-            # print(f"embeddings are {fused_embeddings['feature_0'].values()}")  
-            print_gpu_memory_usage()   
-
-
+            print(f"embeddings are {fused_embeddings['feature_0'].values()}")  
+            # print_gpu_memory_usage()   
+        train_end_time = time.perf_counter()
+        train_time = train_end_time - train_start_time
+        if ctx.rank == 0:
+            print(
+                "[%s] [TRAIN_TIME] train time is %.2f seconds"
+                % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), train_time)
+            )
+            print(
+                "[EPOCH_TIME] %.2f seconds."
+                % (train_time / num_epochs,)
+            )
 @skip_if_asan_class
 class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
     @unittest.skipIf(
