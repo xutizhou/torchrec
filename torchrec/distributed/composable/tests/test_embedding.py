@@ -185,7 +185,7 @@ def _test_sharding(  # noqa C901
                 sharded_param = sharded_state
 
             
-            print(f"GPU {ctx.rank}: {torch.cuda.memory_allocated(ctx.rank) / 1e9:.2f} GB allocated")
+            
 
             if ctx.rank == 0:
                 torch.testing.assert_close(
@@ -194,7 +194,7 @@ def _test_sharding(  # noqa C901
                     msg=f"Did not match for {fqn=} after backward",
                 )
 
-
+        print(f"GPU {ctx.rank}: {torch.cuda.memory_allocated(ctx.rank) / 1e9:.2f} GB allocated")    
 
 @skip_if_asan_class
 class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
