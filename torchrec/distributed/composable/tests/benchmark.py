@@ -118,7 +118,7 @@ def _test_sharding(  # noqa C901
         print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         unsharded_model = EmbeddingCollection(
             tables=tables,
-            device=torch.device("cpu"),
+            device=torch.device("meta"),
             need_indices=True,
         )     
         print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))    
