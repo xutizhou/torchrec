@@ -173,8 +173,11 @@ def _test_sharding(  # noqa C901
         sharded_model_pred_jts_dict = sharded_model(indices)
         print(sharded_model_pred_jts_dict['feature_0'].values())
 
-        for table_name, table_sharding in sharded_model.sharding_infos().items():
-                    print(f"Table '{table_name}' is sharded as: {table_sharding}")        
+        # Check memory usage on each GPU
+        for i in range(torch.cuda.device_count()):
+            print(f"GPU {i}: {torch.cuda.memory_allocated(i) / 1e9:.2f} GB allocated")
+
+      
 
         import time
         train_start_time = time.perf_counter()
