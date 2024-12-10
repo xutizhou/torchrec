@@ -133,7 +133,7 @@ def _test_sharding(  # noqa C901
         module_sharding_plan = construct_module_sharding_plan(
             unsharded_model,
             per_param_sharding={
-                "table_0": row_wise(),
+                "table_0": column_wise(ranks=[0, 1]),
             },
             local_size=local_size,
             world_size=world_size,
@@ -188,7 +188,7 @@ def _test_sharding(  # noqa C901
             # torch.cuda.nvtx.range_pop() 
             torch.cuda.nvtx.range_push("FEC Forward Pass")
             fused_embeddings = sharded_model(features)   
-            print(f"embeddings are {fused_embeddings['feature_0'].values()}")  
+            # print(f"embeddings are {fused_embeddings['feature_0'].values()}")  
             # print_gpu_memory_usage()   
         train_end_time = time.perf_counter()
         train_time = train_end_time - train_start_time
@@ -201,6 +201,7 @@ def _test_sharding(  # noqa C901
                 "[EPOCH_TIME] %.2f seconds."
                 % (train_time / num_epochs,)
             )
+            
 @skip_if_asan_class
 class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
     @unittest.skipIf(
