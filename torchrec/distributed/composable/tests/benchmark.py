@@ -58,6 +58,11 @@ print(f"dataset_size: {dataset_size}")
 print(f"fetched embedding size GB: {dataset_size * embedding_dim * 4 / 1024 / 1024 / 1024}")
 print(f"num_epochs: {num_epochs}")
 print(f"num_steps: {num_steps}")
+def print_gpu_memory_usage():
+    allocated = torch.cuda.memory_allocated() / 1024**2  # 转换为 MB
+    reserved = torch.cuda.memory_reserved() / 1024**2  # 转换为 MB
+    print(f"Allocated memory: {allocated:.2f} MB")
+    print(f"Reserved memory: {reserved:.2f} MB")
 class CustomDataset():
     def __init__(self, num_steps, hash_size, batch_size, seq_len, device):
         self.num_steps = num_steps
@@ -220,7 +225,8 @@ def _test_sharding(  # noqa C901
             # torch.cuda.nvtx.range_pop() 
             # torch.cuda.nvtx.range_push("FEC Forward Pass")
             fused_embeddings = sharded_model(features)   
-            print(f"embeddings are {fused_embeddings['feature_0'].values()}")     
+            print(f"embeddings are {fused_embeddings['feature_0'].values()}")  
+            print_gpu_memory_usage()   
 
 
 @skip_if_asan_class
