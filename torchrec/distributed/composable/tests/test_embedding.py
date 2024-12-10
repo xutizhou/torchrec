@@ -189,8 +189,6 @@ def _test_sharding(  # noqa C901
             else:
                 sharded_param = sharded_state
 
-            
-            
 
             if ctx.rank == 0:
                 torch.testing.assert_close(

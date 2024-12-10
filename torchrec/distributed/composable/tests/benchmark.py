@@ -176,7 +176,11 @@ def _test_sharding(  # noqa C901
         # Check memory usage on each GPU
         print(f"GPU {ctx.rank}: {torch.cuda.memory_allocated(ctx.rank) / 1e9:.2f} GB allocated")  
 
-      
+        for fqn in sharded_model.state_dict():
+            sharded_state = sharded_model.state_dict()[fqn]
+
+            metadata = sharded_state.metadata()
+            print(f"Global ShardedTensor Metadata: {metadata}")      
 
         import time
         train_start_time = time.perf_counter()
