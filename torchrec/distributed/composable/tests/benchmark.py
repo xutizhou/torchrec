@@ -44,7 +44,7 @@ from torchrec.test_utils import skip_if_asan_class
 
 hash_size = 40000000
 embedding_dim = 128
-batch_size = 64
+batch_size = 2048
 seq_len = 64
 num_epochs = 1
 dataset_size = 800000
