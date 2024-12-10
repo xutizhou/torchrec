@@ -189,9 +189,9 @@ def _test_sharding(  # noqa C901
             features = dataset.__getitem__(step)
             features = features.to(ctx.device)
             # torch.cuda.nvtx.range_pop() 
-            torch.cuda.nvtx.range_push("FEC Forward Pass")
+            # torch.cuda.nvtx.range_push("FEC Forward Pass")
             fused_embeddings = sharded_model(features)  
-            torch.cuda.nvtx.range_pop() 
+            # torch.cuda.nvtx.range_pop() 
             # print(f"embeddings are {fused_embeddings['feature_0'].values()}")  
         train_end_time = time.perf_counter()
         train_time = train_end_time - train_start_time
@@ -218,7 +218,7 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
 
     ) -> None:
 
-        WORLD_SIZE = 2
+        WORLD_SIZE = 8
 
         embedding_config = [
             EmbeddingConfig(
