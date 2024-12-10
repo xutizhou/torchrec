@@ -173,7 +173,8 @@ def _test_sharding(  # noqa C901
         sharded_model_pred_jts_dict = sharded_model(indices)
         print(sharded_model_pred_jts_dict['feature_0'].values())
 
-        print(f"sharded_model.plan{sharded_model.plan}")
+        for table_name, table_sharding in sharded_model.sharding_infos().items():
+                    print(f"Table '{table_name}' is sharded as: {table_sharding}")        
 
         import time
         train_start_time = time.perf_counter()
