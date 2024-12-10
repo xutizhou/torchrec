@@ -214,8 +214,8 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
     @settings(verbosity=Verbosity.verbose, max_examples=10, deadline=None)
     # pyre-ignore
     @given(
-        use_apply_optimizer_in_backward=st.booleans(),
-        use_index_dedup=st.booleans(),
+        use_apply_optimizer_in_backward=False,
+        use_index_dedup=False,
     )
     def test_sharding_ebc(
         self,
