@@ -224,7 +224,7 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
         use_index_dedup: bool,
     ) -> None:
 
-        WORLD_SIZE = 2
+        WORLD_SIZE = 4
 
         embedding_config = [
             EmbeddingConfig(
