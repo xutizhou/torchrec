@@ -115,19 +115,19 @@ def _test_sharding(  # noqa C901
         print(f"###########ctx.device: {ctx.device}")  
         sharder = EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)
         kjt_input_per_rank = [kjt.to(ctx.device) for kjt in kjt_input_per_rank] 
-        print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        # print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         unsharded_model = EmbeddingCollection(
             tables=tables,
             device=torch.device("meta"),
             need_indices=True,
         )     
-        print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))    
+        # print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))    
         # syncs model across ranks
         torch.manual_seed(0)
         for param in unsharded_model.parameters():
             nn.init.uniform_(param, -1, 1)
         torch.manual_seed(0)
-        print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        # print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
 
         module_sharding_plan = construct_module_sharding_plan(
@@ -157,21 +157,21 @@ def _test_sharding(  # noqa C901
 
         # sharded model
         # each rank gets a subbatch
-        sharded_model_pred_jts_dict: Dict[str, JaggedTensor] = sharded_model(
-            kjt_input_per_rank[ctx.rank]
-        )
+        # sharded_model_pred_jts_dict: Dict[str, JaggedTensor] = sharded_model(
+        #     kjt_input_per_rank[ctx.rank]
+        # )
 
-        length = torch.full((64,), 1024)
-        value = torch.randint(
-            0, 40, (int(length.sum()),)
-        )            
-        indices = KeyedJaggedTensor.from_lengths_sync(
-                keys=["feature_0"],
-                values=value,
-                lengths=length,
-            ).to(ctx.device)
-        sharded_model_pred_jts_dict = sharded_model(indices)
-        print(sharded_model_pred_jts_dict['feature_0'].values())
+        # length = torch.full((64,), 1024)
+        # value = torch.randint(
+        #     0, 40, (int(length.sum()),)
+        # )            
+        # indices = KeyedJaggedTensor.from_lengths_sync(
+        #         keys=["feature_0"],
+        #         values=value,
+        #         lengths=length,
+        #     ).to(ctx.device)
+        # sharded_model_pred_jts_dict = sharded_model(indices)
+        # print(sharded_model_pred_jts_dict['feature_0'].values())
 
         # Check memory usage on each GPU
         # print(f"GPU {ctx.rank}: {torch.cuda.memory_allocated(ctx.rank) / 1e9:.2f} GB allocated")  
@@ -189,9 +189,9 @@ def _test_sharding(  # noqa C901
             features = dataset.__getitem__(step)
             features = features.to(ctx.device)
             # torch.cuda.nvtx.range_pop() 
-            torch.cuda.nvtx.range_push("FEC Forward Pass")
+            # torch.cuda.nvtx.range_push("FEC Forward Pass")
             fused_embeddings = sharded_model(features)  
-            torch.cuda.nvtx.range_pop() 
+            # torch.cuda.nvtx.range_pop() 
             # print(f"embeddings are {fused_embeddings['feature_0'].values()}")  
         train_end_time = time.perf_counter()
         train_time = train_end_time - train_start_time
