@@ -115,15 +115,20 @@ def _test_sharding(  # noqa C901
     print_gpu_memory_usage()   
     with MultiProcessContext(rank, world_size, backend, local_size) as ctx:
         print(f"###########ctx.device: {ctx.device}")
+        print("#################1")
+        print_gpu_memory_usage()   
         sharder = EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)
         kjt_input_per_rank = [kjt.to(ctx.device) for kjt in kjt_input_per_rank]
+        print("##############2")
+        print_gpu_memory_usage()   
 
         unsharded_model = EmbeddingCollection(
             tables=tables,
             device=ctx.device,
             need_indices=True,
         )
-
+        print("##############3")
+        print_gpu_memory_usage()           
         # syncs model across ranks
         torch.manual_seed(0)
         for param in unsharded_model.parameters():
