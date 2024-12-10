@@ -42,12 +42,12 @@ from torchrec.modules.embedding_modules import EmbeddingCollection
 from torchrec.sparse.jagged_tensor import JaggedTensor, KeyedJaggedTensor
 from torchrec.test_utils import skip_if_asan_class
 
-hash_size = 80000000
+hash_size = 8000000
 embedding_dim = 128
-batch_size = 2048
-seq_len = 4096
+batch_size = 64
+seq_len = 64
 num_epochs = 1
-dataset_size = 8000000000
+dataset_size = 800000
 num_steps = dataset_size // (batch_size * seq_len)
 print(f"hash_size: {hash_size}")
 print(f'hash_size GB: {hash_size * embedding_dim * 4 / 1024 / 1024 / 1024}')
@@ -104,7 +104,7 @@ def _test_sharding(  # noqa C901
     use_index_dedup: bool = False,
 ) -> None:
     trec_dist.comm_ops.set_gradient_division(False)
-    dataset = CustomDataset(10, 10, batch_size=10, seq_len=10, device=torch.device("cuda"))
+    dataset = CustomDataset(num_steps=num_steps, hash_size=hash_size, batch_size=batch_size, seq_len=seq_len, device=torch.device("cuda"))
     with MultiProcessContext(rank, world_size, backend, local_size) as ctx:
         print(f"###########ctx.device: {ctx.device}")
         sharder = EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)
@@ -213,7 +213,7 @@ def _test_sharding(  # noqa C901
         sharded_model_pred_jts_dict = sharded_model(indices)
         print(sharded_model_pred_jts_dict['feature_0'].values())
 
-        for step in range(10):
+        for step in range(num_steps):
             # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
             features = dataset.__getitem__(step)
             features = features.to(ctx.device)
@@ -247,8 +247,8 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
             EmbeddingConfig(
                 name="table_0",
                 feature_names=["feature_0"],
-                embedding_dim=128,
-                num_embeddings=400,
+                embedding_dim=embedding_dim,
+                num_embeddings=hash_size,
             ),
         ]
 
