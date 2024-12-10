@@ -174,8 +174,7 @@ def _test_sharding(  # noqa C901
         print(sharded_model_pred_jts_dict['feature_0'].values())
 
         # Check memory usage on each GPU
-        for i in range(torch.cuda.device_count()):
-            print(f"GPU {i}: {torch.cuda.memory_allocated(i) / 1e9:.2f} GB allocated")
+        print(f"GPU {ctx.rank}: {torch.cuda.memory_allocated(ctx.rank) / 1e9:.2f} GB allocated")  
 
       
 
