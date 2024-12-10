@@ -226,7 +226,7 @@ def _test_sharding(  # noqa C901
             # torch.cuda.nvtx.range_pop() 
             # torch.cuda.nvtx.range_push("FEC Forward Pass")
             fused_embeddings = sharded_model(features)   
-            print(f"embeddings are {fused_embeddings['feature_0'].values()}")  
+            # print(f"embeddings are {fused_embeddings['feature_0'].values()}")  
             print_gpu_memory_usage()   
 
 
