@@ -184,9 +184,9 @@ def _test_sharding(  # noqa C901
             else:
                 sharded_param = sharded_state
 
-            for i in range(torch.cuda.device_count()):
-                print(f"GPU {i}: {torch.cuda.memory_allocated(i) / 1e9:.2f} GB allocated")
-                
+            
+            print(f"GPU {ctx.rank}: {torch.cuda.memory_allocated(ctx.rank) / 1e9:.2f} GB allocated")
+
             if ctx.rank == 0:
                 torch.testing.assert_close(
                     unsharded_state,
