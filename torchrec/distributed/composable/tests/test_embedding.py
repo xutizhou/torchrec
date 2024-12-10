@@ -168,6 +168,9 @@ def _test_sharding(  # noqa C901
             unsharded_model_optimizer.step()
             sharded_model_optimizer.step()
 
+        for table_name, table_shard in sharded_model.state_dict().items():
+            print(f"Table: {table_name}, Shard Info: {table_shard}")
+
         for fqn in unsharded_model.state_dict():
             unsharded_state = unsharded_model.state_dict()[fqn]
             sharded_state = sharded_model.state_dict()[fqn]
@@ -177,8 +180,7 @@ def _test_sharding(  # noqa C901
                 if ctx.rank == 0
                 else None
             )
-            for table_name, table_shard in sharded_model.state_dict()[fqn].items():
-                print(f"Table: {table_name}, Shard Info: {table_shard}")
+
 
             if isinstance(sharded_state, ShardedTensor):
                 sharded_state.gather(out=sharded_param)
