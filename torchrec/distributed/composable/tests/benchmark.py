@@ -48,7 +48,7 @@ embedding_dim = 128
 batch_size = 2048
 seq_len = 64
 num_epochs = 1
-dataset_size = 8000000000
+dataset_size = 800000000
 num_steps = dataset_size // (batch_size * seq_len)
 print(f"hash_size: {hash_size}")
 print(f'hash_size GB: {hash_size * embedding_dim * 4 / 1024 / 1024 / 1024}')
