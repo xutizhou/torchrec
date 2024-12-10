@@ -133,7 +133,7 @@ def _test_sharding(  # noqa C901
         module_sharding_plan = construct_module_sharding_plan(
             unsharded_model,
             per_param_sharding={
-                "table_0": column_wise(ranks=[0, 1]),
+                "table_0": row_wise(),
             },
             local_size=local_size,
             world_size=world_size,
