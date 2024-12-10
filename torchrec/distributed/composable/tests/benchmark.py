@@ -212,15 +212,10 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
         "Not enough GPUs, this test requires at least two GPUs",
     )
     @settings(verbosity=Verbosity.verbose, max_examples=10, deadline=None)
-    # pyre-ignore
-    @given(
-        use_apply_optimizer_in_backward=False,
-        use_index_dedup=False,
-    )
+
     def test_sharding_ebc(
         self,
-        use_apply_optimizer_in_backward: bool,
-        use_index_dedup: bool,
+
     ) -> None:
 
         WORLD_SIZE = 2
@@ -264,6 +259,6 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
             tables=embedding_config,
             kjt_input_per_rank=kjt_input_per_rank,
             backend="nccl",
-            use_apply_optimizer_in_backward=use_apply_optimizer_in_backward,
-            use_index_dedup=use_index_dedup,
+            use_apply_optimizer_in_backward=False,
+            use_index_dedup=False,
         )
