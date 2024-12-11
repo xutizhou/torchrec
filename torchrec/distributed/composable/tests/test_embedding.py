@@ -61,7 +61,6 @@ def _test_sharding(  # noqa C901
         unsharded_model = EmbeddingCollection(
             tables=tables,
             device=ctx.device,
-            need_indices=True,
         )
 
         # syncs model across ranks
@@ -107,15 +106,16 @@ def _test_sharding(  # noqa C901
         )
         import time, datetime
         train_start_time = time.perf_counter()
-        unsharded_model_pred_jts_dict: Dict[str, JaggedTensor] = unsharded_model(
-            kjt_input_per_rank[ctx.rank]
-        )
+        for i in range(20):
+            unsharded_model_pred_jts_dict: Dict[str, JaggedTensor] = unsharded_model(
+                kjt_input_per_rank[ctx.rank]
+            )
         train_end_time = time.perf_counter()
         train_time = train_end_time - train_start_time
         if ctx.rank == 0:
             print(
                 "####[%s] [TRAIN_TIME] train time is %.2f seconds"
-                % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), train_time)
+                % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), train_time / 20)
             )       
         if not use_apply_optimizer_in_backward:
             sharded_model_optimizer = torch.optim.SGD(
