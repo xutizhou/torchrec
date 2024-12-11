@@ -7,6 +7,7 @@
 
 # pyre-strict
 import datetime
+import time
 
 import unittest
 from typing import Dict, List, Optional
@@ -161,19 +162,29 @@ def _test_sharding(  # noqa C901
         # sharded_model_pred_jts_dict: Dict[str, JaggedTensor] = sharded_model(
         #     kjt_input_per_rank[ctx.rank]
         # )
-
-        # length = torch.full((64,), 1024)
-        # value = torch.randint(
-        #     0, 40, (int(length.sum()),)
-        # )            
-        # indices = KeyedJaggedTensor.from_lengths_sync(
-        #         keys=["feature_0"],
-        #         values=value,
-        #         lengths=length,
-        #     ).to(ctx.device)
-        # sharded_model_pred_jts_dict = sharded_model(indices)
-        # print(sharded_model_pred_jts_dict['feature_0'].values())
-
+        
+        length = torch.full((2048,), 4096)
+        value = torch.randint(
+            0, 40, (int(length.sum()),)
+        )            
+        indices = KeyedJaggedTensor.from_lengths_sync(
+                keys=["feature_0"],
+                values=value,
+                lengths=length,
+            ).to(ctx.device)
+        train_start_time = time.perf_counter()
+        sharded_model_pred_jts_dict = sharded_model(indices)
+        train_end_time = time.perf_counter()
+        train_time = train_end_time - train_start_time
+        if ctx.rank == 0:
+            print(
+                "####[%s] [TRAIN_TIME] train time is %.2f seconds"
+                % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), train_time)
+            )
+            print(
+                "####[EPOCH_TIME] %.2f seconds."
+                % (train_time / num_epochs,)
+            )
         # Check memory usage on each GPU
         # print(f"GPU {ctx.rank}: {torch.cuda.memory_allocated(ctx.rank) / 1e9:.2f} GB allocated")  
 
@@ -183,7 +194,6 @@ def _test_sharding(  # noqa C901
         #     metadata = sharded_state.metadata()
         #     print(f"Global ShardedTensor Metadata: {metadata}")      
 
-        import time
         train_start_time = time.perf_counter()
         for step in range(num_steps):
             # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
