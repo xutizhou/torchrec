@@ -48,7 +48,7 @@ embedding_dim = 128
 batch_size = 2048
 seq_len = 64
 num_epochs = 1
-dataset_size = 800000000
+dataset_size = 8000000
 num_steps = dataset_size // (batch_size * seq_len)
 print(f"hash_size: {hash_size}")
 print(f'hash_size GB: {hash_size * embedding_dim * 4 / 1024 / 1024 / 1024}')
@@ -187,9 +187,9 @@ def _test_sharding(  # noqa C901
         for step in range(num_steps):
             # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
             features = dataset.__getitem__(step)
-            print(f"features at rank:{features.get_device()}current GPU is{ctx.device}")  
+            print(f"features at rank:{features.values().get_device()}current GPU is{ctx.device}")  
             features = features.to(ctx.device)
-            print(f"features at rank:{features.get_device()}current GPU is{ctx.device}") 
+            print(f"features at rank:{features.values().get_device()}current GPU is{ctx.device}") 
             # torch.cuda.nvtx.range_pop() 
             # torch.cuda.nvtx.range_push("FEC Forward Pass")
             fused_embeddings = sharded_model(features)  
