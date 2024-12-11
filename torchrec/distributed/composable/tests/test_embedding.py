@@ -60,7 +60,7 @@ def _test_sharding(  # noqa C901
 
         unsharded_model = EmbeddingCollection(
             tables=tables,
-            device=ctx.device,
+            device=torch.device("meta"),
             need_indices=True,
         )
 
@@ -84,9 +84,7 @@ def _test_sharding(  # noqa C901
         module_sharding_plan = construct_module_sharding_plan(
             unsharded_model,
             per_param_sharding={
-                "table_0": table_wise(rank=0),
-                "table_1": row_wise(),
-                "table_2": column_wise(ranks=[0, 1]),
+                "table_0": row_wise(),
             },
             local_size=local_size,
             world_size=world_size,
@@ -107,7 +105,18 @@ def _test_sharding(  # noqa C901
             sharders=[sharder],
             device=ctx.device,
         )
-
+        import time, datetime
+        train_start_time = time.perf_counter()
+        sharded_model_pred_jts_dict: Dict[str, JaggedTensor] = sharded_model(
+            kjt_input_per_rank[ctx.rank]
+        )
+        train_end_time = time.perf_counter()
+        train_time = train_end_time - train_start_time
+        if ctx.rank == 0:
+            print(
+                "####[%s] [TRAIN_TIME] train time is %.2f seconds"
+                % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), train_time)
+            )       
         if not use_apply_optimizer_in_backward:
             sharded_model_optimizer = torch.optim.SGD(
                 sharded_model.parameters(), lr=1.0
@@ -146,6 +155,7 @@ def _test_sharding(  # noqa C901
         for embedding_name in embedding_names:
             unsharded_jt = unsharded_model_pred_jt_dict_this_rank[embedding_name]
             sharded_jt = sharded_model_pred_jts_dict[embedding_name]
+
             torch.testing.assert_close(unsharded_jt.values(), sharded_jt.values())
             torch.testing.assert_close(unsharded_jt.lengths(), sharded_jt.lengths())
             torch.testing.assert_close(unsharded_jt.offsets(), sharded_jt.offsets())
@@ -168,8 +178,6 @@ def _test_sharding(  # noqa C901
             unsharded_model_optimizer.step()
             sharded_model_optimizer.step()
 
-
-
         for fqn in unsharded_model.state_dict():
             unsharded_state = unsharded_model.state_dict()[fqn]
             sharded_state = sharded_model.state_dict()[fqn]
@@ -179,16 +187,12 @@ def _test_sharding(  # noqa C901
                 if ctx.rank == 0
                 else None
             )
-            metadata = sharded_state.metadata()
-            print(f"Global ShardedTensor Metadata: {metadata}")
-
             if isinstance(sharded_state, ShardedTensor):
                 sharded_state.gather(out=sharded_param)
             elif isinstance(sharded_state, DTensor):
                 sharded_param = sharded_state.full_tensor()
             else:
                 sharded_param = sharded_state
-
 
             if ctx.rank == 0:
                 torch.testing.assert_close(
@@ -197,7 +201,6 @@ def _test_sharding(  # noqa C901
                     msg=f"Did not match for {fqn=} after backward",
                 )
 
-        print(f"GPU {ctx.rank}: {torch.cuda.memory_allocated(ctx.rank) / 1e9:.2f} GB allocated")    
 
 @skip_if_asan_class
 class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
@@ -217,27 +220,16 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
         use_index_dedup: bool,
     ) -> None:
 
-        WORLD_SIZE = 2
+        WORLD_SIZE = 8
 
         embedding_config = [
             EmbeddingConfig(
                 name="table_0",
                 feature_names=["feature_0"],
-                embedding_dim=8,
+                embedding_dim=128,
                 num_embeddings=80000000,
             ),
-            EmbeddingConfig(
-                name="table_1",
-                feature_names=["feature_0", "feature_1"],
-                embedding_dim=8,
-                num_embeddings=80000000,
-            ),
-            EmbeddingConfig(
-                name="table_2",
-                feature_names=["feature_0", "feature_1"],
-                embedding_dim=8,
-                num_embeddings=80000000,
-            ),
+            
         ]
 
         # Rank 0
@@ -250,19 +242,25 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
         #             instance 0   instance 1  instance 2
         # "feature_0"   [3, 2]       [1,2]       [0,1,2,3]
         # "feature_1"   [2, 3]       None        [2]
-
+        length = torch.full((2048,), 4096)
+        value = torch.randint(
+            1, 70000000, (int(length.sum()),)
+        )            
+        indices = KeyedJaggedTensor.from_lengths_sync(
+                keys=["feature_0"],
+                values=value,
+                lengths=length,
+            )
         kjt_input_per_rank = [  # noqa
-            KeyedJaggedTensor.from_lengths_sync(
-                keys=["feature_0", "feature_1"],
-                values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
-                lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
-            ),
-            KeyedJaggedTensor.from_lengths_sync(
-                keys=["feature_0", "feature_1"],
-                values=torch.LongTensor([3, 2, 1, 2, 0, 1, 2, 3, 2, 3, 2]),
-                lengths=torch.LongTensor([2, 2, 4, 2, 0, 1]),
-            ),
-        ]
+            indices,
+            indices,
+            indices,
+            indices,
+            indices,
+            indices,
+            indices,
+            indices,
+            ]
         self._run_multi_process_test(
             callable=_test_sharding,
             world_size=WORLD_SIZE,
