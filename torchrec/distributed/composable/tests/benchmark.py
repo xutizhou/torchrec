@@ -80,9 +80,9 @@ class CustomDataset():
             values = []
             lengths = []
             hash_size = self.hash_size
-            length = torch.full((self.batch_size,), self.ids_per_features, device=self.device)
+            length = torch.full((self.batch_size,), self.ids_per_features)
             value = torch.randint(
-                0, hash_size, (int(length.sum()),), device=self.device
+                0, hash_size, (int(length.sum()),)
             )
             lengths.append(length)
             values.append(value)
@@ -91,7 +91,7 @@ class CustomDataset():
                 values=torch.cat(values),
                 lengths=torch.cat(lengths),
             )
-            data.append(sparse_features)
+            data.append(sparse_features.to(self.device))
         return data
     def __len__(self):
         return self.num_steps
@@ -187,7 +187,9 @@ def _test_sharding(  # noqa C901
         for step in range(num_steps):
             # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
             features = dataset.__getitem__(step)
+            print(f"features at rank:{features.get_device()}current GPU is{ctx.device}")  
             features = features.to(ctx.device)
+            print(f"features at rank:{features.get_device()}current GPU is{ctx.device}") 
             # torch.cuda.nvtx.range_pop() 
             # torch.cuda.nvtx.range_push("FEC Forward Pass")
             fused_embeddings = sharded_model(features)  
