@@ -188,9 +188,9 @@ def _test_sharding(  # noqa C901
         for step in range(num_steps):
             # torch.cuda.nvtx.range_push("FEC Dataloader Pass")
             features = dataset.__getitem__(step)
-            print(f"features at rank:{features.values().get_device()}current GPU is{ctx.device}")  
+            # print(f"features at rank:{features.values().get_device()}current GPU is{ctx.device}")  
             features = features.to(ctx.device)
-            print(f"features at rank:{features.values().get_device()}current GPU is{ctx.device}") 
+            # print(f"features at rank:{features.values().get_device()}current GPU is{ctx.device}") 
             # torch.cuda.nvtx.range_pop() 
             # torch.cuda.nvtx.range_push("FEC Forward Pass")
             fused_embeddings = sharded_model(features)  
