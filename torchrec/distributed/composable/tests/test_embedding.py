@@ -242,7 +242,7 @@ class ShardedEmbeddingCollectionParallelTest(MultiProcessTestBase):
         #             instance 0   instance 1  instance 2
         # "feature_0"   [3, 2]       [1,2]       [0,1,2,3]
         # "feature_1"   [2, 3]       None        [2]
-        length = torch.full((2048,), 4096)
+        length = torch.full((4096,), 4096)
         value = torch.randint(
             1, 70000000, (int(length.sum()),)
         )            
