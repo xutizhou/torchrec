@@ -80,9 +80,9 @@ class CustomDataset():
             values = []
             lengths = []
             hash_size = self.hash_size
-            length = torch.full((self.batch_size,), self.ids_per_features)
+            length = torch.full((self.batch_size,), self.ids_per_features, device=self.device)
             value = torch.randint(
-                0, hash_size, (int(length.sum()),)
+                0, hash_size, (int(length.sum()),), device=self.device
             )
             lengths.append(length)
             values.append(value)
