@@ -115,7 +115,7 @@ def _test_sharding(  # noqa C901
         if ctx.rank == 0:
             print(
                 "####[%s] [TRAIN_TIME] train time is %.2f seconds"
-                % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), train_time / 200)
+                % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), train_time)
             )       
         if not use_apply_optimizer_in_backward:
             sharded_model_optimizer = torch.optim.SGD(
