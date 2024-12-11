@@ -135,7 +135,7 @@ def test_fc_forward() -> None:
             features = features.to(device)
             # torch.cuda.nvtx.range_pop() 
             # torch.cuda.nvtx.range_push("FEC Forward Pass")
-            fused_embeddings = fused_ec(features)
+            fused_embeddings = ec(features)
             # torch.cuda.nvtx.range_pop() 
             # fused_vals = []
             # for _name, jt in fused_embeddings.items():
