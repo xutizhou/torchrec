@@ -64,6 +64,7 @@ def print_gpu_memory_usage():
     reserved = torch.cuda.memory_reserved() / 1024**2  # 转换为 MB
     print(f"Allocated memory: {allocated:.2f} MB")
     print(f"Reserved memory: {reserved:.2f} MB")
+    
 class CustomDataset():
     def __init__(self, num_steps, hash_size, batch_size, seq_len, device):
         self.num_steps = num_steps
@@ -80,9 +81,9 @@ class CustomDataset():
             values = []
             lengths = []
             hash_size = self.hash_size
-            length = torch.full((self.batch_size,), self.ids_per_features)
+            length = torch.full((self.batch_size,), self.ids_per_features,device=self.device)
             value = torch.randint(
-                0, hash_size, (int(length.sum()),)
+                0, hash_size, (int(length.sum()),),device=self.device
             )
             lengths.append(length)
             values.append(value)
@@ -110,9 +111,10 @@ def _test_sharding(  # noqa C901
     use_index_dedup: bool = False,
 ) -> None:
     trec_dist.comm_ops.set_gradient_division(False)
-    dataset = CustomDataset(num_steps=num_steps, hash_size=hash_size, batch_size=batch_size, seq_len=seq_len, device=torch.device("cuda"))
+    
     with MultiProcessContext(rank, world_size, backend, local_size) as ctx:
         print(f"###########ctx.device: {ctx.device}")  
+        dataset = CustomDataset(num_steps=num_steps, hash_size=hash_size, batch_size=batch_size, seq_len=seq_len, device=ctx.device)
         sharder = EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)
         kjt_input_per_rank = [kjt.to(ctx.device) for kjt in kjt_input_per_rank] 
         # print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
