@@ -44,6 +44,18 @@ from torchrec.modules.embedding_modules import EmbeddingCollection
 from torchrec.sparse.jagged_tensor import JaggedTensor, KeyedJaggedTensor
 from torchrec.test_utils import skip_if_asan_class
 
+
+
+import os
+import torch
+import torch.distributed as dist
+from torchrec.distributed.embedding_types import EmbeddingComputeKernel
+from torchrec.distributed.planner import EmbeddingShardingPlanner, Topology
+from torchrec.distributed.types import ShardingEnv, ParameterConstraints, ShardingType
+from torchrec.modules.embedding_configs import EmbeddingBagConfig
+from torchrec.modules.embedding_modules import EmbeddingBagCollection
+from torchrec.distributed.model_parallel import DistributedModelParallel
+from torchrec.sparse.jagged_tensor import KeyedJaggedTensor
 hash_size = 80000000
 embedding_dim = 128
 batch_size = 2048
@@ -113,6 +125,61 @@ def _test_sharding(  # noqa C901
     trec_dist.comm_ops.set_gradient_division(False)
     
     with MultiProcessContext(rank, world_size, backend, local_size) as ctx:
+
+
+
+        constraints = {
+            "table1": ParameterConstraints(sharding_types=[ShardingType.ROW_WISE.value]),
+        }
+        ebc = EmbeddingCollection(
+            tables=tables,
+            device=torch.device("meta"),
+            need_indices=True,
+        )             
+        # Define topology and planner for sharding
+        topology = Topology(world_size=world_size, compute_device="cuda")
+        planner = EmbeddingShardingPlanner(topology=topology, constraints=constraints)
+        
+        # Generate sharding plan and wrap model with DistributedModelParallel
+        sharders = [EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)]
+        plan = planner.collective_plan(ebc, sharders)
+        
+        dmp = DistributedModelParallel(
+            module=ebc,
+            env=ShardingEnv.from_process_group(dist.group.WORLD),
+            plan=plan,
+            sharders=sharders,
+            device=torch.device(f"cuda:{rank}"),
+        )
+
+        length = torch.full((2048,), 4096)
+        value = torch.randint(
+            0, 40, (int(length.sum()),)
+        )            
+        indices = KeyedJaggedTensor.from_lengths_sync(
+                keys=["feature_0"],
+                values=value,
+                lengths=length,
+            ).to(ctx.device)
+        train_start_time = time.perf_counter()
+        dmp_pred_jts_dict = dmp(indices)
+        train_end_time = time.perf_counter()
+        train_time = train_end_time - train_start_time
+        if ctx.rank == 0:
+            print(
+                "dmp####[%s] [TRAIN_TIME] train time is %.2f seconds"
+                % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), train_time)
+            )
+            print(
+                "dmp####[EPOCH_TIME] %.2f seconds."
+                % (train_time / num_epochs,)
+            )
+
+
+
+
+
+
         dataset = CustomDataset(num_steps=num_steps, hash_size=hash_size, batch_size=batch_size, seq_len=seq_len, device=ctx.device)
         print(f"###########ctx.device: {ctx.device}")  
         sharder = EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)
