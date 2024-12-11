@@ -107,7 +107,7 @@ def _test_sharding(  # noqa C901
         )
         import time, datetime
         train_start_time = time.perf_counter()
-        sharded_model_pred_jts_dict: Dict[str, JaggedTensor] = sharded_model(
+        unsharded_model_pred_jts_dict: Dict[str, JaggedTensor] = unsharded_model(
             kjt_input_per_rank[ctx.rank]
         )
         train_end_time = time.perf_counter()

@@ -356,17 +356,17 @@ class ShardedEmbeddingBagCollectionParallelTest(MultiProcessTestBase):
         # "feature_0"   [3, 2]       [1,2]       [0,1,2,3]
         # "feature_1"   [2, 3]       None        [2]
 
+        length = torch.full((2048,), 46)
+        value = torch.randint(
+            1, 70000000, (int(length.sum()),)
+        )            
+        indices = KeyedJaggedTensor.from_lengths_sync(
+                keys=["feature_0"],
+                values=value,
+                lengths=length,
+            )
         kjt_input_per_rank = [  # noqa
-            KeyedJaggedTensor.from_lengths_sync(
-                keys=["feature_0", "feature_1"],
-                values=torch.LongTensor([0, 1, 2, 0, 1, 2]),
-                lengths=torch.LongTensor([2, 0, 1, 2, 0, 1]),
-            ),
-            KeyedJaggedTensor.from_lengths_sync(
-                keys=["feature_0", "feature_1"],
-                values=torch.LongTensor([3, 2, 1, 2, 0, 1, 2, 3, 2, 3, 2]),
-                lengths=torch.LongTensor([2, 2, 4, 2, 0, 1]),
-            ),
+            indices,indices
         ]
         self._run_multi_process_test(
             callable=_test_sharding,
