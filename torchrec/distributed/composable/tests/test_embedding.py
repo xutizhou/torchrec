@@ -106,7 +106,7 @@ def _test_sharding(  # noqa C901
         )
         import time, datetime
         train_start_time = time.perf_counter()
-        for i in range(20):
+        for i in range(200):
             unsharded_model_pred_jts_dict: Dict[str, JaggedTensor] = unsharded_model(
                 kjt_input_per_rank[ctx.rank]
             )
@@ -115,7 +115,7 @@ def _test_sharding(  # noqa C901
         if ctx.rank == 0:
             print(
                 "####[%s] [TRAIN_TIME] train time is %.2f seconds"
-                % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), train_time / 20)
+                % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), train_time / 200)
             )       
         if not use_apply_optimizer_in_backward:
             sharded_model_optimizer = torch.optim.SGD(
