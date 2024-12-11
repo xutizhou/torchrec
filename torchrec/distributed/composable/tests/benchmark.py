@@ -110,8 +110,9 @@ def _test_sharding(  # noqa C901
     use_index_dedup: bool = False,
 ) -> None:
     trec_dist.comm_ops.set_gradient_division(False)
-    dataset = CustomDataset(num_steps=num_steps, hash_size=hash_size, batch_size=batch_size, seq_len=seq_len, device=torch.device("cuda"))
+    
     with MultiProcessContext(rank, world_size, backend, local_size) as ctx:
+        dataset = CustomDataset(num_steps=num_steps, hash_size=hash_size, batch_size=batch_size, seq_len=seq_len, device=ctx.device)
         print(f"###########ctx.device: {ctx.device}")  
         sharder = EmbeddingCollectionSharder(use_index_dedup=use_index_dedup)
         kjt_input_per_rank = [kjt.to(ctx.device) for kjt in kjt_input_per_rank] 
