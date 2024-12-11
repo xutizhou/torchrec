@@ -60,7 +60,7 @@ def _test_sharding(  # noqa C901
 
         unsharded_model = EmbeddingCollection(
             tables=tables,
-            device=torch.device("meta"),
+            device=ctx.device,
             need_indices=True,
         )
 
